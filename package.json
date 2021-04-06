@@ -1,0 +1,33 @@
+{
+  "name": "ebookMobileReact",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@react-native-community/progress-bar-android": "^1.0.4",
+    "@react-native-community/progress-view": "^1.2.4",
+    "react": "16.11.0",
+    "react-native": "0.62.2",
+    "react-native-pdf": "^6.3.0",
+    "rn-fetch-blob": "github:joltup/rn-fetch-blob#pull/701/head"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/runtime": "^7.13.10",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.23.0",
+    "jest": "^26.6.3",
+    "metro-react-native-babel-preset": "^0.65.2",
+    "react-test-renderer": "16.11.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
