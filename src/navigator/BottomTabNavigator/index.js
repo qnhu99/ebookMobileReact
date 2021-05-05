@@ -6,13 +6,12 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Icon} from 'react-native-elements';
 
 /** import absolute path */
-import {
-  HomeScreen,
-  LibraryScreen,
-  SettingsScreen,
-  NotificationsScreen,
-  BookDetailScreen,
-} from 'src/components';
+import HomeScreen from 'src/components/screens/HomeScreen';
+import LibraryScreen from 'src/components/screens/LibraryScreen';
+import NotificationsScreen from 'src/components/screens/NotificationsScreen';
+import SettingsScreen from 'src/components/screens/SettingsScreen';
+import BookDetailScreen from 'src/components/screens/BookDetailScreen';
+
 import {COLORS, ICONS} from 'src/res';
 
 const options = {

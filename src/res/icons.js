@@ -1,5 +1,5 @@
 import React from 'react';
-import {Icon} from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 
 const ICONS = {
   // Bottom Tab Navigator (Ionicon icon)
@@ -37,7 +37,7 @@ const ICONS = {
       name="file"
       size={24}
       color="black"
-      style={{marginLeft: 2}}
+      style={{ marginLeft: 2 }}
       {...props}
     />
   ),
@@ -48,7 +48,7 @@ const ICONS = {
       type="font-awesome"
       size={24}
       color="black"
-      style={{marginLeft: 2}}
+      style={{ marginLeft: 2 }}
       {...props}
     />
   ),
@@ -58,7 +58,7 @@ const ICONS = {
       type="font-awesome"
       size={24}
       color="black"
-      style={{marginLeft: 2}}
+      style={{ marginLeft: 2 }}
       {...props}
     />
   ),
@@ -68,7 +68,7 @@ const ICONS = {
       type="font-awesome"
       size={24}
       color="black"
-      style={{marginLeft: 2}}
+      style={{ marginLeft: 2 }}
       {...props}
     />
   ),

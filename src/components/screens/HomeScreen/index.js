@@ -1,7 +1,9 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 
-import {STRINGS} from 'src/res';
+import { STRINGS } from 'src/res';
+
+import MainHeader from 'src/components/shared/MainHeader';
 
 import styles from './styles';
 import WelcomeIntro from './WelcomeIntro.component.js';
@@ -11,6 +13,7 @@ import RecentFilesList from './RecentFilesList.component';
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
+      <MainHeader />
       <RecentFilesList
         ListHeaderComponent={
           <>
