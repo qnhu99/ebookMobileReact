@@ -139,8 +139,9 @@ android {
 
     defaultConfig {
         applicationId "com.ebookmobilereact"
-        minSdkVersion rootProject.ext.minSdkVersion
+        minSdkVersion 21
         targetSdkVersion rootProject.ext.targetSdkVersion
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
     }
@@ -173,12 +174,7 @@ android {
         }
     }
 
-    packagingOptions {
-        pickFirst "lib/armeabi-v7a/libc++_shared.so"
-        pickFirst "lib/arm64-v8a/libc++_shared.so"
-        pickFirst "lib/x86/libc++_shared.so"
-        pickFirst "lib/x86_64/libc++_shared.so"
-    }
+    
 
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
@@ -197,6 +193,7 @@ android {
 }
 
 dependencies {
+    implementation "androidx.multidex:multidex:2.0.1"
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules

@@ -10,7 +10,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@react-native-community/masked-view": "^0.1.10",
+    "@lightbase/react-native-orientation": "^3.2.6",
+    "@react-native-community/async-storage": "^1.12.1",
+    "@react-native-community/masked-view": "^0.1.11",
     "@react-native-community/progress-bar-android": "^1.0.4",
     "@react-native-community/progress-view": "^1.2.4",
     "@react-navigation/bottom-tabs": "^5.11.10",
@@ -24,7 +26,10 @@
     "react-native-reanimated": "^2.1.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.1.1",
+    "react-native-static-server": "^0.5.0",
     "react-native-vector-icons": "^8.1.0",
+    "react-native-webview": "^11.4.3",
+    "react-native-zip-archive": "^6.0.3",
     "rn-fetch-blob": "github:joltup/rn-fetch-blob#pull/701/head"
   },
   "devDependencies": {
