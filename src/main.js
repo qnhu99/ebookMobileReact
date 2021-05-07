@@ -1,8 +1,6 @@
 import React from 'react';
-import {StatusBar, Text, View} from 'react-native';
-
-import {BottomTabNavigator} from 'src/navigator';
-
+import { StatusBar, View, Text } from 'react-native';
+import BottomTabNavigator from 'src/navigator/BottomTabNavigator';
 export default function Main() {
   return (
     <>

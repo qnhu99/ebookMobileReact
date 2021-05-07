@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigation} from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core';
 import {
   ActivityIndicator,
   Text,
@@ -7,20 +7,18 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
-import {Image} from 'react-native-elements';
-import {Divider} from 'react-native-elements';
-
+import { Image, Divider } from 'react-native-elements';
 import styles from './styles.js';
-import {STRINGS} from 'src/res';
-import BooksData from 'src/temp/books';
+import { STRINGS } from 'src/res';
+import BooksData from 'src/test/books';
 
-const BookItem = ({data}) => {
+const BookItem = ({ data }) => {
   const navigation = useNavigation();
   return (
     <>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('BookDetail', {data});
+          navigation.navigate('BookDetail', { data });
         }}>
         <View style={styles.bookItem}>
           <Image
@@ -35,7 +33,7 @@ const BookItem = ({data}) => {
 };
 
 export default function RecentBooksList(props) {
-  const renderBookItem = ({item}) => <BookItem data={item} />;
+  const renderBookItem = ({ item }) => <BookItem data={item} />;
   const navigation = useNavigation();
   return (
     <View style={styles.section}>
@@ -46,13 +44,13 @@ export default function RecentBooksList(props) {
         renderItem={renderBookItem}
         keyExtractor={(_, index) => index.toString()}
       />
-      <Divider style={{marginTop: 5, cover: 'black'}} />
+      <Divider style={{ marginTop: 5, cover: 'black' }} />
       <TouchableOpacity
-        style={{paddingVertical: 5}}
+        style={{ paddingVertical: 5 }}
         onPress={() => {
           navigation.navigate('Library');
         }}>
-        <Text style={{textAlign: 'center'}}>{STRINGS.VIEW_MORE}</Text>
+        <Text style={{ textAlign: 'center' }}>{STRINGS.VIEW_MORE}</Text>
       </TouchableOpacity>
     </View>
   );

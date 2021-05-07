@@ -9,4 +9,4 @@ import LOGOS from './logos';
 // Dimensions
 import DIMENSIONS from './dimensions';
 
-export {COLORS, ICONS, STRINGS, LOGOS, DIMENSIONS};
+export { COLORS, ICONS, STRINGS, LOGOS, DIMENSIONS };
