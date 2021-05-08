@@ -9,8 +9,12 @@ import styles from './styles';
 import WelcomeIntro from './WelcomeIntro.component.js';
 import RecentBooksList from './RecentBooksList.component';
 import RecentFilesList from './RecentFilesList.component';
+import {getStoragePermission, checkStoragePermissions} from '../../../lib/permission.js'
 
 export default function HomeScreen() {
+  if (checkStoragePermissions()){
+    getStoragePermission()
+  }
   return (
     <View style={styles.container}>
       <MainHeader />
