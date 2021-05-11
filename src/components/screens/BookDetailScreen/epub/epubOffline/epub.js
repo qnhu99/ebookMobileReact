@@ -7,10 +7,14 @@ import {
   Animated,
   Modal,
   StatusBar,
+  Button,
 } from "react-native";
 
-import { Epub, Streamer } from "@loopspeed/epubjs-rn";
-
+import { Epub} from "@loopspeed/epubjs-rn";
+import Streamer from "./stream"
+import DocumentPicker from 'react-native-document-picker';
+//content://com.android.providers.downloads.documents/document/raw%3A%2Fstorage%2Femulated%2F0%2FDownload%2F3.epub
+//raw:/storage/emulated/0/Download/3.epub
 
 export default class EpubReader extends Component {
   constructor(props) {
@@ -19,8 +23,9 @@ export default class EpubReader extends Component {
       flow: "paginated", // paginated || scrolled-continuous
       location: 6,
       url: "https://s3.amazonaws.com/epubjs/books/moby-dick.epub",
+      // url: "content://com.android.providers.downloads.documents/document/raw%3A%2Fstorage%2Femulated%2F0%2FDownload%2F3.epub",
       src: "",
-      origin: "",
+      origin: "file://",
       title: "",
       toc: [],
       showBars: true,
@@ -36,9 +41,11 @@ export default class EpubReader extends Component {
       .start()
       .then((origin) => {
         this.setState({ origin });
+        console.log("origin " + origin)
         return this.streamer.get(this.state.url);
       })
       .then((src) => {
+        console.log("src " + src)
         return this.setState({ src });
       });
 
@@ -53,10 +60,29 @@ export default class EpubReader extends Component {
     this.setState({ showBars: !this.state.showBars });
   }
 
+  async pickFile() {
+    try {
+        const res = await DocumentPicker.pick({
+          type: [DocumentPicker.types.allFiles],
+        });
+        console.log(
+          res.uri,
+        );
+        setSource(res.uri)
+      } catch (err) {
+        if (DocumentPicker.isCancel(err)) {
+        } else {
+          throw err;
+        }
+      }
+  }
+  
 
   render() {
     return (
       <View style={styles.container}>
+        {/* <Button title="pick" onPress={pickFile}/> */}
+        <Button title="pick"/>
         <StatusBar
           hidden={!this.state.showBars}
           translucent={true}
@@ -65,7 +91,10 @@ export default class EpubReader extends Component {
         <Epub
           style={styles.reader}
           ref="epub"
+          //src={"https://s3.amazonaws.com/epubjs/books/moby-dick.epub"}
           src={this.state.src}
+          //src={"https://s3.amazonaws.com/epubjs/books/moby-dick/OPS/package.opf"}
+
           flow={this.state.flow}
           location={this.state.location}
           onLocationChange={(visibleLocation) => {
@@ -73,9 +102,12 @@ export default class EpubReader extends Component {
             this.setState({ visibleLocation });
           }}
           onLocationsReady={(locations) => {
+            // console.log("location total", locations.total);
             this.setState({ sliderDisabled: false });
           }}
           onReady={(book) => {
+            // console.log("Metadata", book.package.metadata)
+            // console.log("Table of Contents", book.toc)
             this.setState({
               title: book.package.metadata.title,
               toc: book.navigation.toc,
@@ -128,10 +160,10 @@ export default class EpubReader extends Component {
           }}
         />
 
-      </View>
-    );
+        </View>
+      );
+    }
   }
-}
 
 const styles = StyleSheet.create({
   container: {
