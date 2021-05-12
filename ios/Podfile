@@ -44,8 +44,8 @@ def flipper_post_install(installer)
   end
 end
 
-target 'ebookMobileReact' do
-  # Pods for ebookMobileReact
+target 'duofolio' do
+  # Pods for duofolio
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -77,7 +77,15 @@ target 'ebookMobileReact' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  target 'ebookMobileReactTests' do
+  pod 'react-native-static-server', :path => '../node_modules/react-native-static-server'
+
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+
+  pod 'TextToSpeech', :path => '../node_modules/react-native-tts'
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+  target 'duofolioTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -94,10 +102,10 @@ target 'ebookMobileReact' do
   end
 end
 
-target 'ebookMobileReact-tvOS' do
-  # Pods for ebookMobileReact-tvOS
+target 'duofolio-tvOS' do
+  # Pods for duofolio-tvOS
 
-  target 'ebookMobileReact-tvOSTests' do
+  target 'duofolio-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
