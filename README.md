@@ -1,3 +1,15 @@
+```
+yarn install
+```
+
+```
+yarn link react-native-document-picker
+```
+
+```
+yarn android
+```
+
 ## Duofolio
 
 <p align="center">
@@ -18,10 +30,10 @@ Duofolio supports bidirectional translation in more than a hundred languages.
 
 ## Powered by
 
--  React Native
--  Redux
--  [epub.js](https://github.com/futurepress/epub.js)
--  [pdf.js](https://github.com/mozilla/pdf.js)
+- React Native
+- Redux
+- [epub.js](https://github.com/futurepress/epub.js)
+- [pdf.js](https://github.com/mozilla/pdf.js)
 
 ## Screenshots
 
@@ -29,7 +41,7 @@ Duofolio supports bidirectional translation in more than a hundred languages.
 
 ## Todo
 
--  [ ] iOS support
--  [x] Support more languages
--  [ ] Display book covers
--  [x] Support PDF documents
+- [ ] iOS support
+- [x] Support more languages
+- [ ] Display book covers
+- [x] Support PDF documents
