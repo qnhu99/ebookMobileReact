@@ -12,24 +12,16 @@ const MainHeader = () => (
         <LOGOS.sm />
       </View>
       <View style={styles.iconContainer}>
-        {/* <Button title="Search" icon={ICONS.SEARCH()} type="clear" /> */}
-
-        {/* <IconButton
-          icon={Icons.search}
-          size={22}
-          onPress={() => console.log("Pressed")}
-          style={{
-            marginHorizontal: 1,
-          }}
+        <ICONS.SEARCH
+          style={{ paddingLeft: 5 }}
+          onPress={() => console.log('Pressed search')}
+          size={27}
         />
-        <IconButton
-          icon={Icons.plus}
-          size={22}
-          onPress={() => console.log("Pressed")}
-          style={{
-            marginHorizontal: 1,
-          }}
-        /> */}
+        <ICONS.PLUS
+          style={{ paddingLeft: 5 }}
+          onPress={() => console.log('Pressed add')}
+          size={27}
+        />
       </View>
     </View>
   </View>

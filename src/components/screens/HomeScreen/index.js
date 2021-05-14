@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 
 import { STRINGS } from 'src/res';
 
@@ -12,19 +12,11 @@ import RecentFilesList from './RecentFilesList.component';
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <MainHeader />
-      <RecentFilesList
-        ListHeaderComponent={
-          <>
-            <WelcomeIntro />
-            <RecentBooksList />
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>{STRINGS.RECENT_FILES}</Text>
-            </View>
-          </>
-        }
-      />
-    </View>
+      <WelcomeIntro />
+      <RecentBooksList />
+      <RecentFilesList />
+    </ScrollView>
   );
 }

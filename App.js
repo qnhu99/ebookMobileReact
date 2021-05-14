@@ -7,13 +7,8 @@
  */
 import 'react-native-gesture-handler';
 import React from 'react';
-import {StatusBar, Text, View} from 'react-native';
 import Main from './src/main';
 
 export default function App() {
-  return (
-    <>
-      <Main />
-    </>
-  );
+  return <Main />;
 }

@@ -23,7 +23,7 @@ const ICONS = {
   ),
   // Search
   SEARCH: (props) => (
-    <Icon name="search" type="material-community" size={22} {...props} />
+    <Icon name="magnify" type="material-community" size={22} {...props} />
   ),
   // Add books/Open files
   PLUS: (props) => (
@@ -58,7 +58,6 @@ const ICONS = {
       type="font-awesome"
       size={24}
       color="black"
-      style={{ marginLeft: 2 }}
       {...props}
     />
   ),
@@ -68,47 +67,30 @@ const ICONS = {
       type="font-awesome"
       size={24}
       color="black"
-      style={{ marginLeft: 2 }}
       {...props}
     />
   ),
-  USER: '',
+  FILTER: (props) => <Icon name="filter" type="font-awesome" {...props} />,
+  SORT_ALPHABETICAL_ASCENDING: (props) => (
+    <Icon
+      name="sort-alphabetical-ascending"
+      type="material-community"
+      {...props}
+    />
+  ),
+  SORT_ALPHABETICAL_DESCENDING: (props) => (
+    <Icon
+      name="sort-alphabetical-descending"
+      type="material-community"
+      {...props}
+    />
+  ),
+  SORT_DESCENDING: (props) => (
+    <Icon name="sort-descending" type="material-community" {...props} />
+  ),
+  SORT_ASCENDING: (props) => (
+    <Icon name="sort-ascending" type="material-community" {...props} />
+  ),
 };
-
-// const ICONS = {
-//   // USER
-//   SIGN_IN: {name: 'pencil-square-o'},
-//   SIGN_UP: '',
-//   SIGN_OUT: '',
-//   USER: '',
-//   NAME: {
-//     // Bottom Tab Navigator (Ionicon icon)
-//     HOME: 'home',
-//     HOME_OUTLINE: 'home-outline',
-//     LIBRARY: 'library',
-//     LIBRARY_OUTLINE: 'library-outline',
-//     NOTIFICATIONS: 'notifications',
-//     NOTIFICATIONS_OUTLINE: 'notifications-outline',
-//     SETTINGS: 'settings',
-//     SETTINGS_OUTLINE: 'settings-outline',
-
-//     // Favorite
-//     HEART: '',
-//     // Download
-//     DOWNLOAD: '',
-//     // Return
-//     RETURN: '',
-//     // Search
-//     MAGNIFY: '',
-//     // Add books/Open files
-//     PLUS: '',
-//     OPEN_FILES: '',
-//     ADD_BOOK: '',
-//     // HOME SCREEN
-//     // LIBRARY SCREEN
-//     // NOTIFICATIONS SCREEN
-//     // SETTING SCREEN}
-//   },
-// };
 
 export default ICONS;

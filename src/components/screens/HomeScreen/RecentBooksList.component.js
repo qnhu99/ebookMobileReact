@@ -10,7 +10,7 @@ import {
 import { Image, Divider } from 'react-native-elements';
 import styles from './styles.js';
 import { STRINGS } from 'src/res';
-import BooksData from 'src/test/books';
+import BooksData from 'src/dummy_data/books';
 
 const BookItem = ({ data }) => {
   const navigation = useNavigation();
@@ -23,7 +23,7 @@ const BookItem = ({ data }) => {
         <View style={styles.bookItem}>
           <Image
             style={styles.coverImage}
-            source={data.cover}
+            source={{ uri: data.cover }}
             PlaceholderContent={<ActivityIndicator />}
           />
         </View>

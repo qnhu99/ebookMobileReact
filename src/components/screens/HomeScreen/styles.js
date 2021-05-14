@@ -4,18 +4,19 @@ import { COLORS } from 'src/res';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    backgroundColor: COLORS.BEIGE,
+    backgroundColor: COLORS.LIGHT,
   },
   section: {
-    marginTop: 5,
+    marginTop: 7,
     backgroundColor: COLORS.LIGHT,
+    elevation: 5,
   },
   welcomeIntro: {
     backgroundColor: COLORS.LIGHT,
     alignItems: 'center',
     paddingTop: 10,
     paddingBottom: 20,
+    elevation: 5,
   },
   sectionTitle: {
     fontSize: 18,
@@ -25,27 +26,23 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   bookItem: {
-    backgroundColor: COLORS.DARK,
     marginRight: 3,
     marginBottom: 10,
-    // height: 192,
-    // width: 120,
+    backgroundColor: COLORS.DARK,
   },
   coverImage: {
-    // width: null,
-    // height: null,
     height: 192,
     width: 120,
     resizeMode: 'contain',
   },
   fileItem: {
-    backgroundColor: COLORS.LIGHT,
     flex: 1,
     width: '100%',
     height: 50,
     flexDirection: 'row',
     alignItems: 'center',
-    borderTopWidth: 1,
+    borderTopWidth: 0.5,
+    borderTopColor: COLORS.DARK,
   },
 });
 

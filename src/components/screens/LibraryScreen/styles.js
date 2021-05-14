@@ -3,23 +3,22 @@ import { COLORS, DIMENSIONS } from 'src/res';
 
 const numCols = 2;
 
-const Library = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    backgroundColor: COLORS.BEIGE,
+    backgroundColor: COLORS.LIGHT,
   },
   toolbar: {
-    backgroundColor: COLORS.BEIGE,
-    marginBottom: 5,
+    backgroundColor: COLORS.toolbar,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
   item: {
     flex: 1,
-    marginHorizontal: 10,
-    marginVertical: 5,
+    marginHorizontal: 5,
+    marginBottom: 5,
     height: 300,
     width: DIMENSIONS.FULL_WIDTH / numCols - 10,
     alignItems: 'flex-start',
@@ -35,3 +34,5 @@ const Library = StyleSheet.create({
     fontSize: 16,
   },
 });
+
+export default styles;

@@ -1,15 +1,13 @@
 # ebookMobileReact
 Basic commands
 ---------------
-- install package:
-`yarn add <package>`
+- install package: `yarn add <package>`
 
-- install library
-`yarn` or `yarn install`
+- install library: `yarn` or `yarn install`
 
-- run application
-`yarn react-native start`
-`yarn react-native run-android`
+- run application:
+  1. `yarn react-native start` or `yarn start`
+  2. `yarn react-native run-android` or `yarn android`
 
 How to connect to a physical machine
 ---------------
@@ -33,10 +31,12 @@ Ref: https://reactnative.dev/docs/running-on-device
    Open terminal and run: 
 
         adb -s <device name> reverse tcp:8081 tcp:8081
+    
     To find the device name, run the following adb command: `adb devices`
 4. Start Metro with command: 
    
         yarn react-native start
+        
 5. Start your application: 
    
         yarn react-native run-android

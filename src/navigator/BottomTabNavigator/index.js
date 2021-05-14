@@ -1,9 +1,9 @@
 /** import node_modules */
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
-import {Icon} from 'react-native-elements';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Icon } from 'react-native-elements';
 
 /** import absolute path */
 import HomeScreen from 'src/components/screens/HomeScreen';
@@ -12,29 +12,29 @@ import NotificationsScreen from 'src/components/screens/NotificationsScreen';
 import SettingsScreen from 'src/components/screens/SettingsScreen';
 import BookDetailScreen from 'src/components/screens/BookDetailScreen';
 
-import {COLORS, ICONS} from 'src/res';
+import { COLORS, ICONS } from 'src/res';
 
 const options = {
-  TabNavigatorScreenOptions: ({route}) => ({
-    tabBarIcon: ({focused, color, _}) => {
+  TabNavigatorScreenOptions: ({ route }) => ({
+    tabBarIcon: ({ focused, color, _ }) => {
       const size = 26;
       switch (route.name) {
         case 'Home':
           return focused
-            ? ICONS.HOME({color, size})
-            : ICONS.HOME_OUTLINE({color, size});
+            ? ICONS.HOME({ color, size })
+            : ICONS.HOME_OUTLINE({ color, size });
         case 'Library':
           return focused
-            ? ICONS.LIBRARY({color, size})
-            : ICONS.LIBRARY_OUTLINE({color, size});
+            ? ICONS.LIBRARY({ color, size })
+            : ICONS.LIBRARY_OUTLINE({ color, size });
         case 'Notifications':
           return focused
-            ? ICONS.NOTIFICATIONS({color, size})
-            : ICONS.NOTIFICATIONS_OUTLINE({color, size});
+            ? ICONS.NOTIFICATIONS({ color, size })
+            : ICONS.NOTIFICATIONS_OUTLINE({ color, size });
         case 'Settings':
           return focused
-            ? ICONS.SETTINGS({color, size})
-            : ICONS.SETTINGS_OUTLINE({color, size});
+            ? ICONS.SETTINGS({ color, size })
+            : ICONS.SETTINGS_OUTLINE({ color, size });
       }
       return (
         <Icon name="help-outline" size={26} color={color} type="ionicon" />
@@ -42,17 +42,17 @@ const options = {
     },
   }),
   TabNavigatorTabBarOptions: {
-    activeTintColor: COLORS.GOLD,
-    inactiveTintColor: COLORS.GOLD,
+    activeTintColor: COLORS.GREEN,
+    inactiveTintColor: COLORS.GREEN,
     showLabel: false,
-    tabStyle: {
-      borderTopWidth: 0.75,
-    },
+    tabStyle: { backgroundColor: COLORS.LIGHT },
   },
   StackScreenMainScreenOptions: {
     headerShown: false,
   },
-  StackScreenBookDetailOptions: ({route}) => ({title: route.params.data.title}),
+  StackScreenBookDetailOptions: ({ route }) => ({
+    title: route.params.data.title,
+  }),
 };
 
 const Tab = createBottomTabNavigator();

@@ -1,25 +1,24 @@
 import React from 'react';
-import { Text, View, FlatList } from 'react-native';
+import { Text, View } from 'react-native';
+import { ListItem } from 'react-native-elements';
 
 import styles from './styles.js';
-import FilesData from 'src/test/files';
-
-const FileItem = (props) => (
-  <View style={styles.fileItem}>
-    <Text style={{ fontSize: 16, marginHorizontal: 2 }}> {props.title}</Text>
-  </View>
-);
+import FilesData from 'src/dummy_data/files';
+import { STRINGS } from 'src/res';
 
 export default function RecentFilesList(props) {
-  const renderFileItem = ({ item }) => <FileItem title={item.title} />;
   return (
-    <>
-      <FlatList
-        data={FilesData}
-        renderItem={renderFileItem}
-        keyExtractor={(_, index) => index.toString()}
-        {...props}
-      />
-    </>
+    <View style={styles.section}>
+      <Text style={styles.sectionTitle}>{STRINGS.RECENT_FILES}</Text>
+      <View>
+        {FilesData.map((item, index) => (
+          <ListItem key={index} bottomDivider>
+            <ListItem.Content>
+              <ListItem.Title>{item.title}</ListItem.Title>
+            </ListItem.Content>
+          </ListItem>
+        ))}
+      </View>
+    </View>
   );
 }
