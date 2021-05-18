@@ -1,4 +1,5 @@
 import React, { useState, useLayoutEffect, useEffect } from "react";
+
 import { View, Text, FlatList, StatusBar } from "react-native";
 import { connect } from "react-redux";
 import AddButton from "../components/AddButton";
@@ -7,7 +8,7 @@ import SearchBar from "../components/SearchBar";
 import Icon from "../components/Icon";
 import { contrastColor } from "../constants";
 
-function Home(props) {
+function HomeScreen(props) {
   const [isSearchBar, setSearchBar] = useState(false);
   const [input, setInput] = useState("");
 
@@ -112,7 +113,7 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   null
-)(Home);
+)(HomeScreen);
 
 const styles = {
   wrapper: {
