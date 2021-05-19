@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import {
   createStackNavigator,
   TransitionPresets,
-} from "@react-navigation/stack";
-import Stack from "./Stack";
+} from '@react-navigation/stack';
+import Stack from './Stack';
 
 const screenOptions = {
   ...TransitionPresets.ModalPresentationIOS,

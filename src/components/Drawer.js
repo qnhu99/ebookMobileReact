@@ -1,29 +1,29 @@
-import React, { useState } from "react";
-import { View, TouchableOpacity, Dimensions } from "react-native";
-import Icon from "./Icon";
-import Contents from "./Contents";
-import BookSearch from "./BookSearch";
-import Settings from "./Settings";
-import { contrastColor } from "../constants";
+import React, { useState } from 'react';
+import { View, TouchableOpacity, Dimensions } from 'react-native';
+import Icon from './Icon';
+import Contents from './Contents';
+import BookSearch from './BookSearch';
+import Settings from './Settings';
+import { contrastColor } from '../constants';
 
-const { height } = Dimensions.get("window");
+const { height } = Dimensions.get('window');
 const sections = [
-  { name: "contents", icon: "book-open" },
-  { name: "search", icon: "search" },
-  { name: "settings", icon: "settings" },
-  { name: "bookmark", icon: "bookmark" },
+  { name: 'contents', icon: 'book-open' },
+  { name: 'search', icon: 'search' },
+  { name: 'settings', icon: 'settings' },
+  { name: 'bookmark', icon: 'bookmark' },
 ];
 
 function Drawer(props) {
-  const [currentSection, setCurrentSection] = useState("contents");
+  const [currentSection, setCurrentSection] = useState('contents');
 
   function renderSection() {
     switch (currentSection) {
-      case "contents":
+      case 'contents':
         return <Contents {...props} />;
-      case "search":
+      case 'search':
         return <BookSearch {...props} />;
-      case "settings":
+      case 'settings':
         return <Settings />;
       default:
         return null;
@@ -62,15 +62,15 @@ const styles = {
     paddingLeft: 15,
   },
   iconWrapper: {
-    flexDirection: "row",
+    flexDirection: 'row',
     paddingRight: 15,
     paddingBottom: 10,
   },
   sectionButton: {
     height: 50,
-    width: "33.33%",
-    justifyContent: "center",
-    alignItems: "center",
+    width: '33.33%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   selectedSectionButton: {
     borderColor: contrastColor,

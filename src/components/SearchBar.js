@@ -95,13 +95,13 @@
 // 		paddingRight: 5
 // 	}
 // };
-import React from "react";
-import { View, TextInput, Dimensions } from "react-native";
-import Icon from "./Icon";
-import { contrastColor } from "../constants";
+import React from 'react';
+import { View, TextInput, Dimensions } from 'react-native';
+import Icon from './Icon';
+import { contrastColor } from '../constants';
 
 const HEIGHT = 56;
-const WIDTH = Dimensions.get("window").width;
+const WIDTH = Dimensions.get('window').width;
 
 function SearchBar(props) {
   return (
@@ -129,7 +129,7 @@ function SearchBar(props) {
         name="x"
         size={24}
         color={contrastColor}
-        onPress={() => props.setValue("")}
+        onPress={() => props.setValue('')}
         style={styles.icon}
       />
     </View>
@@ -142,11 +142,11 @@ const styles = {
   wrapper: {
     height: HEIGHT,
     width: WIDTH,
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     elevation: 5,
-    backgroundColor: "#ffffff",
+    backgroundColor: '#ffffff',
   },
   icon: {
     paddingLeft: 14,

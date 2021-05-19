@@ -1,39 +1,37 @@
-import showToast from "../components/Toast";
+import showToast from '../components/Toast';
 
 const INITIAL_STATE = [];
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case "add_books": {
-      let itemIndex = state.findIndex(
-        (item) => action.payload.url === item.url
-      );
+    case 'add_books': {
+      let itemIndex = state.findIndex(item => action.payload.url === item.url);
       if (itemIndex > -1) {
-        showToast("This book is already in your library");
+        showToast('This book is already in your library');
         let stateClone = [...state];
         let removedItems = stateClone.splice(itemIndex, 1);
         stateClone.unshift(...removedItems);
         return stateClone;
       }
       console.log(
-        ">> ~ file: books.js ~ line 18 ~ function ~ action.payload",
-        action.payload
+        '>> ~ file: books.js ~ line 18 ~ function ~ action.payload',
+        action.payload,
       );
       return [action.payload, ...state];
     }
-    case "add_metadata": {
+    case 'add_metadata': {
       let { data, index } = action.payload;
       let stateCopy = [...state];
-      console.log(">> ~ file: books.js ~ line 23 ~ function ~ data", data);
+      console.log('>> ~ file: books.js ~ line 23 ~ function ~ data', data);
       stateCopy[index] = { ...stateCopy[index], ...data };
       return stateCopy;
     }
-    case "remove_book": {
+    case 'remove_book': {
       let newState = [...state];
       newState.splice(action.payload, 1);
       return newState;
     }
-    case "sort_book": {
+    case 'sort_book': {
       if (action.payload < 1) return state;
       let stateDup = [...state];
       let item = stateDup.splice(action.payload, 1);

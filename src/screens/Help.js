@@ -1,12 +1,12 @@
-import React from "react";
-import { Text, Image, ScrollView, Dimensions } from "react-native";
-import Icon from "../components/Icon";
-import { primaryColor } from "../constants";
+import React from 'react';
+import { Text, Image, ScrollView, Dimensions } from 'react-native';
+import Icon from '../components/Icon';
+import { primaryColor } from '../constants';
 
-const quickLookup = require("../../assets/images/quick-lookup.png");
-const googleTranslate = require("../../assets/images/google-translate.png");
+const quickLookup = require('../../assets/images/quick-lookup.png');
+const googleTranslate = require('../../assets/images/google-translate.png');
 
-const { width } = Dimensions.get("window");
+const { width } = Dimensions.get('window');
 
 function Help() {
   return (
@@ -17,7 +17,7 @@ function Help() {
       <Text style={styles.heading}>Source & Target</Text>
       <Text style={styles.text}>
         &quot;Source and target languages&quot; might be a confusing terminology
-        to some.{" "}
+        to some.{' '}
         <Text style={styles.emphasize}>
           Source is the language that you wish to translate from, while target
           is the language that you would want to translate to.
@@ -26,9 +26,9 @@ function Help() {
       <Text style={styles.text}>
         Duofolio uses this setting to translate text for you. You can change
         your source and target languages from the settings menu. To go to
-        settings, simply click the{" "}
+        settings, simply click the{' '}
         <Icon name="menu" size={18} color={primaryColor} /> icon in the top
-        right corner of the screen and a drawer will slide in. Click the{" "}
+        right corner of the screen and a drawer will slide in. Click the{' '}
         <Icon name="settings" size={18} color={primaryColor} /> icon and you
         should see the settings.
       </Text>
@@ -36,8 +36,8 @@ function Help() {
       <Text style={[styles.text, styles.emphasize]}>
         There are two ways to look up translation in Duofolio:
       </Text>
-      <Text style={styles.bullets}>•{"  "} Quick Lookup</Text>
-      <Text style={styles.bullets}>•{"  "} Google Translate</Text>
+      <Text style={styles.bullets}>•{'  '} Quick Lookup</Text>
+      <Text style={styles.bullets}>•{'  '} Google Translate</Text>
       <Text style={styles.heading}>Quick Lookup</Text>
       <Text style={styles.text}>
         This is the quickest & most non-disruptive way to see the translation of
@@ -58,13 +58,13 @@ function Help() {
       </Text>
       <Text style={styles.text}>
         <Text style={styles.emphasize}>2.</Text> After selecting the text, click
-        the{" "}
+        the{' '}
         <Icon
           name="g-translate"
           type="material"
           color={primaryColor}
           size={18}
-        />{" "}
+        />{' '}
         icon in the top right corner. This will open a Google Translate screen
         with the selected text already filled in.
       </Text>
@@ -78,7 +78,7 @@ export default Help;
 const styles = {
   wrapper: {
     flex: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: '#ffffff',
   },
   wrapperContent: {
     padding: 20,
@@ -86,23 +86,23 @@ const styles = {
     paddingBottom: 40,
   },
   emphasize: {
-    fontFamily: "Circular",
+    fontFamily: 'Circular',
     fontSize: 17,
   },
   text: {
-    fontFamily: "CircularLight",
+    fontFamily: 'CircularLight',
     fontSize: 16,
     lineHeight: 25,
     marginTop: 10,
     marginBottom: 10,
   },
   heading: {
-    fontFamily: "CircularBold",
+    fontFamily: 'CircularBold',
     marginTop: 15,
     fontSize: 18,
   },
   bullets: {
-    fontFamily: "CircularLight",
+    fontFamily: 'CircularLight',
     fontSize: 16,
     lineHeight: 25,
     marginTop: 3,
@@ -113,7 +113,7 @@ const styles = {
     width: width - 40,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "rgba(0, 0, 0, 0.2)",
+    borderColor: 'rgba(0, 0, 0, 0.2)',
     marginTop: 15,
     marginBottom: 15,
   },

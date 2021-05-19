@@ -1,4 +1,4 @@
-import { ToastAndroid } from "react-native";
+import { ToastAndroid } from 'react-native';
 
 export default function RenderToast(message) {
   ToastAndroid.showWithGravityAndOffset(
@@ -6,6 +6,6 @@ export default function RenderToast(message) {
     ToastAndroid.SHORT,
     ToastAndroid.BOTTOM,
     0,
-    300
+    300,
   );
 }

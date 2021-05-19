@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
-import StaticServer from "react-native-static-server";
-import { ExternalStorageDirectoryPath } from "react-native-fs";
-import { WebView } from "react-native-webview";
-import SideMenu from "react-native-side-menu";
-import { connect } from "react-redux";
-import * as actions from "../actions";
-import Drawer from "../components/Drawer";
-import showToast from "../components/Toast";
-import Spinner from "../components/Spinner";
-import Footer from "../components/Footer";
-import themeToStyles from "../utils/themeToStyles";
+import React, { useState, useEffect, useRef } from 'react';
+import StaticServer from 'react-native-static-server';
+import { ExternalStorageDirectoryPath } from 'react-native-fs';
+import { WebView } from 'react-native-webview';
+import SideMenu from 'react-native-side-menu';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+import Drawer from '../components/Drawer';
+import showToast from '../components/Toast';
+import Spinner from '../components/Spinner';
+import Footer from '../components/Footer';
+import themeToStyles from '../utils/themeToStyles';
 
 const serverConfig = { localOnly: true, keepAlive: true };
 
@@ -24,17 +24,17 @@ function EpubReader(props) {
   const bookLocations = props.books[params.index].locations;
 
   useEffect(() => {
-    showToast("Opening book");
+    showToast('Opening book');
     let newServer = new StaticServer(
       0,
       ExternalStorageDirectoryPath,
-      serverConfig
+      serverConfig,
     );
-    newServer.start().then((url) =>
+    newServer.start().then(url =>
       setState({
-        bookUrl: url + params.url.replace(ExternalStorageDirectoryPath, ""),
+        bookUrl: url + params.url.replace(ExternalStorageDirectoryPath, ''),
         server: newServer,
-      })
+      }),
     );
     //only run when component unmount
     return () => {
@@ -69,7 +69,7 @@ function EpubReader(props) {
 
   function refresh() {
     webview.current?.injectJavaScript(
-      `window.BOOK_LOCATION = "${currentLocation}"`
+      `window.BOOK_LOCATION = "${currentLocation}"`,
     );
     webview.current?.reload();
   }
@@ -96,17 +96,17 @@ function EpubReader(props) {
     let { type } = parsedData;
     delete parsedData.type;
     switch (type) {
-      case "loc": {
+      case 'loc': {
         const { progress, totalPages } = parsedData;
         props.addMetadata({ progress, totalPages }, params.index);
         delete parsedData.progress;
         delete parsedData.totalPages;
         return props.addLocation(parsedData);
       }
-      case "key":
-      case "metadata":
-      case "contents":
-      case "locations":
+      case 'key':
+      case 'metadata':
+      case 'contents':
+      case 'locations':
         return props.addMetadata(parsedData, params.index);
       default:
         return;
@@ -129,7 +129,7 @@ function EpubReader(props) {
       <WebView
         ref={webview}
         style={[styles.wholeScreen, { backgroundColor: props.settings.bg }]}
-        source={{ uri: "file:///android_asset/epub.html" }}
+        source={{ uri: 'file:///android_asset/epub.html' }}
         injectedJavaScriptBeforeContentLoaded={injectedJS}
         onMessage={handleMessage}
       />
@@ -154,16 +154,16 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  actions
+  actions,
 )(EpubReader);
 
 const styles = {
   wholeScreen: { flex: 1 },
   headerIcon: { padding: 5 },
   iconWrapper: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
     width: 100,
   },
 };

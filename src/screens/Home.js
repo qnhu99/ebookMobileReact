@@ -42,7 +42,7 @@ function Intro() {
           flexDirection: 'row',
         }}
       >
-        <Button
+        {/* <Button
           icon={Icons.sign_up}
           title="Sign up"
           buttonStyle={{ marginHorizontal: 5, marginTop: 10, width: 130 }}
@@ -51,7 +51,7 @@ function Intro() {
           icon={Icons.sign_in}
           title="Sign in"
           buttonStyle={{ marginHorizontal: 5, marginTop: 10, width: 130 }}
-        />
+        /> */}
       </View>
     </View>
   );
@@ -158,7 +158,7 @@ function HomeScreen(props) {
 
   function listFilter() {
     if (input) {
-      return props.books.filter((book) => {
+      return props.books.filter(book => {
         let itemData = ` ${book.title} ${book.author}`.toUpperCase();
         let searchData = ' ' + input.toUpperCase();
         return itemData.indexOf(searchData) > -1;
@@ -219,7 +219,10 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(HomeScreen);
+export default connect(
+  mapStateToProps,
+  null,
+)(HomeScreen);
 
 const styles = {
   wrapper: {

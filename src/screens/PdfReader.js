@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
-import { View } from "react-native";
-import StaticServer from "react-native-static-server";
-import { ExternalStorageDirectoryPath } from "react-native-fs";
-import { WebView } from "react-native-webview";
-import SideMenu from "react-native-side-menu";
-import { connect } from "react-redux";
-import * as actions from "../actions";
-import Drawer from "../components/Drawer";
-import showToast from "../components/Toast";
-import Spinner from "../components/Spinner";
-import Footer from "../components/Footer";
-import Icon from "../components/Icon";
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import { View } from 'react-native';
+import StaticServer from 'react-native-static-server';
+import { ExternalStorageDirectoryPath } from 'react-native-fs';
+import { WebView } from 'react-native-webview';
+import SideMenu from 'react-native-side-menu';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+import Drawer from '../components/Drawer';
+import showToast from '../components/Toast';
+import Spinner from '../components/Spinner';
+import Footer from '../components/Footer';
+import Icon from '../components/Icon';
 
 const serverConfig = { localOnly: true, keepAlive: true };
 
@@ -18,7 +18,7 @@ function PdfReader(props) {
   const [state, setState] = useState({ docUrl: null, server: null });
   const [isDrawer, setDrawer] = useState(false);
   // const [searchResults, setSearchResults] = useState(null);
-  const [selectedText, setSelectedText] = useState("");
+  const [selectedText, setSelectedText] = useState('');
   const [isModal, setModal] = useState(false);
 
   const webview = useRef();
@@ -50,17 +50,17 @@ function PdfReader(props) {
   }, [props.navigation, isDrawer, selectedText]);
 
   useEffect(() => {
-    showToast("Opening book");
+    showToast('Opening book');
     let newServer = new StaticServer(
       0,
       ExternalStorageDirectoryPath,
-      serverConfig
+      serverConfig,
     );
-    newServer.start().then((url) =>
+    newServer.start().then(url =>
       setState({
-        docUrl: url + params.url.replace(ExternalStorageDirectoryPath, ""),
+        docUrl: url + params.url.replace(ExternalStorageDirectoryPath, ''),
         server: newServer,
-      })
+      }),
     );
     return () => {
       props.sortBook(params.index);
@@ -102,7 +102,7 @@ function PdfReader(props) {
   }
 
   function onTranslation() {
-    props.navigation.navigate("dictionary", { selected: selectedText });
+    props.navigation.navigate('dictionary', { selected: selectedText });
     // setTimeout(refresh, 200);
   }
 
@@ -111,12 +111,12 @@ function PdfReader(props) {
     let { type } = parsedData;
     delete parsedData.type;
     switch (type) {
-      case "selected": {
+      case 'selected': {
         setSelectedText(parsedData.selected);
         if (parsedData.selected.length < 40) setModal(true);
         return;
       }
-      case "loc": {
+      case 'loc': {
         return props.addMetadata(parsedData, params.index);
       }
       default:
@@ -145,7 +145,7 @@ function PdfReader(props) {
       <WebView
         ref={webview}
         style={[styles.wholeScreen, { backgroundColor: props.settings.bg }]}
-        source={{ uri: "file:///android_asset/pdf.html" }}
+        source={{ uri: 'file:///android_asset/pdf.html' }}
         injectedJavaScriptBeforeContentLoaded={injectedJS}
         onMessage={handleMessage}
       />
@@ -168,16 +168,16 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  actions
+  actions,
 )(PdfReader);
 
 const styles = {
   wholeScreen: { flex: 1 },
   headerIcon: { padding: 5 },
   iconWrapper: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
     width: 100,
   },
 };

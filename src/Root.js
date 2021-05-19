@@ -1,6 +1,6 @@
-import React from "react";
-import { connect } from "react-redux";
-import Navigator from "./navigation/Modal";
+import React from 'react';
+import { connect } from 'react-redux';
+import Navigator from './navigation/Modal';
 
 function Root() {
   return <Navigator />;
@@ -15,5 +15,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  null
+  null,
 )(Root);

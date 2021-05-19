@@ -1,7 +1,7 @@
-import React from "react";
-import { ScrollView } from "react-native";
-import { connect } from "react-redux";
-import ContentItem from "./ContentItem";
+import React from 'react';
+import { ScrollView } from 'react-native';
+import { connect } from 'react-redux';
+import ContentItem from './ContentItem';
 
 function Drawer(props) {
   return (
@@ -22,13 +22,13 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  null
+  null,
 )(Drawer);
 
 const styles = {
   scrollView: { flex: 1 },
   scrollViewContent: {
-    alignItems: "flex-start",
+    alignItems: 'flex-start',
     paddingBottom: 50,
   },
 };

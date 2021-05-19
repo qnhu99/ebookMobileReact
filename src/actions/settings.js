@@ -1,3 +1,3 @@
-export const updateSettings = (payload) => {
-  return { type: "modify_settings", payload };
+export const updateSettings = payload => {
+  return { type: 'modify_settings', payload };
 };

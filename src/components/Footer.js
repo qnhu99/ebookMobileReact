@@ -1,20 +1,20 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   Text,
   TouchableWithoutFeedback,
   Slider,
   Dimensions,
-} from "react-native";
-import { connect } from "react-redux";
-import Icon from "./Icon";
+} from 'react-native';
+import { connect } from 'react-redux';
+import Icon from './Icon';
 
-const { width } = Dimensions.get("window");
+const { width } = Dimensions.get('window');
 function Progress(props) {
   const { progress, type, totalPages = 0 } = props.books[props.index];
 
   function goTo(n) {
-    props.goToLocation(type === "pdf" ? n : JSON.parse(props.locations)[n - 1]);
+    props.goToLocation(type === 'pdf' ? n : JSON.parse(props.locations)[n - 1]);
   }
 
   return (
@@ -27,8 +27,8 @@ function Progress(props) {
       <View style={styles.progressWrapper}>
         <Text style={[styles.text, { color: props.fg }]}>{`${
           progress === undefined
-            ? "Loading"
-            : progress + (type === "pdf" ? 0 : 1)
+            ? 'Loading'
+            : progress + (type === 'pdf' ? 0 : 1)
         } / ${totalPages}`}</Text>
         <Slider
           style={styles.slider}
@@ -61,36 +61,36 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  null
+  null,
 )(Progress);
 
 const styles = {
   wrapper: {
     height: 52,
     width,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   buttonWrapper: {
     height: 52,
     width: 50,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   progressWrapper: {
     flex: 1,
     height: 52,
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "center",
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   text: {
     fontSize: 14,
     marginBottom: 10,
   },
   slider: {
-    width: "95%",
+    width: '95%',
     height: 6,
   },
 };

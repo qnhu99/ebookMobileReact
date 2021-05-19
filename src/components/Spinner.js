@@ -1,5 +1,5 @@
-import React from "react";
-import { View, ActivityIndicator } from "react-native";
+import React from 'react';
+import { View, ActivityIndicator } from 'react-native';
 
 function Spinner(props) {
   return (
@@ -18,7 +18,7 @@ export default Spinner;
 const styles = {
   wrapper: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 };

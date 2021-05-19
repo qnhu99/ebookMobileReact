@@ -1,9 +1,9 @@
 import {
   getStoragePermission,
   checkStoragePermissions,
-} from "../utils/permissions";
+} from '../utils/permissions';
 // import showToast from "../components/Toast";
-import DocumentPicker from "react-native-document-picker";
+import DocumentPicker from 'react-native-document-picker';
 
 // export const addBook = () => async (dispatch) => {
 //   let granted = await checkStoragePermissions();
@@ -36,22 +36,22 @@ import DocumentPicker from "react-native-document-picker";
 // };
 
 function transformLink(link) {
-  return link.replace(/raw%3A/g, "").replace(/%2F/g, "/");
+  return link.replace(/raw%3A/g, '').replace(/%2F/g, '/');
 }
 
-export const addBook = () => async (dispatch) => {
+export const addBook = () => async dispatch => {
   let granted = await checkStoragePermissions();
   if (!granted) await getStoragePermission();
   try {
     let res = await DocumentPicker.pick({
       type: [DocumentPicker.types.allFiles],
     });
-    let components = res.uri.split("/");
+    let components = res.uri.split('/');
     res.uri = components[components.length - 1];
     let url = transformLink(res.uri);
-    let filetype = res.name.split(".");
+    let filetype = res.name.split('.');
     dispatch({
-      type: "add_books",
+      type: 'add_books',
       payload: {
         title: res.name,
         url,
@@ -68,13 +68,13 @@ export const addBook = () => async (dispatch) => {
 };
 
 export const addMetadata = (data, index) => {
-  return { type: "add_metadata", payload: { data, index } };
+  return { type: 'add_metadata', payload: { data, index } };
 };
 
-export const removeBook = (index) => {
-  return { type: "remove_book", payload: index };
+export const removeBook = index => {
+  return { type: 'remove_book', payload: index };
 };
 
-export const sortBook = (index) => {
-  return { type: "sort_book", payload: index };
+export const sortBook = index => {
+  return { type: 'sort_book', payload: index };
 };

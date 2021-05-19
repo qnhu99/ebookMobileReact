@@ -1,8 +1,8 @@
-import React from "react";
-import { View, Text, Picker } from "react-native";
-import { connect } from "react-redux";
-import * as actions from "../actions";
-import { primaryColor } from "../constants";
+import React from 'react';
+import { View, Text, Picker } from 'react-native';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+import { primaryColor } from '../constants';
 
 function PickerListItem(props) {
   return (
@@ -12,7 +12,7 @@ function PickerListItem(props) {
         <Picker
           prompt={props.title}
           selectedValue={props.settings[props.id]}
-          onValueChange={(val) => props.updateSettings({ [props.id]: val })}
+          onValueChange={val => props.updateSettings({ [props.id]: val })}
           style={styles.picker}
         >
           {props.items.map((item, i) => (
@@ -30,31 +30,31 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  actions
+  actions,
 )(PickerListItem);
 
 const styles = {
   wrapper: {
-    width: "100%",
+    width: '100%',
     height: 70,
-    justifyContent: "space-evenly",
+    justifyContent: 'space-evenly',
     marginTop: 15,
   },
   pickerWrapper: {
     height: 35,
-    width: "90%",
-    justifyContent: "center",
+    width: '90%',
+    justifyContent: 'center',
     borderWidth: 1,
     borderColor: primaryColor,
     borderRadius: 4,
   },
   text: {
     fontSize: 16,
-    fontFamily: "CircularBold",
+    fontFamily: 'CircularBold',
     paddingLeft: 2,
     paddingBottom: 6,
   },
   picker: {
-    width: "100%",
+    width: '100%',
   },
 };

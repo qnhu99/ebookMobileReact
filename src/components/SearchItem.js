@@ -1,6 +1,6 @@
-import React from "react";
-import { TouchableOpacity, Text } from "react-native";
-import { contrastColor } from "../constants";
+import React from 'react';
+import { TouchableOpacity, Text } from 'react-native';
+import { contrastColor } from '../constants';
 
 function SearchItem(props) {
   return (
@@ -17,7 +17,7 @@ export default SearchItem;
 
 const styles = {
   wrapper: {
-    width: "90%",
+    width: '90%',
     padding: 5,
     borderWidth: 1,
     borderColor: contrastColor,

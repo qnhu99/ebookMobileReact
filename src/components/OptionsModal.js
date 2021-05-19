@@ -1,20 +1,20 @@
-import React from "react";
-import { View, Text, TouchableOpacity, Dimensions } from "react-native";
-import Modal from "react-native-modal";
-import Share from "react-native-share";
-import { connect } from "react-redux";
-import * as actions from "../actions";
-import Icon from "./Icon";
-import { elevatedBG } from "../constants";
+import React from 'react';
+import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
+import Modal from 'react-native-modal';
+import Share from 'react-native-share';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+import Icon from './Icon';
+import { elevatedBG } from '../constants';
 
-const { height, width } = Dimensions.get("window");
+const { height, width } = Dimensions.get('window');
 
 function OptionsModal(props) {
   function onShare() {
     props.onPressCancel();
     Share.open({
       url: `file://${props.url}`,
-      type: "application/epub+zip",
+      type: 'application/epub+zip',
       failOnCancel: false,
     });
   }
@@ -54,50 +54,50 @@ function OptionsModal(props) {
 
 export default connect(
   null,
-  actions
+  actions,
 )(OptionsModal);
 
 const styles = {
   modal: {
-    justifyContent: "flex-end",
-    alignItems: "center",
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   wrapper: {
     height: 140,
     width: width - 16,
     backgroundColor: elevatedBG,
     elevation: 5,
-    justifyContent: "space-evenly",
+    justifyContent: 'space-evenly',
     marginBottom: -20,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
   },
   item: {
     height: 50,
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   icon: {
     paddingLeft: 20,
     paddingRight: 20,
   },
   text: {
-    fontFamily: "Circular",
+    fontFamily: 'Circular',
     fontSize: 15,
   },
 };
 
 const icons = {
   share: {
-    name: "share-2",
-    type: "feather",
+    name: 'share-2',
+    type: 'feather',
     size: 20,
   },
   remove: {
-    name: "trash-2",
-    type: "feather",
+    name: 'trash-2',
+    type: 'feather',
     size: 20,
   },
 };

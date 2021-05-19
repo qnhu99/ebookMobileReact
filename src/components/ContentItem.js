@@ -1,7 +1,7 @@
-import React from "react";
-import { Text, TouchableOpacity, Dimensions } from "react-native";
+import React from 'react';
+import { Text, TouchableOpacity, Dimensions } from 'react-native';
 
-const { width } = Dimensions.get("window");
+const { width } = Dimensions.get('window');
 
 function ContentItem(props) {
   return (
@@ -21,9 +21,9 @@ export default ContentItem;
 const styles = {
   wrapper: {
     height: 40,
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "flex-start",
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
   },
   text: {
     width: width * 0.6,

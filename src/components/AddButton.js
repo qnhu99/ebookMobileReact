@@ -104,7 +104,10 @@ function AddButton(props) {
   );
 }
 
-export default connect(null, actions)(AddButton);
+export default connect(
+  null,
+  actions,
+)(AddButton);
 
 const styles = {
   view: {

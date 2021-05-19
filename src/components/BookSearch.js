@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { TextInput, ScrollView } from "react-native";
-import SearchItem from "./SearchItem";
-import { contrastColor } from "../constants";
+import React, { useState } from 'react';
+import { TextInput, ScrollView } from 'react-native';
+import SearchItem from './SearchItem';
+import { contrastColor } from '../constants';
 
 function BookSearch(props) {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
 
   function renderResults() {
     return input && props.searchResults
@@ -38,14 +38,14 @@ export default BookSearch;
 const styles = {
   scrollView: { flex: 1 },
   scrollViewContent: {
-    alignItems: "flex-start",
-    justifyContent: "center",
+    alignItems: 'flex-start',
+    justifyContent: 'center',
     paddingBottom: 50,
   },
   input: {
     fontSize: 15,
     height: 36,
-    width: "95%",
+    width: '95%',
     color: contrastColor,
     paddingRight: 15,
     paddingLeft: 15,
