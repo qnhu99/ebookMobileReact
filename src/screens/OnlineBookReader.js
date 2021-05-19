@@ -1,5 +1,5 @@
-import React, { useState, useLayoutEffect, useEffect } from "react";
-import { View, Text, FlatList, StatusBar } from "react-native";
+import React from "react";
+import { View, Text } from "react-native";
 
 function OnlineBookReader(props) {
   const link = props.route.params.link;

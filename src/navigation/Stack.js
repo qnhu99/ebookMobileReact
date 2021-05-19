@@ -1,22 +1,25 @@
-import React from "react";
-import { Text } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { connect } from "react-redux";
+import React from 'react';
+import { Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Screens
-import HomeScreen from "../screens/Home";
-import EpubReader from "../screens/EpubReader";
-import PdfReader from "../screens/PdfReader";
-import Help from "../screens/Help";
-import OnlineBookReader from "../screens/OnlineBookReader";
+import HomeScreen from 'src/screens/Home';
+import LibraryScreen from 'src/screens/Library';
+import NotificationScreen from 'src/screens/Notifications';
+import SettingsScreen from 'src/screens/Settings';
+import OnlineBookDetailScreen from 'src/screens/OnlineBookDetail';
 
-import { COLORS, ICONS } from "../res";
-import { Icon } from "react-native-elements";
+import OnlineBookReader from 'src/screens/OnlineBookReader';
+import EpubReader from 'src/screens/EpubReader';
+import PdfReader from 'src/screens/PdfReader';
+import Help from 'src/screens/Help';
 
-function UnimplementedScreen() {
-  return <Text>UnimplementScreen</Text>;
-}
+// Resource
+import Icons from 'src/res/icons.js';
+import Colors from 'src/res/colors';
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -29,92 +32,109 @@ const screenOptions = {
 
 const options = {
   TabNavigatorScreenOptions: ({ route }) => ({
-    tabBarIcon: ({ focused, color, _ }) => {
+    tabBarIcon: ({ focused, color }) => {
       const size = 26;
       switch (route.name) {
-        case "HomeStack":
+        case 'home':
           return focused ? (
-            <ICONS.HOME color={color} size={size} />
+            <Icons.home color={color} size={size} />
           ) : (
-            <ICONS.HOME_OUTLINE color={color} size={size} />
+            <Icons.home_outline color={color} size={size} />
           );
-        case "LibraryStack":
+        case 'library':
           return focused ? (
-            <ICONS.LIBRARY color={color} size={size} />
+            <Icons.library color={color} size={size} />
           ) : (
-            <ICONS.LIBRARY_OUTLINE color={color} size={size} />
+            <Icons.library_outline color={color} size={size} />
           );
-        case "NotificationsStack":
+        case 'notifications':
           return focused ? (
-            <ICONS.NOTIFICATIONS color={color} size={size} />
+            <Icons.notifications color={color} size={size} />
           ) : (
-            <ICONS.NOTIFICATIONS_OUTLINE color={color} size={size} />
+            <Icons.notifications_outline color={color} size={size} />
           );
-        case "SettingsStack":
+        case 'settings':
           return focused ? (
-            <ICONS.SETTINGS color={color} size={size} />
+            <Icons.settings color={color} size={size} />
           ) : (
-            <ICONS.SETTINGS_OUTLINE color={color} size={size} />
+            <Icons.settings_outline color={color} size={size} />
           );
       }
       return (
-        <Icon name="help-outline" size={26} color={color} type="ionicon" />
+        <Icon name="help-outline" size={size} color={color} type="ionicon" />
       );
     },
   }),
   TabNavigatorTabBarOptions: {
-    activeTintColor: COLORS.GOLD,
-    inactiveTintColor: COLORS.GOLD,
+    activeTintColor: Colors?.green,
+    inactiveTintColor: Colors?.green,
     showLabel: false,
     tabStyle: {
       // borderTopWidth: 0.75,
     },
   },
   StackScreenMainScreenOptions: {
-    headerShown: false,
+    // headerShown: false,
   },
   StackScreenBookDetailOptions: ({ route }) => ({
     title: route.params.data.title,
   }),
 };
 
-const HomeStack = createStackNavigator();
+// Main stack
+function StackScreen(props) {
+  const Stack = createStackNavigator();
+  return (
+    <Stack.Navigator>
+      <Stack.Screen {...props} />
+    </Stack.Navigator>
+  );
+}
 function HomeStackScreen() {
   return (
-    <HomeStack.Navigator>
-      <HomeStack.Screen
-        options={{ title: "App Name" }}
-        name="Home"
-        component={HomeScreen}
-      />
-    </HomeStack.Navigator>
+    <StackScreen
+      name="home-screen"
+      component={HomeScreen}
+      options={{
+        title: 'App Name',
+        headerStyle: {
+          // backgroundColor: '#f4511e',
+        },
+      }}
+    />
   );
 }
-const LibraryStack = createStackNavigator();
 function LibraryStackScreen() {
   return (
-    <LibraryStack.Navigator>
-      <LibraryStack.Screen name="Library" component={UnimplementedScreen} />
-    </LibraryStack.Navigator>
+    <StackScreen
+      name="library-screen"
+      component={LibraryScreen}
+      options={{
+        headerShown: false,
+      }}
+    />
   );
 }
-const NotificationStack = createStackNavigator();
 function NotificationStackScreen() {
   return (
-    <NotificationStack.Navigator>
-      <NotificationStack.Screen
-        name="Notification"
-        component={UnimplementedScreen}
-      />
-    </NotificationStack.Navigator>
+    <StackScreen
+      name="notifications-screen"
+      component={NotificationScreen}
+      options={{
+        headerShown: false,
+      }}
+    />
   );
 }
-const SettingsStack = createStackNavigator();
 function SettingsStackScreen() {
   return (
-    <SettingsStack.Navigator>
-      <SettingsStack.Screen name="Settings" component={UnimplementedScreen} />
-    </SettingsStack.Navigator>
+    <StackScreen
+      name="settings-screen"
+      component={SettingsScreen}
+      options={{
+        headerShown: false,
+      }}
+    />
   );
 }
 
@@ -124,23 +144,21 @@ function BottomTabNavigator() {
       screenOptions={options.TabNavigatorScreenOptions}
       tabBarOptions={options.TabNavigatorTabBarOptions}
     >
-      <Tab.Screen name="HomeStack" component={HomeStackScreen} />
-      <Tab.Screen name="LibraryStack" component={LibraryStackScreen} />
-      <Tab.Screen
-        name="NotificationsStack"
-        component={NotificationStackScreen}
-      />
-      <Tab.Screen name="SettingsStack" component={SettingsStackScreen} />
+      <Tab.Screen name="home" component={HomeStackScreen} />
+      <Tab.Screen name="library" component={LibraryStackScreen} />
+      <Tab.Screen name="notifications" component={NotificationStackScreen} />
+      <Tab.Screen name="settings" component={SettingsStackScreen} />
     </Tab.Navigator>
   );
 }
 
+// Whole stack
 function Navigator(props) {
   const readerTitle = ({ route }) => ({
     title: route.params.title,
     headerTitleStyle: {
       fontSize: 16,
-      fontFamily: "PlayfairDisplay-Bold",
+      fontFamily: 'PlayfairDisplay-Bold',
       color: props.fg,
       marginRight: 25,
       marginBottom: 4,
@@ -157,6 +175,15 @@ function Navigator(props) {
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen name="main-screen" component={BottomTabNavigator} />
       <Stack.Screen
+        name="online-book-detail"
+        component={OnlineBookDetailScreen}
+        options={({ route }) => ({
+          title: route.params.item.title,
+          headerShown: true,
+        })}
+      />
+      <Stack.Screen name="online-book-reader" component={OnlineBookReader} />
+      <Stack.Screen
         name="epub-reader"
         component={EpubReader}
         options={readerTitle}
@@ -169,9 +196,8 @@ function Navigator(props) {
       <Stack.Screen
         name="help"
         component={Help}
-        options={{ headerTitle: "How to use?" }}
+        options={{ headerTitle: 'How to use?' }}
       />
-      <Stack.Screen name="online-book-reader" component={OnlineBookReader} />
     </Stack.Navigator>
   );
 }
@@ -183,7 +209,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  null
-)(Navigator);
+export default connect(mapStateToProps, null)(Navigator);

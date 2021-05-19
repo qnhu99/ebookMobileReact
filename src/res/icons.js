@@ -1,114 +1,76 @@
 import React from "react";
 import { Icon } from "react-native-elements";
 
-const ICONS = {
-  // Bottom Tab Navigator (Ionicon icon)
-  HOME: (props) => <Icon name="home" type="ionicon" {...props} />,
-  HOME_OUTLINE: (props) => (
-    <Icon name="home-outline" type="ionicon" {...props} />
-  ),
-  LIBRARY: (props) => <Icon name="library" type="ionicon" {...props} />,
-  LIBRARY_OUTLINE: (props) => (
-    <Icon name="library-outline" type="ionicon" {...props} />
-  ),
-  NOTIFICATIONS: (props) => (
-    <Icon name="notifications" type="ionicon" {...props} />
-  ),
-  NOTIFICATIONS_OUTLINE: (props) => (
+const Icons = {
+  home: (props) => {
+    return <Icon name="home" type="ionicon" {...props} />;
+  },
+  home_outline: (props) => {
+    return <Icon name="home-outline" type="ionicon" {...props} />;
+  },
+  library: (props) => {
+    return <Icon name="library" type="ionicon" {...props} />;
+  },
+  library_outline: (props) => {
+    return <Icon name="library-outline" type="ionicon" {...props} />;
+  },
+  notifications: (props) => {
+    return <Icon name="notifications" type="ionicon" {...props} />;
+  },
+  notifications_outline: (props) => (
     <Icon name="notifications-outline" type="ionicon" {...props} />
   ),
-  SETTINGS: (props) => <Icon name="settings" type="ionicon" {...props} />,
-  SETTINGS_OUTLINE: (props) => (
-    <Icon name="settings-outline" type="ionicon" {...props} />
-  ),
-  // Search
-  SEARCH: (props) => (
-    <Icon name="search" type="material-community" size={22} {...props} />
-  ),
-  // Add books/Open files
-  PLUS: (props) => (
-    <Icon name="plus" type="material-community" size={22} {...props} />
-  ),
-  OPEN_FILES: "",
-  ADD_BOOK: "",
-  // Others
-  FILE: (props) => (
-    <Icon
-      name="file"
-      size={24}
-      color="black"
-      style={{ marginLeft: 2 }}
-      {...props}
-    />
-  ),
-  // USER
-  SIGN_IN: (props) => (
-    <Icon
-      name="sign-in"
-      type="font-awesome"
-      size={24}
-      color="black"
-      style={{ marginLeft: 2 }}
-      {...props}
-    />
-  ),
-  SIGN_UP: (props) => (
-    <Icon
-      name="pencil-square-o"
-      type="font-awesome"
-      size={24}
-      color="black"
-      style={{ marginLeft: 2 }}
-      {...props}
-    />
-  ),
-  SIGN_OUT: (props) => (
-    <Icon
-      name="sign-out"
-      type="font-awesome"
-      size={24}
-      color="black"
-      style={{ marginLeft: 2 }}
-      {...props}
-    />
-  ),
-  USER: "",
+  settings: (props) => {
+    return <Icon name="settings" type="ionicon" {...props} />;
+  },
+  settings_outline: (props) => {
+    return <Icon name="settings-outline" type="ionicon" {...props} />;
+  },
+  search: (props) => {
+    return <Icon name="search" type="material-community" {...props} />;
+  },
+  plus: (props) => {
+    return <Icon name="plus" type="material-community" {...props} />;
+  },
+  file: (props) => {
+    return <Icon name="file" type="font-awesome" {...props} />;
+  },
+  sign_in: (props) => {
+    return <Icon name="sign-in" type="font-awesome" {...props} />;
+  },
+  sign_up: (props) => {
+    return <Icon name="pencil-square-o" type="font-awesome" {...props} />;
+  },
+  sign_out: (props) => {
+    return <Icon name="sign-out" type="font-awesome" {...props} />;
+  },
+  filter: (props) => {
+    return <Icon name="filter" type="font-awesome" {...props} />;
+  },
+  sort_alphabetical_ascending: (props) => {
+    return (
+      <Icon
+        name="sort-alphabetical-ascending"
+        type="material-community"
+        {...props}
+      />
+    );
+  },
+  sort_alphabetical_descending: (props) => {
+    return (
+      <Icon
+        name="sort-alphabetical-descending"
+        type="material-community"
+        {...props}
+      />
+    );
+  },
+  sort_descending: (props) => {
+    return <Icon name="sort-descending" type="material-community" {...props} />;
+  },
+  sort_ascending: (props) => {
+    return <Icon name="sort-ascending" type="material-community" {...props} />;
+  },
 };
 
-// const ICONS = {
-//   // USER
-//   SIGN_IN: {name: 'pencil-square-o'},
-//   SIGN_UP: '',
-//   SIGN_OUT: '',
-//   USER: '',
-//   NAME: {
-//     // Bottom Tab Navigator (Ionicon icon)
-//     HOME: 'home',
-//     HOME_OUTLINE: 'home-outline',
-//     LIBRARY: 'library',
-//     LIBRARY_OUTLINE: 'library-outline',
-//     NOTIFICATIONS: 'notifications',
-//     NOTIFICATIONS_OUTLINE: 'notifications-outline',
-//     SETTINGS: 'settings',
-//     SETTINGS_OUTLINE: 'settings-outline',
-
-//     // Favorite
-//     HEART: '',
-//     // Download
-//     DOWNLOAD: '',
-//     // Return
-//     RETURN: '',
-//     // Search
-//     MAGNIFY: '',
-//     // Add books/Open files
-//     PLUS: '',
-//     OPEN_FILES: '',
-//     ADD_BOOK: '',
-//     // HOME SCREEN
-//     // LIBRARY SCREEN
-//     // NOTIFICATIONS SCREEN
-//     // SETTING SCREEN}
-//   },
-// };
-
-export default ICONS;
+export default Icons;

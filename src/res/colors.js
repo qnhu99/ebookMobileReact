@@ -1,13 +1,15 @@
-const COLORS = {
-  GREEN: "#9CA34B",
-  ORANGE: "#FF9933",
-  BROWN: "#694E20",
-  DARK: "#100C08",
-  LIGHT: "#FFFFE7", // background
-  WHEAT: "#F1D8A7", // header
-  BEIGE: "#C1AC85",
-  CAMEL: "#A98E60", // inactive
-  GOLD: "#C89641",
+const Colors = {
+  green: "#9ca34b",
+  yellow: "#ff9933",
+  red: "#ef3038",
+  wheat: "#f1d8a7",
+  dark: "#100c08",
+  light: "#fdfff5",
+  white: "#fffafa",
+  brown: "#694e20",
+  beige: "#c1ac85",
+  camel: "#a98e60",
+  gold: "#ffcc33",
 };
 
-export default COLORS;
+export default Colors;

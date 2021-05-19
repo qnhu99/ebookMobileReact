@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
-import { View } from "react-native";
-import { StatusBar } from "react-native";
+import React, { useState, useEffect, useRef } from "react";
 import StaticServer from "react-native-static-server";
 import { ExternalStorageDirectoryPath } from "react-native-fs";
 import { WebView } from "react-native-webview";
@@ -11,7 +9,6 @@ import Drawer from "../components/Drawer";
 import showToast from "../components/Toast";
 import Spinner from "../components/Spinner";
 import Footer from "../components/Footer";
-import Icon from "../components/Icon";
 import themeToStyles from "../utils/themeToStyles";
 
 const serverConfig = { localOnly: true, keepAlive: true };
@@ -39,7 +36,7 @@ function EpubReader(props) {
         server: newServer,
       })
     );
-    //chi chay khi component unmount
+    //only run when component unmount
     return () => {
       props.sortBook(params.index);
       state.server && state.server.stop();
