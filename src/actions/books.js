@@ -39,7 +39,7 @@ function transformLink(link) {
   return link.replace(/raw%3A/g, '').replace(/%2F/g, '/');
 }
 
-export const addBook = () => async dispatch => {
+export const addBook = ({ navigation }) => async dispatch => {
   let granted = await checkStoragePermissions();
   if (!granted) await getStoragePermission();
   try {
@@ -50,13 +50,21 @@ export const addBook = () => async dispatch => {
     res.uri = components[components.length - 1];
     let url = transformLink(res.uri);
     let filetype = res.name.split('.');
+    let type = filetype[1].toLowerCase();
+    let title = res.name;
     dispatch({
       type: 'add_books',
       payload: {
-        title: res.name,
+        title,
         url,
-        type: filetype[1].toLowerCase(),
+        type,
       },
+    });
+
+    navigation.navigate(`${type || 'epub' || 'pdf'}-reader`, {
+      title,
+      url,
+      index: 0,
     });
   } catch (err) {
     if (DocumentPicker.isCancel(err)) {

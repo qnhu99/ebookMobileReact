@@ -48,7 +48,14 @@ function AddButton(props) {
           onPress={toggleInputLinkOverlay}
           type="clear"
         />
-        <Button title="Open new files" onPress={props.addBook} type="clear" />
+        <Button
+          title="Open new files"
+          onPress={() => {
+            setVisible(false);
+            props.addBook({ navigation: navigation });
+          }}
+          type="clear"
+        />
       </Overlay>
       <Overlay
         isVisible={visibleInputLink}

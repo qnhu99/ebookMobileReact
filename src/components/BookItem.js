@@ -12,13 +12,18 @@ function BookItem(props) {
 
   async function onPress() {
     let { isConnected, isInternetReachable } = await NetInfo.fetch();
-    if (isConnected && isInternetReachable) {
-      props.navigation.navigate(`${props.type || 'epub' || 'pdf'}-reader`, {
-        title: props.title,
-        url: props.url,
-        index: props.index,
-      });
-    } else showToast('No internet connection');
+    // if (isConnected && isInternetReachable) {
+    //   props.navigation.navigate(`${props.type || 'epub' || 'pdf'}-reader`, {
+    //     title: props.title,
+    //     url: props.url,
+    //     index: props.index,
+    //   });
+    // } else showToast('No internet connection');
+    props.navigation.navigate(`${props.type || 'epub' || 'pdf'}-reader`, {
+      title: props.title,
+      url: props.url,
+      index: props.index,
+    });
   }
 
   return (
