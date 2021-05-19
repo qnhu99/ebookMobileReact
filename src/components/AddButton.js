@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 
-import { View, TouchableWithoutFeedback } from "react-native";
+import { View, TouchableWithoutFeedback, TextInput, Text } from "react-native";
 
 import { Overlay, Icon, Button, Input } from "react-native-elements";
 
@@ -20,13 +20,14 @@ function AddButton(props) {
     setVisible(!visible);
   };
   const toggleInputLinkOverlay = () => {
-    setVisible(!visible);
+    // setVisible(!visible);
     setVisibleInputLink(!visibleInputLink);
   };
 
   const onPressSendLink = () => {
     if (inputLink !== "") {
-      setVisibleInputLink(!visibleInputLink);
+      setVisible(false);
+      setVisibleInputLink(false);
       navigation.navigate("online-book-reader", { link: inputLink });
     }
   };
@@ -56,10 +57,11 @@ function AddButton(props) {
       <Overlay
         isVisible={visibleInputLink}
         onBackdropPress={toggleInputLinkOverlay}
+        backdropStyle={{ backgroundColor: "rgba(52, 52, 52, 0)" }}
         animationType={"fade"}
         overlayStyle={{
           width: DIMENSIONS.FULL_WIDTH - 30,
-          height: 150,
+          height: 170,
         }}
       >
         <View
@@ -69,18 +71,37 @@ function AddButton(props) {
             alignItems: "center",
           }}
         >
-          <Input
-            label="Link"
-            placeholder="BASIC INPUT"
-            onChangeText={onChangeInput}
-            value={inputLink}
-          />
-          <Button
-            title="Continue"
-            containerStyle={{ width: 100 }}
-            type="clear"
-            onPress={onPressSendLink}
-          />
+          <View style={{ display: "flex", flexDirection: "row" }}>
+            <View style={{ flex: 4 }}>
+              <Input
+                label="Open via link"
+                placeholder="Book link"
+                onChangeText={onChangeInput}
+                value={inputLink}
+              />
+            </View>
+            <View style={{ flex: 1, flexDirection: "column" }}>
+              <Button
+                containerStyle={{ marginTop: 30, marginRight: 10 }}
+                title="Paste"
+              />
+            </View>
+          </View>
+
+          <View style={{ display: "flex", flexDirection: "row" }}>
+            <Button
+              type="clear"
+              title="Cancel"
+              onPress={toggleInputLinkOverlay}
+              containerStyle={{ width: 85 }}
+            />
+
+            <Button
+              title="Continue"
+              containerStyle={{ marginLeft: 25, width: 85 }}
+              onPress={onPressSendLink}
+            />
+          </View>
         </View>
       </Overlay>
     </>
