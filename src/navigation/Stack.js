@@ -19,6 +19,7 @@ import Help from 'src/screens/Help';
 // Resource
 import Icons from 'src/res/icons.js';
 import Colors from 'src/res/colors';
+import { globalSettings } from '../constants'
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -26,8 +27,9 @@ const Tab = createBottomTabNavigator();
 const screenOptions = {
   headerTitleStyle: {
     fontSize: 18,
+    fontFamily: globalSettings.fontFamily,
   },
-  headerShown: false,
+  headerShown: true,
 };
 
 const options = {
@@ -96,9 +98,9 @@ function HomeStackScreen() {
       name="home-screen"
       component={HomeScreen}
       options={{
-        title: 'App Name',
+        title: 'Ebook Reader',
         headerStyle: {
-          // backgroundColor: '#f4511e',
+          fontFamily: globalSettings.fontFamily,
         },
       }}
     />
@@ -158,22 +160,22 @@ function Navigator(props) {
     title: route.params.title,
     headerTitleStyle: {
       fontSize: 16,
-      fontFamily: 'PlayfairDisplay-Bold',
+      fontFamily: globalSettings.fontFamily,
       color: props.fg,
       marginRight: 25,
       marginBottom: 4,
-      marginLeft: -5,
+      marginLeft: -5
     },
     headerStyle: {
       elevation: 0,
-      backgroundColor: props.bg,
+      backgroundColor: props.bg
     },
-    headerTintColor: props.fg,
+    headerTintColor: props.fg
   });
 
   return (
     <Stack.Navigator screenOptions={screenOptions}>
-      <Stack.Screen name="main-screen" component={BottomTabNavigator} />
+      <Stack.Screen name="main-screen" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen
         name="online-book-detail"
         component={OnlineBookDetailScreen}
@@ -206,6 +208,7 @@ function mapStateToProps(state) {
   return {
     bg: state.settings.bg,
     fg: state.settings.fg,
+    globalSettings: state.globalSettings,
   };
 }
 

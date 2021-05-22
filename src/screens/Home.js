@@ -17,23 +17,25 @@ import BookItem from 'src/components/BookItem';
 import SearchBar from 'src/components/SearchBar';
 import Icon from 'src/components/Icon';
 
-import Icons from 'src/res/icons';
 import Colors from 'src/res/icons';
 
-import { contrastColor } from 'src/constants';
+import { contrastColor, globalSettings } from 'src/constants';
 
 // dummy data
 import BooksData from './dummy_data/books.js';
 
 // Welcome Intro
-function Intro() {
+function Intro(props) {
+  const fontFamily = props.fontFamily;
+  console.log(">> ~ file: Home.js ~ line 31 ~ Intro ~ fontFamily", fontFamily)
+
   return (
-    <View style={styles.intro}>
-      <Text style={{ fontSize: 24, paddingVertical: 5 }}>
-        {'Welcome to App name'}
+    <View style={{ ...styles.intro, fontFamily }}>
+      <Text style={{ fontSize: 22, paddingVertical: 5, fontWeight: 'bold' }}>
+        {'Welcome to Ebook Reader'}
       </Text>
       <View style={{ alignItems: 'center' }}>
-        <Text style={{ textAlign: 'center' }}>
+        <Text style={{ fontFamily, textAlign: 'center' }}>
           {'Save your favorite stories\nand find more from the internet'}
         </Text>
       </View>
@@ -58,8 +60,10 @@ function Intro() {
 }
 
 // Horizontal List for books
-function HorizontalList() {
+function HorizontalList(props) {
   const navigation = useNavigation();
+  const fontFamily = props.fontFamily;
+  console.log(">> ~ file: Home.js ~ line 66 ~ HorizontalList ~ fontFamily", fontFamily)
   const renderBook = ({ item }) => {
     return (
       <>
@@ -81,7 +85,7 @@ function HorizontalList() {
   };
   return (
     <View style={styles.section}>
-      <Text style={styles.sectionTitle}>{'Recent book'}</Text>
+      <Text style={{ ...styles.sectionTitle, fontFamily: "TimesNewRoman" }}>{'Recent book'}</Text>
       <FlatList
         horizontal
         data={BooksData}
@@ -95,7 +99,7 @@ function HorizontalList() {
           navigation.navigate('library');
         }}
       >
-        <Text style={{ textAlign: 'center' }}>{'View more'}</Text>
+        <Text style={{ textAlign: 'center', fontFamily }}>{'View more'}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -103,6 +107,8 @@ function HorizontalList() {
 
 // Main
 function HomeScreen(props) {
+  const globalSettings = props.globalSettings;
+
   const navigation = useNavigation();
   const [isSearchBar, setSearchBar] = useState(false);
   const [input, setInput] = useState('');
@@ -132,18 +138,18 @@ function HomeScreen(props) {
         headerRight: () => (
           <View style={styles.headerIconsWrapper}>
             <Icon
-              name="help-circle"
-              size={20}
-              color={contrastColor}
-              style={styles.helpIcon}
-              onPress={() => props.navigation.navigate('help')}
-            />
-            <Icon
               name="search"
               size={20}
               color={contrastColor}
               style={styles.searchIcon}
               onPress={() => setSearchBar(true)}
+            />
+            <Icon
+              name="help-circle"
+              size={20}
+              color={contrastColor}
+              style={styles.helpIcon}
+              onPress={() => props.navigation.navigate('help')}
             />
           </View>
         ),
@@ -176,12 +182,12 @@ function HomeScreen(props) {
             backgroundColor: '#ffffff',
             justifyContent: 'center',
             alignItems: 'center',
+            fontFamily: fontFamily,
           }}
         >
-          <Text style={styles.message}>{'Your library is empty!'}</Text>
-          <Text style={styles.message}>{'Add some books to get started'}</Text>
-          <Text style={[styles.message, { fontSize: 13, fontStyle: 'italic' }]}>
-            {'(Only EPUB files supported)'}
+          <Text style={{ ...styles.message, fontFamily }}>{'Your library is empty!'}</Text>
+          <Text style={{ ...styles.message, fontFamily }}>{'Add some books to get started'}</Text>
+          <Text style={[styles.message, { fontSize: 13, fontStyle: 'italic', fontFamily }]}>
           </Text>
         </View>
       );
@@ -201,21 +207,24 @@ function HomeScreen(props) {
   }
 
   return (
-    <ScrollView style={styles.wrapper}>
-      <Intro />
-      <HorizontalList />
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>{'Recent files'}</Text>
-        {renderBooks()}
-      </View>
+    <React.Fragment>
+      <ScrollView style={styles.wrapper}>
+        <Intro fontFamily={globalSettings.fontFamily} />
+        <HorizontalList fontFamily={globalSettings.fontFamily} />
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{'Recent files'}</Text>
+          {renderBooks()}
+        </View>
+      </ScrollView>
       <AddButton />
-    </ScrollView>
+    </React.Fragment>
   );
 }
 
 function mapStateToProps(state) {
   return {
     books: state.books,
+    globalSettings: state.globalSettings,
   };
 }
 
@@ -235,7 +244,6 @@ const styles = {
   },
   message: {
     fontSize: 16,
-    fontFamily: 'CircularLight',
     marginBottom: 5,
   },
   searchIcon: { paddingRight: 20 },
@@ -250,11 +258,11 @@ const styles = {
     backgroundColor: Colors.light,
   },
   sectionTitle: {
-    fontSize: 18,
-    fontWeight: '700',
+    fontSize: 20,
+    fontWeight: 'bold',
     marginTop: 10,
     marginBottom: 5,
-    marginLeft: 5,
+    marginLeft: 15,
   },
   bookItem: {
     marginRight: 3,
