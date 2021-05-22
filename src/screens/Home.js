@@ -1,105 +1,18 @@
 import React, { useState, useLayoutEffect, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/core';
-import {
-  View,
-  ScrollView,
-  Text,
-  FlatList,
-  StatusBar,
-  TouchableOpacity,
-  ActivityIndicator,
-} from 'react-native';
-import { Button, Image, Divider } from 'react-native-elements';
+import { View, ScrollView, Text, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 
-import AddButton from 'src/components/AddButton';
-import BookItem from 'src/components/BookItem';
-import SearchBar from 'src/components/SearchBar';
-import Icon from 'src/components/Icon';
+// Custom components
+import AddButton from '../components/AddButton';
+import BookItem from '../components/BookItem';
+import SearchBar from '../components/SearchBar';
+import Icon from '../components/Icon';
+import WelcomeIntro from '../components/WelcomeIntro';
+import HorizontalList from '../components/HorizontalList';
 
-import Icons from 'src/res/icons';
 import Colors from 'src/res/icons';
-
 import { contrastColor } from 'src/constants';
-
-// dummy data
-import BooksData from './dummy_data/books.js';
-
-// Welcome Intro
-function Intro() {
-  return (
-    <View style={styles.intro}>
-      <Text style={{ fontSize: 24, paddingVertical: 5 }}>
-        {'Welcome to App name'}
-      </Text>
-      <View style={{ alignItems: 'center' }}>
-        <Text style={{ textAlign: 'center' }}>
-          {'Save your favorite stories\nand find more from the internet'}
-        </Text>
-      </View>
-      <View
-        style={{
-          flexDirection: 'row',
-        }}
-      >
-        {/* <Button
-          icon={Icons.sign_up}
-          title="Sign up"
-          buttonStyle={{ marginHorizontal: 5, marginTop: 10, width: 130 }}
-        />
-        <Button
-          icon={Icons.sign_in}
-          title="Sign in"
-          buttonStyle={{ marginHorizontal: 5, marginTop: 10, width: 130 }}
-        /> */}
-      </View>
-    </View>
-  );
-}
-
-// Horizontal List for books
-function HorizontalList() {
-  const navigation = useNavigation();
-  const renderBook = ({ item }) => {
-    return (
-      <>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('online-book-detail', { item });
-          }}
-        >
-          <View style={styles.bookItem}>
-            <Image
-              style={styles.coverImage}
-              source={{ uri: item.cover }}
-              PlaceholderContent={<ActivityIndicator />}
-            />
-          </View>
-        </TouchableOpacity>
-      </>
-    );
-  };
-  return (
-    <View style={styles.section}>
-      <Text style={styles.sectionTitle}>{'Recent book'}</Text>
-      <FlatList
-        horizontal
-        data={BooksData}
-        renderItem={renderBook}
-        keyExtractor={(_, index) => index.toString()}
-      />
-      <Divider style={{ marginTop: 5, cover: 'black' }} />
-      <TouchableOpacity
-        style={{ paddingVertical: 5 }}
-        onPress={() => {
-          navigation.navigate('library');
-        }}
-      >
-        <Text style={{ textAlign: 'center' }}>{'View more'}</Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
 
 // Main
 function HomeScreen(props) {
@@ -173,9 +86,10 @@ function HomeScreen(props) {
         <View
           style={{
             flex: 1,
-            backgroundColor: '#ffffff',
             justifyContent: 'center',
             alignItems: 'center',
+            margin: 10,
+            height: 100,
           }}
         >
           <Text style={styles.message}>{'Your library is empty!'}</Text>
@@ -201,15 +115,17 @@ function HomeScreen(props) {
   }
 
   return (
-    <ScrollView style={styles.wrapper}>
-      <Intro />
-      <HorizontalList />
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>{'Recent files'}</Text>
-        {renderBooks()}
-      </View>
+    <>
       <AddButton />
-    </ScrollView>
+      <ScrollView style={styles.wrapper}>
+        <WelcomeIntro />
+        <HorizontalList />
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{'Recent files'}</Text>
+          {renderBooks()}
+        </View>
+      </ScrollView>
+    </>
   );
 }
 
@@ -241,46 +157,12 @@ const styles = {
   searchIcon: { paddingRight: 20 },
   helpIcon: { paddingRight: 25 },
   headerIconsWrapper: { flexDirection: 'row' },
-  container: {
-    flex: 1,
-    backgroundColor: Colors.light,
-  },
-  section: {
-    marginTop: 7,
-    backgroundColor: Colors.light,
-  },
+  section: { marginTop: 7, backgroundColor: Colors.light },
   sectionTitle: {
     fontSize: 18,
     fontWeight: '700',
     marginTop: 10,
     marginBottom: 5,
     marginLeft: 5,
-  },
-  bookItem: {
-    marginRight: 3,
-    marginBottom: 10,
-    backgroundColor: Colors.dark,
-  },
-  coverImage: {
-    height: 192,
-    width: 120,
-    resizeMode: 'contain',
-  },
-  fileItem: {
-    flex: 1,
-    width: '100%',
-    height: 50,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderTopWidth: 0.5,
-    borderTopColor: Colors.dark,
-  },
-  intro: {
-    backgroundColor: Colors.light,
-    alignItems: 'center',
-    paddingTop: 10,
-    paddingBottom: 20,
-    elevation: 5,
-    // marginTop: 180,
   },
 };

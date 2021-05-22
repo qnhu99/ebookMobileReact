@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
-
 import { View, TouchableWithoutFeedback } from 'react-native';
-
 import { Overlay, Icon, Button, Input } from 'react-native-elements';
-
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+
+// Components
+import ErrorAlert from './ErrorAlert';
 // import Icon from "./Icon";
 import { primaryColor } from '../constants';
 import dimensions from 'src/res/dimensions';
 
+import axios, { BookApi } from '../api';
+
 function AddButton(props) {
   const navigation = useNavigation();
+  const [errorSubmitEmptyInput, setErrorSubmitEmptyInput] = useState(false);
   const [visible, setVisible] = useState(false);
   const [visibleInputLink, setVisibleInputLink] = useState(false);
   const [inputLink, onChangeInput] = React.useState('');
@@ -24,11 +27,21 @@ function AddButton(props) {
   };
 
   const onPressSendLink = () => {
-    if (inputLink !== '') {
-      setVisible(false);
-      setVisibleInputLink(false);
-      navigation.navigate('online-book-reader', { link: inputLink });
+    if (inputLink.trim().length === 0) {
+      setErrorSubmitEmptyInput(true);
+      console.log(errorSubmitEmptyInput);
+      return;
     }
+    axios(BookApi.getBookDetail(inputLink))
+      .then(res => {
+        setVisible(false);
+        setVisibleInputLink(false);
+        navigation.navigate('online-book-detail', { data: res.data });
+      })
+      .catch(err => {
+        setErrorSubmitEmptyInput(false);
+        return ErrorAlert({ errorMessage: err.message });
+      });
   };
 
   return (
@@ -81,6 +94,10 @@ function AddButton(props) {
                 placeholder="Book link"
                 onChangeText={onChangeInput}
                 value={inputLink}
+                errorMessage={errorSubmitEmptyInput ? 'Empty input' : ''}
+                // style={{
+                //   borderColor: errorSubmitEmptyInput ? 'red' : 'transparent',
+                // }}
               />
             </View>
             <View style={{ flex: 1, flexDirection: 'column' }}>

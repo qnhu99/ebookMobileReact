@@ -9,7 +9,7 @@ import HomeScreen from 'src/screens/Home';
 import LibraryScreen from 'src/screens/Library';
 import NotificationScreen from 'src/screens/Notifications';
 import SettingsScreen from 'src/screens/Settings';
-import OnlineBookDetailScreen from 'src/screens/OnlineBookDetail';
+import OnlineBookDetail from 'src/screens/OnlineBookDetail';
 
 import OnlineBookReader from 'src/screens/OnlineBookReader';
 import EpubReader from 'src/screens/EpubReader';
@@ -174,14 +174,7 @@ function Navigator(props) {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen name="main-screen" component={BottomTabNavigator} />
-      <Stack.Screen
-        name="online-book-detail"
-        component={OnlineBookDetailScreen}
-        options={({ route }) => ({
-          title: route.params.item.title,
-          headerShown: true,
-        })}
-      />
+      <Stack.Screen name="online-book-detail" component={OnlineBookDetail} />
       <Stack.Screen name="online-book-reader" component={OnlineBookReader} />
       <Stack.Screen
         name="epub-reader"
