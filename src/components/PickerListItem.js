@@ -5,10 +5,11 @@ import * as actions from '../actions';
 import { primaryColor } from '../constants';
 
 function PickerListItem(props) {
+  const fontFamily = props.globalSettings.fontFamily;
   return (
-    <View style={styles.wrapper}>
-      <Text style={styles.text}>{props.text}</Text>
-      <View style={styles.pickerWrapper}>
+    <View style={{ ...styles.wrapper, fontFamily }}>
+      <Text style={{ ...styles.text, fontFamily }}>{props.text}</Text>
+      <View style={{ ...styles.pickerWrapper, fontFamily }}>
         <Picker
           prompt={props.title}
           selectedValue={props.settings[props.id]}
@@ -25,7 +26,10 @@ function PickerListItem(props) {
 }
 
 function mapStateToProps(state) {
-  return { settings: state.settings };
+  return {
+    settings: state.settings,
+    globalSettings: state.globalSettings
+  };
 }
 
 export default connect(
@@ -50,7 +54,6 @@ const styles = {
   },
   text: {
     fontSize: 16,
-    fontFamily: 'CircularBold',
     paddingLeft: 2,
     paddingBottom: 6,
   },
