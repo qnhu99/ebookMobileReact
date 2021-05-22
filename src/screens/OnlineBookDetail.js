@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
-
-import { Text, View } from 'react-native';
+import { ScrollView } from 'react-native';
+import BookInfo from '../components/BookInfo';
 
 function OnlineBookDetail({ route, navigation }) {
-  const { book_name } = route.params.data;
+  const data = route.params.data;
   useEffect(() => {
     navigation.setOptions({
-      title: book_name,
+      title: data.book_name,
       headerShown: true,
     });
   }, []);
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Online Book detail Screen {book_name}</Text>
-    </View>
+    <ScrollView>
+      <BookInfo data={data} />
+    </ScrollView>
   );
 }
 
