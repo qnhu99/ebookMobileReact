@@ -29,7 +29,6 @@ function EpubReader(props) {
   const bookLocations = props.books[params.index].locations;
 
   const { bg, fg, size, height } = props.settings;
-  console.log(">> ~ file: EpubReader.js ~ line 32 ~ EpubReader ~ props.settings", props.settings)
 
   useLayoutEffect(() => {
     props.navigation.setOptions({

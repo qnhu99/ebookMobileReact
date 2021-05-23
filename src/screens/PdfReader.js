@@ -116,7 +116,8 @@ function PdfReader(props) {
     <SideMenu menu={menu} isOpen={isDrawer} menuPosition="right" onChange={setDrawer}>
       <WebView
         ref={webview}
-        style={[styles.wholeScreen, { backgroundColor: props.settings.bg }]}
+        // style={[styles.wholeScreen, { backgroundColor: props.settings.bg }]}
+        style={[styles.wholeScreen]}
         source={{ uri: 'file:///android_asset/pdf.html' }}
         injectedJavaScriptBeforeContentLoaded={injectedJS}
         onMessage={handleMessage}

@@ -27,7 +27,6 @@ import BooksData from './dummy_data/books.js';
 // Welcome Intro
 function Intro(props) {
   const fontFamily = props.fontFamily;
-  console.log(">> ~ file: Home.js ~ line 31 ~ Intro ~ fontFamily", fontFamily)
 
   return (
     <View style={{ ...styles.intro, fontFamily }}>
@@ -63,7 +62,6 @@ function Intro(props) {
 function HorizontalList(props) {
   const navigation = useNavigation();
   const fontFamily = props.fontFamily;
-  console.log(">> ~ file: Home.js ~ line 66 ~ HorizontalList ~ fontFamily", fontFamily)
   const renderBook = ({ item }) => {
     return (
       <>

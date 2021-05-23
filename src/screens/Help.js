@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
+import { ScrollView, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { contrastColor } from '../constants';
 import { connect } from 'react-redux';
 
@@ -8,9 +8,16 @@ const { height } = Dimensions.get('window');
 function Help(props) {
 
   return (
-    <View>
-      <Text style={{ fontFamily: props.globalSettings.fontFamily }}>Helper</Text>
-    </View>
+    <ScrollView style={styles.wrapper} contentContainerStyle={styles.wrapperContent}>
+      <Text style={styles.heading}>Ebook Reader</Text>
+      <Text style={styles.text}>
+        &quot;Save your favorite stories&quot; and find more in the internet.{' '}
+        <Text style={styles.emphasize}>
+          Ebook Reader help you read ebook from your device and stories from tangthuvien.vn
+				</Text>
+      </Text>
+
+    </ScrollView>
   );
 }
 

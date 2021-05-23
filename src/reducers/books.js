@@ -2,7 +2,7 @@ import showToast from '../components/Toast';
 
 const INITIAL_STATE = [];
 
-export default function(state = INITIAL_STATE, action) {
+export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'add_books': {
       let itemIndex = state.findIndex(item => action.payload.url === item.url);
@@ -13,10 +13,7 @@ export default function(state = INITIAL_STATE, action) {
         stateClone.unshift(...removedItems);
         return stateClone;
       }
-      console.log(
-        '>> ~ file: books.js ~ line 18 ~ function ~ action.payload',
-        action.payload,
-      );
+
       return [action.payload, ...state];
     }
     case 'add_metadata': {
