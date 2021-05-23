@@ -108,6 +108,7 @@ function HorizontalList(props) {
 // Main
 function HomeScreen(props) {
   const globalSettings = props.globalSettings;
+  const fontFamily = globalSettings.fontFamily;
 
   const navigation = useNavigation();
   const [isSearchBar, setSearchBar] = useState(false);
@@ -181,14 +182,11 @@ function HomeScreen(props) {
             flex: 1,
             backgroundColor: '#ffffff',
             justifyContent: 'center',
-            alignItems: 'center',
-            fontFamily: fontFamily,
+            alignItems: 'center'
           }}
         >
           <Text style={{ ...styles.message, fontFamily }}>{'Your library is empty!'}</Text>
           <Text style={{ ...styles.message, fontFamily }}>{'Add some books to get started'}</Text>
-          <Text style={[styles.message, { fontSize: 13, fontStyle: 'italic', fontFamily }]}>
-          </Text>
         </View>
       );
     }

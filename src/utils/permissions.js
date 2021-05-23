@@ -7,17 +7,18 @@ export const getStoragePermission = async () => {
       PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
     ],
     {
-      title: "Duofolio Storage Permission",
-      message: "Duofolio needs to access your storage",
+      title: "Ebook Reader Storage Permission",
+      message: "Ebook Reader needs to access your storage",
     }
   );
 
   if (permissions["android.permission.READ_EXTERNAL_STORAGE"] === "granted") {
+    console.log("permission")
     return;
   } else {
     Alert.alert(
       "Permission required",
-      "Allow Duofolio to access your storage",
+      "Allow Ebook Reader to access your storage to download and read file",
       [{ text: "OK", onPress: async () => await getStoragePermission() }],
       { cancelable: false }
     );
