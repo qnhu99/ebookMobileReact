@@ -8,12 +8,16 @@ function BookSearch(props) {
   const [input, setInput] = useState('');
 
   function renderResults() {
-
-    return input && props.searchResults
-      ? props.searchResults.map((result, i) => (
+    console.log(">> ~ file: BookSearch.js ~ line 13 ~ renderResults ~ props.isSearching", props.isSearching)
+    if (props.isSearching) {
+      return <Text>Searching ...</Text>;
+    }
+    if (input && props.searchResults.length > 0) {
+      return props.searchResults.map((result, i) => (
         <SearchItem {...result} onPress={props.goToLocation} key={i} />
       ))
-      : <Text>Nothing found</Text>;
+    }
+    return <Text>Nothing found</Text>;
   }
 
   return (

@@ -21,6 +21,7 @@ function EpubReader(props) {
   const [state, setState] = useState({ bookUrl: null, server: null });
   const [isDrawer, setDrawer] = useState(false);
   const [searchResults, setSearchResults] = useState(null);
+  const [isSearching, setIsSearching] = useState(false);
   const [selectedText, setSelectedText] = useState('');
 
   const webview = useRef();
@@ -99,12 +100,9 @@ function EpubReader(props) {
     webview.current?.reload();
   }
 
-  function onTranslation() {
-    props.navigation.navigate('dictionary', { selected: selectedText });
-    setTimeout(refresh, 200);
-  }
 
   function onSearch(q) {
+    setIsSearching(true);
     webview.current?.injectJavaScript(`
 		Promise.all(
 			window.book.spine.spineItems.map((item) => {
@@ -141,8 +139,10 @@ function EpubReader(props) {
       case 'contents':
       case 'locations':
         return props.addMetadata(parsedData, params.index);
-      case 'search':
+      case 'search': {
+        setIsSearching(false);
         return setSearchResults(parsedData.results);
+      }
       default:
         return;
     }
@@ -157,6 +157,7 @@ function EpubReader(props) {
       goToLocation={goToLocation}
       onSearch={onSearch}
       searchResults={searchResults}
+      isSearching={isSearching}
     />
   );
   return (
