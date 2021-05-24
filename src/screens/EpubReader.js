@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import { View } from 'react-native';
+import { StatusBar } from 'react-native';
 import StaticServer from 'react-native-static-server';
 import { ExternalStorageDirectoryPath } from 'react-native-fs';
 import { WebView } from 'react-native-webview';
@@ -6,9 +8,11 @@ import SideMenu from 'react-native-side-menu';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Drawer from '../components/Drawer';
+// import DictionaryModal from '../components/DictionaryModal';
 import showToast from '../components/Toast';
 import Spinner from '../components/Spinner';
 import Footer from '../components/Footer';
+import Icon from '../components/Icon';
 import themeToStyles from '../utils/themeToStyles';
 
 const serverConfig = { localOnly: true, keepAlive: true };
@@ -17,31 +21,55 @@ function EpubReader(props) {
   const [state, setState] = useState({ bookUrl: null, server: null });
   const [isDrawer, setDrawer] = useState(false);
   const [searchResults, setSearchResults] = useState(null);
+  const [isSearching, setIsSearching] = useState(false);
+  const [selectedText, setSelectedText] = useState('');
 
   const webview = useRef();
   const { params } = props.route;
   const currentLocation = props.locations[props.books[params.index].key];
   const bookLocations = props.books[params.index].locations;
 
+  const { bg, fg, size, height } = props.settings;
+
+  useLayoutEffect(() => {
+    props.navigation.setOptions({
+      headerRight: () => (
+        <View style={styles.iconWrapper}>
+          <Icon
+            name="menu"
+            size={20}
+            color={props.settings.fg}
+            style={styles.headerIcon}
+            onPress={() => setDrawer(!isDrawer)}
+          />
+        </View>
+      )
+    });
+  }, [props.navigation, isDrawer, selectedText]);
+
   useEffect(() => {
     showToast('Opening book');
-    let newServer = new StaticServer(
-      0,
-      ExternalStorageDirectoryPath,
-      serverConfig,
-    );
-    newServer.start().then(url =>
+    let newServer = new StaticServer(0, ExternalStorageDirectoryPath, serverConfig);
+    newServer.start().then((url) =>
       setState({
         bookUrl: url + params.url.replace(ExternalStorageDirectoryPath, ''),
-        server: newServer,
-      }),
+        server: newServer
+      })
     );
-    //only run when component unmount
     return () => {
       props.sortBook(params.index);
       state.server && state.server.stop();
     };
   }, []);
+
+  useEffect(() => {
+    webview.current?.injectJavaScript(`
+		window.rendition.themes.register({ theme: "${JSON.stringify(themeToStyles(props.settings))}" });
+		window.rendition.themes.select('theme');`);
+    refresh();
+    StatusBar.setBackgroundColor(props.settings.bg, true);
+    StatusBar.setBarStyle(`${props.settings.fg === '#000000' ? 'dark' : 'light'}-content`);
+  }, [bg, fg, size, height]);
 
   let injectedJS = `window.BOOK_PATH = "${state.bookUrl}";
 	window.LOCATIONS = ${bookLocations};
@@ -68,13 +96,13 @@ function EpubReader(props) {
   }
 
   function refresh() {
-    webview.current?.injectJavaScript(
-      `window.BOOK_LOCATION = "${currentLocation}"`,
-    );
+    webview.current?.injectJavaScript(`window.BOOK_LOCATION = "${currentLocation}"`);
     webview.current?.reload();
   }
 
+
   function onSearch(q) {
+    setIsSearching(true);
     webview.current?.injectJavaScript(`
 		Promise.all(
 			window.book.spine.spineItems.map((item) => {
@@ -96,6 +124,9 @@ function EpubReader(props) {
     let { type } = parsedData;
     delete parsedData.type;
     switch (type) {
+      case 'selected': {
+
+      }
       case 'loc': {
         const { progress, totalPages } = parsedData;
         props.addMetadata({ progress, totalPages }, params.index);
@@ -108,6 +139,10 @@ function EpubReader(props) {
       case 'contents':
       case 'locations':
         return props.addMetadata(parsedData, params.index);
+      case 'search': {
+        setIsSearching(false);
+        return setSearchResults(parsedData.results);
+      }
       default:
         return;
     }
@@ -122,10 +157,11 @@ function EpubReader(props) {
       goToLocation={goToLocation}
       onSearch={onSearch}
       searchResults={searchResults}
+      isSearching={isSearching}
     />
   );
   return (
-    <SideMenu>
+    <SideMenu menu={menu} isOpen={isDrawer} menuPosition="right" onChange={setDrawer}>
       <WebView
         ref={webview}
         style={[styles.wholeScreen, { backgroundColor: props.settings.bg }]}
@@ -148,13 +184,13 @@ function mapStateToProps(state) {
   return {
     settings: state.settings,
     books: state.books,
-    locations: state.locations,
+    locations: state.locations
   };
 }
 
 export default connect(
   mapStateToProps,
-  actions,
+  actions
 )(EpubReader);
 
 const styles = {
@@ -164,6 +200,6 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    width: 100,
-  },
+    width: 100
+  }
 };

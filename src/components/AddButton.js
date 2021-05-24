@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { View, TouchableWithoutFeedback } from 'react-native';
 import { Overlay, Icon, Button, Input } from 'react-native-elements';
+import RNFS from 'react-native-fs';
 import { connect } from 'react-redux';
+import showToast from '../components/Toast';
 import * as actions from '../actions';
 
 // Components
@@ -18,13 +20,20 @@ function AddButton(props) {
   const [errorSubmitEmptyInput, setErrorSubmitEmptyInput] = useState(false);
   const [visible, setVisible] = useState(false);
   const [visibleInputLink, setVisibleInputLink] = useState(false);
-  const [inputLink, onChangeInput] = React.useState('');
+  const [inputLink, onChangeInput] = React.useState(
+    // 'https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf',
+    //"https://www.gutenberg.org/ebooks/65411.epub.images?session_id=52efbda7ce1646cb919e4fc14bf3d0900b02be82"
+    //"https://s3.amazonaws.com/epubjs/books/moby-dick.epub",
+    "",
+  );
   const toggleOverlay = () => {
     setVisible(!visible);
   };
   const toggleInputLinkOverlay = () => {
     setVisibleInputLink(!visibleInputLink);
   };
+
+
 
   const onPressSendLink = () => {
     if (inputLink.trim().length === 0) {
@@ -44,6 +53,40 @@ function AddButton(props) {
       .catch(err => {
         return ErrorAlert({ errorMessage: err.message });
       });
+    // if (inputLink !== '') {
+    //   setVisible(false);
+    //   setVisibleInputLink(false);
+    //   navigation.navigate('online-book-reader', { link: inputLink });
+    // }
+
+    // setVisible(false);
+    // setVisibleInputLink(false);
+
+    // const parts = inputLink.split('.');
+    // if (parts.length < 1) {
+    //   showToast("Error: Invalid link");
+    //   return;
+    // }
+    // let type = parts[parts.length - 1];
+    // let date = new Date();
+    // let name = `EbookReader_${date.getTime()}.${type}`;
+    // const downloadDest = `${RNFS.DownloadDirectoryPath}/${name}`;
+    // let DownloadFileOptions = {
+    //   fromUrl: inputLink,
+    //   toFile: downloadDest,
+    //   begin: this._downloadFileBegin,
+    //   progress: this._downloadFileProgress,
+    //   background: false,
+    //   progressDivider: 1
+    // };
+
+    // const { promise: downloadRes } = RNFS.downloadFile(DownloadFileOptions);
+    // downloadRes.then(res => {
+    //   console.log(">> ~ file: AddButton.js ~ line 61 ~ onPressSendLink ~ res", res);
+    //   props.addBook({ navigation: navigation, fileUrl: downloadDest });
+    // }).catch(err => {
+    //   showToast(err);
+    // });
   };
 
   return (

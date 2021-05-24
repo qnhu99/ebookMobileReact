@@ -3,6 +3,7 @@ import mapBgToFg from '../utils/mapBgToFg';
 const InitialState = {
   bg: '#fafafa',
   fg: '#000000',
+  fontFamily: 'Arial',
   size: '100%',
   height: 'normal',
   sLang: '',
@@ -10,7 +11,7 @@ const InitialState = {
   // flow: '',
 };
 
-export default function(state = InitialState, action) {
+export default function (state = InitialState, action) {
   switch (action.type) {
     case 'modify_settings':
       if (action.payload.bg) {
