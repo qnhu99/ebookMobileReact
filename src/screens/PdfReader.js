@@ -17,9 +17,8 @@ const serverConfig = { localOnly: true, keepAlive: true };
 function PdfReader(props) {
   const [state, setState] = useState({ docUrl: null, server: null });
   const [isDrawer, setDrawer] = useState(false);
-  // const [searchResults, setSearchResults] = useState(null);
   const [selectedText, setSelectedText] = useState('');
-  const [isModal, setModal] = useState(false);
+  const [searchResults, setSearchResults] = useState(null);
 
   const webview = useRef();
   const { params } = props.route;
@@ -29,44 +28,28 @@ function PdfReader(props) {
     props.navigation.setOptions({
       headerRight: () => (
         <View style={styles.iconWrapper}>
-          <Icon
-            name="g-translate"
-            type="material"
-            size={21}
-            color={props.settings.fg}
-            style={styles.headerIcon}
-            onPress={onTranslation}
-          />
-          <Icon
-            name="menu"
-            size={20}
-            color={props.settings.fg}
-            style={styles.headerIcon}
-            onPress={() => setDrawer(!isDrawer)}
-          />
+
         </View>
-      ),
+      )
     });
   }, [props.navigation, isDrawer, selectedText]);
 
   useEffect(() => {
     showToast('Opening book');
-    let newServer = new StaticServer(
-      0,
-      ExternalStorageDirectoryPath,
-      serverConfig,
-    );
-    newServer.start().then(url =>
+    let newServer = new StaticServer(0, ExternalStorageDirectoryPath, serverConfig);
+    newServer.start().then((url) =>
       setState({
         docUrl: url + params.url.replace(ExternalStorageDirectoryPath, ''),
-        server: newServer,
-      }),
+        server: newServer
+      })
     );
     return () => {
       props.sortBook(params.index);
       state.server && state.server.stop();
     };
   }, []);
+
+
 
   let injectedJS = `window.DOC_PATH = "${state.docUrl}";`;
 
@@ -101,11 +84,6 @@ function PdfReader(props) {
     }
   }
 
-  function onTranslation() {
-    props.navigation.navigate('dictionary', { selected: selectedText });
-    // setTimeout(refresh, 200);
-  }
-
   function handleMessage(e) {
     let parsedData = JSON.parse(e.nativeEvent.data);
     let { type } = parsedData;
@@ -113,7 +91,6 @@ function PdfReader(props) {
     switch (type) {
       case 'selected': {
         setSelectedText(parsedData.selected);
-        if (parsedData.selected.length < 40) setModal(true);
         return;
       }
       case 'loc': {
@@ -130,31 +107,23 @@ function PdfReader(props) {
   const menu = (
     <Drawer
       index={params.index}
-      // goToLocation={goToLocation}
-      // onSearch={onSearch}
-      // searchResults={searchResults}
+    // goToLocation={goToLocation}
+    // onSearch={onSearch}
+    // searchResults={searchResults}
     />
   );
   return (
-    <SideMenu
-      menu={menu}
-      isOpen={isDrawer}
-      menuPosition="right"
-      onChange={setDrawer}
-    >
+    <SideMenu menu={menu} isOpen={isDrawer} menuPosition="right" onChange={setDrawer}>
       <WebView
         ref={webview}
-        style={[styles.wholeScreen, { backgroundColor: props.settings.bg }]}
+        // style={[styles.wholeScreen, { backgroundColor: props.settings.bg }]}
+        style={[styles.wholeScreen]}
         source={{ uri: 'file:///android_asset/pdf.html' }}
         injectedJavaScriptBeforeContentLoaded={injectedJS}
         onMessage={handleMessage}
       />
-      <Footer
-        goNext={goNext}
-        goPrev={goPrev}
-        goToLocation={goToLocation}
-        index={params.index}
-      />
+      <Footer goNext={goNext} goPrev={goPrev} goToLocation={goToLocation} index={params.index} />
+
     </SideMenu>
   );
 }
@@ -162,13 +131,13 @@ function PdfReader(props) {
 function mapStateToProps(state) {
   return {
     settings: state.settings,
-    books: state.books,
+    books: state.books
   };
 }
 
 export default connect(
   mapStateToProps,
-  actions,
+  actions
 )(PdfReader);
 
 const styles = {
@@ -178,6 +147,6 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    width: 100,
-  },
+    width: 100
+  }
 };

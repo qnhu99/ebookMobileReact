@@ -244,6 +244,8 @@ apply from: file("../../node_modules/@react-native-community/cli-platform-androi
 
 allprojects {
     repositories {
+        mavenCentral()
+        maven { url "https://maven.google.com" }
         maven {
             url  "http://dl.bintray.com/lukaville/maven"
         }

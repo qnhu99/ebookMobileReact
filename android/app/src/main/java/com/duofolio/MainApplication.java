@@ -17,6 +17,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import android.webkit.WebView;
 
+
 public class MainApplication extends MultiDexApplication implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =

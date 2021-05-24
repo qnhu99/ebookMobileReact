@@ -16,6 +16,9 @@ import { contrastColor } from 'src/constants';
 
 // Main
 function HomeScreen(props) {
+  const globalSettings = props.globalSettings;
+  const fontFamily = globalSettings.fontFamily;
+
   const navigation = useNavigation();
   const [isSearchBar, setSearchBar] = useState(false);
   const [input, setInput] = useState('');
@@ -45,18 +48,18 @@ function HomeScreen(props) {
         headerRight: () => (
           <View style={styles.headerIconsWrapper}>
             <Icon
-              name="help-circle"
-              size={20}
-              color={contrastColor}
-              style={styles.helpIcon}
-              onPress={() => props.navigation.navigate('help')}
-            />
-            <Icon
               name="search"
               size={20}
               color={contrastColor}
               style={styles.searchIcon}
               onPress={() => setSearchBar(true)}
+            />
+            <Icon
+              name="help-circle"
+              size={20}
+              color={contrastColor}
+              style={styles.helpIcon}
+              onPress={() => props.navigation.navigate('help')}
             />
           </View>
         ),
@@ -92,11 +95,8 @@ function HomeScreen(props) {
             height: 100,
           }}
         >
-          <Text style={styles.message}>{'Your library is empty!'}</Text>
-          <Text style={styles.message}>{'Add some books to get started'}</Text>
-          <Text style={[styles.message, { fontSize: 13, fontStyle: 'italic' }]}>
-            {'(Only EPUB files supported)'}
-          </Text>
+          <Text style={{ ...styles.message, fontFamily }}>{'Your library is empty!'}</Text>
+          <Text style={{ ...styles.message, fontFamily }}>{'Add some books to get started'}</Text>
         </View>
       );
     }
@@ -132,6 +132,7 @@ function HomeScreen(props) {
 function mapStateToProps(state) {
   return {
     books: state.books,
+    globalSettings: state.globalSettings,
   };
 }
 
@@ -151,7 +152,6 @@ const styles = {
   },
   message: {
     fontSize: 16,
-    fontFamily: 'CircularLight',
     marginBottom: 5,
   },
   searchIcon: { paddingRight: 20 },
@@ -159,10 +159,10 @@ const styles = {
   headerIconsWrapper: { flexDirection: 'row' },
   section: { marginTop: 7, backgroundColor: Colors.light },
   sectionTitle: {
-    fontSize: 18,
-    fontWeight: '700',
+    fontSize: 20,
+    fontWeight: 'bold',
     marginTop: 10,
     marginBottom: 5,
-    marginLeft: 5,
+    marginLeft: 15,
   },
 };

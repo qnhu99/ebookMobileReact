@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
-import { TextInput, ScrollView } from 'react-native';
+import { TextInput, ScrollView, Text } from 'react-native';
 import SearchItem from './SearchItem';
 import { contrastColor } from '../constants';
 
 function BookSearch(props) {
+  console.log(">> ~ file: BookSearch.js ~ line 7 ~ BookSearch ~ props", props);
   const [input, setInput] = useState('');
 
   function renderResults() {
-    return input && props.searchResults
-      ? props.searchResults.map((result, i) => (
-          <SearchItem {...result} onPress={props.goToLocation} key={i} />
-        ))
-      : null;
+    console.log(">> ~ file: BookSearch.js ~ line 13 ~ renderResults ~ props.isSearching", props.isSearching)
+    if (props.isSearching) {
+      return <Text>Searching ...</Text>;
+    }
+    if (input && props.searchResults.length > 0) {
+      return props.searchResults.map((result, i) => (
+        <SearchItem {...result} onPress={props.goToLocation} key={i} />
+      ))
+    }
+    return <Text>Nothing found</Text>;
   }
 
   return (

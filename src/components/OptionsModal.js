@@ -84,7 +84,7 @@ const styles = {
     paddingRight: 20,
   },
   text: {
-    fontFamily: 'Circular',
+    fontFamily: 'Arial',
     fontSize: 15,
   },
 };

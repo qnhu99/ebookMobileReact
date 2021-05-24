@@ -2,19 +2,19 @@ let styles = {
   body: {
     background: "#fafafa",
     color: "#121212",
-    "font-family": "Default",
+    "font-family": "TimesNewRoman",
     "font-size": "100%",
     "line-height": "normal",
   },
   p: {
     color: "#ffffff",
-    "font-family": "Default",
+    "font-family": "TimesNewRoman",
     "font-size": "100%",
     "line-height": "normal",
   },
   li: {
     color: "#ffffff",
-    "font-family": "Default",
+    "font-family": "TimesNewRoman",
     "font-size": "100%",
     "line-height": "normal",
   },
@@ -23,7 +23,7 @@ let styles = {
   },
 };
 
-export default function(theme) {
+export default function (theme) {
   styles.body = {
     background: theme.bg,
     color: theme.fg,

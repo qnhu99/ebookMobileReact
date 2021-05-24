@@ -4,11 +4,13 @@ import NetInfo from '@react-native-community/netinfo';
 import OptionsModal from './OptionsModal';
 import showToast from './Toast';
 import { contrastColor } from '../constants';
+import { connect } from 'react-redux';
 
 const ScreenWidth = Dimensions.get('window').width;
 
 function BookItem(props) {
   const [isModalVisible, setModalVisible] = useState(false);
+  const fontFamily = props.globalSettings.fontFamily;
 
   async function onPress() {
     let { isConnected, isInternetReachable } = await NetInfo.fetch();
@@ -34,10 +36,10 @@ function BookItem(props) {
       onLongPress={() => setModalVisible(true)}
       key={props.index}
     >
-      <Text style={styles.title} numberOfLines={1}>
+      <Text style={{ ...styles.title, fontFamily }} numberOfLines={1}>
         {props.title}
       </Text>
-      <Text style={styles.author} numberOfLines={1}>
+      <Text style={{ ...styles.author, fontFamily }} numberOfLines={1}>
         {props.author || (props.type || 'EPUB').toUpperCase() + ' Document'}
       </Text>
       <OptionsModal
@@ -50,7 +52,16 @@ function BookItem(props) {
   );
 }
 
-export default BookItem;
+function mapStateToProps(state) {
+  return {
+    globalSettings: state.globalSettings,
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  null,
+)(BookItem);
 
 const styles = {
   wrapper: {
@@ -61,7 +72,6 @@ const styles = {
   },
   title: {
     fontSize: 15,
-    fontFamily: 'PlayfairDisplay-Bold',
     marginBottom: 3,
     color: contrastColor,
   },

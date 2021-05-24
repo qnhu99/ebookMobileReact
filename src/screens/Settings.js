@@ -1,11 +1,40 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { View, TouchableOpacity, Dimensions } from 'react-native';
+import { contrastColor } from '../constants';
+import GlobalSettings from '../components/globalSettings';
 
-function SettingsScreen() {
+const { height } = Dimensions.get('window');
+
+function SettingsScreen(props) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings Screen</Text>
-    </View>
+    <>
+      <GlobalSettings />
+    </>
   );
 }
+
 export default SettingsScreen;
+
+const styles = {
+  wrapper: {
+    flex: 1,
+    height,
+    paddingTop: 10,
+    paddingLeft: 15,
+  },
+  iconWrapper: {
+    flexDirection: 'row',
+    paddingRight: 15,
+    paddingBottom: 10,
+  },
+  sectionButton: {
+    height: 50,
+    width: '33.33%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  selectedSectionButton: {
+    borderColor: contrastColor,
+    borderBottomWidth: 2,
+  },
+};
