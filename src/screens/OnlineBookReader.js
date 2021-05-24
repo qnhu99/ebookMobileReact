@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 function OnlineBookReader(props) {
-  const data = props.route.params.data;
+  const data = props.route.params;
   console.log(data);
   return (
     <View>

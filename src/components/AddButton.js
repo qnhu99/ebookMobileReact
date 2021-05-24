@@ -36,10 +36,12 @@ function AddButton(props) {
       .then(res => {
         setVisible(false);
         setVisibleInputLink(false);
-        navigation.navigate('online-book-detail', { data: res.data });
+        setErrorSubmitEmptyInput(false);
+        navigation.navigate('online-book-detail', {
+          data: res.data,
+        });
       })
       .catch(err => {
-        setErrorSubmitEmptyInput(false);
         return ErrorAlert({ errorMessage: err.message });
       });
   };
@@ -95,9 +97,6 @@ function AddButton(props) {
                 onChangeText={onChangeInput}
                 value={inputLink}
                 errorMessage={errorSubmitEmptyInput ? 'Empty input' : ''}
-                // style={{
-                //   borderColor: errorSubmitEmptyInput ? 'red' : 'transparent',
-                // }}
               />
             </View>
             <View style={{ flex: 1, flexDirection: 'column' }}>

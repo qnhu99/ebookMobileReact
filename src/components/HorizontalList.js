@@ -1,13 +1,8 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/core';
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  ActivityIndicator,
-} from 'react-native';
-import { Image, Divider } from 'react-native-elements';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { Divider } from 'react-native-elements';
+import Images from './Images';
 // import Icons from 'src/res/icons';
 import Colors from 'src/res/icons';
 
@@ -23,11 +18,7 @@ const BookItem = ({ data }) => {
       }}
     >
       <View style={styles.bookItem}>
-        <Image
-          style={styles.coverImage}
-          source={{ uri: data.img_url }}
-          PlaceholderContent={<ActivityIndicator />}
-        />
+        <Images style={styles.coverImage} source={{ uri: data.img_url }} />
       </View>
     </TouchableOpacity>
   );
