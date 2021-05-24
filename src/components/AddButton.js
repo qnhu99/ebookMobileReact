@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
-import { View, TouchableWithoutFeedback } from 'react-native';
+import {
+  View,
+  TouchableWithoutFeedback,
+  ActivityIndicator,
+} from 'react-native';
 import { Overlay, Icon, Button, Input } from 'react-native-elements';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
@@ -16,6 +20,7 @@ import axios, { BookApi } from '../api';
 function AddButton(props) {
   const navigation = useNavigation();
   const [errorSubmitEmptyInput, setErrorSubmitEmptyInput] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
   const [visibleInputLink, setVisibleInputLink] = useState(false);
   const [inputLink, onChangeInput] = React.useState('');
@@ -32,16 +37,20 @@ function AddButton(props) {
       console.log(errorSubmitEmptyInput);
       return;
     }
+    setLoading(true);
     axios(BookApi.getBookDetail(inputLink))
       .then(res => {
         setVisible(false);
         setVisibleInputLink(false);
         setErrorSubmitEmptyInput(false);
+        onChangeInput('');
+        setLoading(false);
         navigation.navigate('online-book-detail', {
           data: res.data,
         });
       })
       .catch(err => {
+        setLoading(false);
         return ErrorAlert({ errorMessage: err.message });
       });
   };
@@ -122,6 +131,12 @@ function AddButton(props) {
             />
           </View>
         </View>
+      </Overlay>
+      <Overlay
+        isVisible={loading}
+        overlayStyle={{ backgroundColor: 'rgba(192,192,192,0.3)' }}
+      >
+        <ActivityIndicator size="large" />
       </Overlay>
     </>
   );
