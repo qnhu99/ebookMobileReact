@@ -12,7 +12,8 @@ function BookSearch(props) {
     if (props.isSearching) {
       return <Text>Searching ...</Text>;
     }
-    if (input && props.searchResults.length > 0) {
+    //if (input && props.searchResults.length > 0) {
+    if (input && props.searchResults) {
       return props.searchResults.map((result, i) => (
         <SearchItem {...result} onPress={props.goToLocation} key={i} />
       ))
