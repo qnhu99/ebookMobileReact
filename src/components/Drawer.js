@@ -8,15 +8,23 @@ import Settings from './Settings';
 import { contrastColor } from '../constants';
 
 const { height } = Dimensions.get('window');
-const sections = [
-  { name: 'contents', icon: 'book-open' },
-  { name: 'bookmark', icon: 'bookmark' },
-  { name: 'search', icon: 'search' },
-  { name: 'settings', icon: 'settings' },
-];
 
 function Drawer(props) {
-  const [currentSection, setCurrentSection] = useState('contents');
+  let sections = [
+    { name: 'contents', icon: 'book-open' },
+    { name: 'bookmark', icon: 'bookmark' },
+    { name: 'search', icon: 'search' },
+    { name: 'settings', icon: 'settings' },
+  ];
+
+  if (props.drawerType === 'pdf') {
+    sections = [
+      { name: 'bookmark', icon: 'bookmark' },
+      { name: 'settings', icon: 'settings' },
+    ]
+  }
+
+  const [currentSection, setCurrentSection] = useState(sections[0].name);
 
   function renderSection() {
     switch (currentSection) {

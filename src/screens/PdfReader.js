@@ -19,20 +19,43 @@ function PdfReader(props) {
   const [isDrawer, setDrawer] = useState(false);
   const [selectedText, setSelectedText] = useState('');
   const [searchResults, setSearchResults] = useState(null);
-
   const webview = useRef();
   const { params } = props.route;
-  const { progress, totalPages } = props.books[params.index];
+  const { progress, totalPages, bookmarks } = props.books[params.index];
+
+  const onBookmarkPress = () => {
+    props.addMetadata({
+      bookmarks: [...bookmarks, {
+        text: `Page: ${progress}`,
+        location: progress,
+      }]
+    }, params.index);
+    showToast("This page bookmarked");
+  }
 
   useLayoutEffect(() => {
     props.navigation.setOptions({
       headerRight: () => (
         <View style={styles.iconWrapper}>
-
+          <Icon
+            name="bookmark-plus-outline"
+            size={21}
+            color={props.settings.fg}
+            style={styles.headerIcon}
+            type="community"
+            onPress={onBookmarkPress}
+          />
+          <Icon
+            name="menu"
+            size={20}
+            color={props.settings.fg}
+            style={styles.headerIcon}
+            onPress={() => setDrawer(!isDrawer)}
+          />
         </View>
       )
     });
-  }, [props.navigation, isDrawer, selectedText]);
+  }, [props.navigation, isDrawer, selectedText, progress, bookmarks]);
 
   useEffect(() => {
     showToast('Opening book');
@@ -82,6 +105,7 @@ function PdfReader(props) {
 			window.pageNum = ${pageNum};
 			window.queueRenderPage(${pageNum});`);
     }
+    isDrawer && setDrawer(false);
   }
 
   function handleMessage(e) {
@@ -107,9 +131,8 @@ function PdfReader(props) {
   const menu = (
     <Drawer
       index={params.index}
-    // goToLocation={goToLocation}
-    // onSearch={onSearch}
-    // searchResults={searchResults}
+      goToLocation={goToLocation}
+      drawerType="pdf"
     />
   );
   return (
