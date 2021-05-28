@@ -1,6 +1,7 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Slider } from 'react-native';
 import PickerListItem from './PickerListItem';
+import CustomerSlider from './CustomerSlider';
 import { settings } from '../constants';
 
 function Settings() {
@@ -9,9 +10,10 @@ function Settings() {
       style={styles.scrollView}
       contentContainerStyle={styles.scrollViewContent}
     >
-      {settings.map((item, i) => (
-        <PickerListItem {...item} key={i} />
-      ))}
+      {settings.map((item, i) => {
+        return item.type === 'slider' ?
+          <CustomerSlider {...item} key={i} /> : <PickerListItem {...item} key={i} />
+      })}
     </ScrollView>
   );
 }

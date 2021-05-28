@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, Dimensions } from 'react-native';
+import { View, TouchableOpacity, Dimensions, Text } from 'react-native';
 import Icon from './Icon';
 import Contents from './Contents';
 import BookSearch from './BookSearch';
+import Bookmark from './Bookmark';
 import Settings from './Settings';
 import { contrastColor } from '../constants';
 
 const { height } = Dimensions.get('window');
 const sections = [
   { name: 'contents', icon: 'book-open' },
+  { name: 'bookmark', icon: 'bookmark' },
   { name: 'search', icon: 'search' },
   { name: 'settings', icon: 'settings' },
-  { name: 'bookmark', icon: 'bookmark' },
 ];
 
 function Drawer(props) {
@@ -26,7 +27,7 @@ function Drawer(props) {
       case 'settings':
         return <Settings />;
       default:
-        return null;
+        return <Bookmark {...props} />;
     }
   }
 
@@ -68,7 +69,7 @@ const styles = {
   },
   sectionButton: {
     height: 50,
-    width: '33.33%',
+    width: '25%',
     justifyContent: 'center',
     alignItems: 'center',
   },
