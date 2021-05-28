@@ -4,11 +4,9 @@ import SearchItem from './SearchItem';
 import { contrastColor } from '../constants';
 
 function BookSearch(props) {
-  console.log(">> ~ file: BookSearch.js ~ line 7 ~ BookSearch ~ props", props);
   const [input, setInput] = useState('');
 
   function renderResults() {
-    console.log(">> ~ file: BookSearch.js ~ line 13 ~ renderResults ~ props.isSearching", props.isSearching)
     if (props.isSearching) {
       return <Text>Searching ...</Text>;
     }

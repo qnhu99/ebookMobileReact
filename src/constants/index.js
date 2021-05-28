@@ -6,6 +6,7 @@ export const contrastColor = '#000000';
 export const settings = [
   {
     id: 'bg',
+    type: 'dropdown',
     text: 'Theme',
     title: 'Choose theme',
     items: [
@@ -18,33 +19,33 @@ export const settings = [
   },
   {
     id: 'size',
+    type: 'slider',
     text: 'Font Size',
     title: 'Choose font size',
-    items: [
-      { label: '15', value: '15px' },
-      { label: '16', value: '16px' },
-      { label: '17', value: '17px' },
-      { label: '18', value: '18px' },
-      { label: '19', value: '19px' },
-      { label: '20', value: '20px' },
-      { label: '21', value: '21px' },
-      { label: '22', value: '22px' },
-      { label: '23', value: '23px' },
-      { label: '24', value: '24px' },
-    ],
+    minValue: 14,
+    maxValue: 24,
+    step: 1,
+    convertFunc: function (val) {
+      return val + 'px';
+    },
+    convertBackward: function (val) {
+      return parseInt(val.substr(0, val.length - 2));
+    }
   },
   {
     id: 'height',
+    type: 'slider',
     text: 'Line Height',
     title: 'Choose line height',
-    items: [
-      { label: '1.4', value: 1.4 },
-      { label: '1.6', value: 1.6 },
-      { label: '1.8', value: 1.8 },
-      { label: '2.0', value: 2.0 },
-      { label: '2.2', value: 2.2 },
-      { label: '2.4', value: 2.4 },
-    ],
+    minValue: 1.4,
+    maxValue: 2.4,
+    step: 0.2,
+    convertFunc: function (val) {
+      return Math.round(val * 10) / 10;
+    },
+    convertBackward: function (val) {
+      return val;
+    }
   },
 ];
 

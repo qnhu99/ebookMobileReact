@@ -14,7 +14,7 @@ export default function (state = INITIAL_STATE, action) {
         return stateClone;
       }
 
-      return [action.payload, ...state];
+      return [{ ...action.payload, bookmarks: [] }, ...state];
     }
     case 'add_metadata': {
       let { data, index } = action.payload;

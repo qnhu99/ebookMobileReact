@@ -28,13 +28,32 @@ function EpubReader(props) {
   const { params } = props.route;
   const currentLocation = props.locations[props.books[params.index].key];
   const bookLocations = props.books[params.index].locations;
+  let currentBook = props.books[params.index];
 
   const { bg, fg, size, height } = props.settings;
+
+  const onBookmarkPress = () => {
+    props.addMetadata({
+      bookmarks: [...currentBook.bookmarks, {
+        text: `Page: ${currentBook.progress + 1}`,
+        location: currentLocation,
+      }]
+    }, params.index);
+    showToast("This page bookmarked");
+  }
 
   useLayoutEffect(() => {
     props.navigation.setOptions({
       headerRight: () => (
         <View style={styles.iconWrapper}>
+          <Icon
+            name="bookmark-plus-outline"
+            size={21}
+            color={props.settings.fg}
+            style={styles.headerIcon}
+            type="community"
+            onPress={onBookmarkPress}
+          />
           <Icon
             name="menu"
             size={20}
@@ -45,7 +64,7 @@ function EpubReader(props) {
         </View>
       )
     });
-  }, [props.navigation, isDrawer, selectedText]);
+  }, [props.navigation, isDrawer, selectedText, currentLocation, currentBook.bookmarks]);
 
   useEffect(() => {
     showToast('Opening book');
