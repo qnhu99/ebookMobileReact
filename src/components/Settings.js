@@ -4,13 +4,13 @@ import PickerListItem from './PickerListItem';
 import CustomerSlider from './CustomerSlider';
 import { settings } from '../constants';
 
-function Settings() {
+function Settings(props) {
   return (
     <ScrollView
       style={styles.scrollView}
       contentContainerStyle={styles.scrollViewContent}
     >
-      {settings.map((item, i) => {
+      {settings.filter(item => { return props.drawerType === 'pdf' ? item.id === "bg" : true }).map((item, i) => {
         return item.type === 'slider' ?
           <CustomerSlider {...item} key={i} /> : <PickerListItem {...item} key={i} />
       })}

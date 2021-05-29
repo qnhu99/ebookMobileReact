@@ -33,7 +33,7 @@ function Drawer(props) {
       case 'search':
         return <BookSearch {...props} />;
       case 'settings':
-        return <Settings />;
+        return <Settings {...props} />;
       default:
         return <Bookmark {...props} />;
     }
