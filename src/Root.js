@@ -1,9 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Navigator from './navigation/Modal';
+import ErrorBoundary from './helpers/ErrorBoundary';
 
 function Root() {
-  return <Navigator />;
+  return (
+    <ErrorBoundary>
+      <Navigator />
+    </ErrorBoundary>
+  );
 }
 
 function mapStateToProps(state) {

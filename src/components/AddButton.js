@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
-import {
-  View,
-  TouchableWithoutFeedback,
-  ActivityIndicator,
-} from 'react-native';
+import { View, TouchableWithoutFeedback } from 'react-native';
 import { Overlay, Icon, Button, Input } from 'react-native-elements';
 import RNFS from 'react-native-fs';
 import { connect } from 'react-redux';
@@ -13,6 +9,7 @@ import * as actions from '../actions';
 
 // Components
 import ErrorAlert from './ErrorAlert';
+import Loading from './Loading';
 // import Icon from "./Icon";
 import { primaryColor } from '../constants';
 import dimensions from 'src/res/dimensions';
@@ -29,7 +26,7 @@ function AddButton(props) {
     // 'https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf',
     //"https://www.gutenberg.org/ebooks/65411.epub.images?session_id=52efbda7ce1646cb919e4fc14bf3d0900b02be82"
     //"https://s3.amazonaws.com/epubjs/books/moby-dick.epub",
-    "",
+    'https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan',
   );
   const toggleOverlay = () => {
     setVisible(!visible);
@@ -37,8 +34,6 @@ function AddButton(props) {
   const toggleInputLinkOverlay = () => {
     setVisibleInputLink(!visibleInputLink);
   };
-
-
 
   const onPressSendLink = () => {
     if (inputLink.trim().length === 0) {
@@ -175,12 +170,7 @@ function AddButton(props) {
           </View>
         </View>
       </Overlay>
-      <Overlay
-        isVisible={loading}
-        overlayStyle={{ backgroundColor: 'rgba(192,192,192,0.3)' }}
-      >
-        <ActivityIndicator size="large" />
-      </Overlay>
+      <Loading loading={loading} />
     </>
   );
 }

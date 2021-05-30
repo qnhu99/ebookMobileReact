@@ -71,6 +71,9 @@ const Icons = {
   sort_ascending: props => {
     return <Icon name="sort-ascending" type="material-community" {...props} />;
   },
+  menu: props => {
+    return <Icon name="menu" type="material-community" {...props} />;
+  },
 };
 
 export default Icons;
