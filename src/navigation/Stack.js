@@ -3,23 +3,16 @@ import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-// Screens
 import HomeScreen from 'src/screens/Home';
-import LibraryScreen from 'src/screens/Library';
-import NotificationScreen from 'src/screens/Notifications';
 import SettingsScreen from 'src/screens/Settings';
 import OnlineBookDetail from 'src/screens/OnlineBookDetail';
-
 import OnlineBookReader from 'src/screens/OnlineBookReader';
 import EpubReader from 'src/screens/EpubReader';
 import PdfReader from 'src/screens/PdfReader';
 import Help from 'src/screens/Help';
-
-// Resource
 import Icons from 'src/res/icons.js';
 import Colors from 'src/res/colors';
-import { globalSettings } from '../constants'
+import { globalSettings } from '../constants';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -42,18 +35,6 @@ const options = {
             <Icons.home color={color} size={size} />
           ) : (
             <Icons.home_outline color={color} size={size} />
-          );
-        case 'library':
-          return focused ? (
-            <Icons.library color={color} size={size} />
-          ) : (
-            <Icons.library_outline color={color} size={size} />
-          );
-        case 'notifications':
-          return focused ? (
-            <Icons.notifications color={color} size={size} />
-          ) : (
-            <Icons.notifications_outline color={color} size={size} />
           );
         case 'settings':
           return focused ? (
@@ -106,28 +87,6 @@ function HomeStackScreen() {
     />
   );
 }
-function LibraryStackScreen() {
-  return (
-    <StackScreen
-      name="library-screen"
-      component={LibraryScreen}
-      options={{
-        headerShown: false,
-      }}
-    />
-  );
-}
-function NotificationStackScreen() {
-  return (
-    <StackScreen
-      name="notifications-screen"
-      component={NotificationScreen}
-      options={{
-        headerShown: false,
-      }}
-    />
-  );
-}
 function SettingsStackScreen() {
   return (
     <StackScreen
@@ -147,8 +106,6 @@ function BottomTabNavigator() {
       tabBarOptions={options.TabNavigatorTabBarOptions}
     >
       <Tab.Screen name="home" component={HomeStackScreen} />
-      <Tab.Screen name="library" component={LibraryStackScreen} />
-      <Tab.Screen name="notifications" component={NotificationStackScreen} />
       <Tab.Screen name="settings" component={SettingsStackScreen} />
     </Tab.Navigator>
   );
@@ -164,18 +121,22 @@ function Navigator(props) {
       color: props.fg,
       marginRight: 25,
       marginBottom: 4,
-      marginLeft: -5
+      marginLeft: -5,
     },
     headerStyle: {
       elevation: 0,
-      backgroundColor: props.bg
+      backgroundColor: props.bg,
     },
-    headerTintColor: props.fg
+    headerTintColor: props.fg,
   });
 
   return (
     <Stack.Navigator screenOptions={screenOptions}>
-      <Stack.Screen name="main-screen" component={BottomTabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen
+        name="main-screen"
+        component={BottomTabNavigator}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="online-book-detail" component={OnlineBookDetail} />
       <Stack.Screen name="online-book-reader" component={OnlineBookReader} />
       <Stack.Screen
