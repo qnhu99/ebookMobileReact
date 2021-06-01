@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { Card, Button, ListItem } from 'react-native-elements';
+const { Accordion, Title } = ListItem;
 
 import dimensions from '../res/dimensions';
 
-function BookInfo({ data: { img_url, book_name, book_intro, book_author } }) {
-  book_author = book_author.replace('\n', '');
+function BookInfo(props) {
+  const { img_url, book_name, book_intro } = props.data;
+  const book_author = props.data.book_author.replace('\n', '');
   const [expanded, setExpanded] = useState(false);
   const handlePress = () => setExpanded(!expanded);
   return (
@@ -25,15 +27,15 @@ function BookInfo({ data: { img_url, book_name, book_intro, book_author } }) {
           <Text style={{ fontSize: 14 }}>by {book_author}</Text>
         </View>
         <View>
-          <ListItem.Accordion
-            content={<ListItem.Title>Summary</ListItem.Title>}
+          <Accordion
+            content={<Title>Summary</Title>}
             isExpanded={expanded}
             onPress={handlePress}
           >
-            <ListItem.Title style={{ textAlign: 'justify', padding: 10 }}>
+            <Title style={{ textAlign: 'justify', padding: 10 }}>
               {book_intro}
-            </ListItem.Title>
-          </ListItem.Accordion>
+            </Title>
+          </Accordion>
         </View>
         <Button buttonStyle={styles.button} title="Start reading" />
       </Card>

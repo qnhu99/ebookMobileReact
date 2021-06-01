@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
-import { View, ScrollView } from 'react-native';
+import React from 'react';
+import { View, ScrollView, Text } from 'react-native';
 import BookInfo from '../components/BookInfo';
 import TableOfContent from '../components/TableOfContent';
 import { useNavigation } from '@react-navigation/core';
 import useSWR from 'swr';
 import axios, { BookApi } from 'src/api';
-import { Alert } from 'react-native';
 import Loading from '../components/Loading';
 
 function OnlineBookDetail(props) {
@@ -19,10 +18,8 @@ function OnlineBookDetail(props) {
       onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
         // Never retry on 404.
         if (error.status === 404) return;
-
         // Only retry up to 10 times.
         if (retryCount >= 10) return;
-
         // Retry after 5 seconds.
         setTimeout(() => revalidate({ retryCount }), 5000);
       },
@@ -30,9 +27,15 @@ function OnlineBookDetail(props) {
   );
 
   if (error) {
-    console.log(error);
-    Alert.alert('Error', error.message);
-    return <></>;
+    navigation.setOptions({ title: 'Error', headerShown: true });
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
+          Something went wrong...
+        </Text>
+        <Text style={{ fontSize: 16 }}>{error.message}</Text>
+      </View>
+    );
   }
   if (!data) {
     navigation.setOptions({ headerShown: false });
@@ -43,24 +46,22 @@ function OnlineBookDetail(props) {
     headerShown: true,
   });
   const { chapter_name, chapter_link, season_name, season_index } = data;
-  // useEffect(() => {
-  //   navigation.setOptions({
-  //     title: data.book_name,
-  //     headerShown: true,
-  //   });
-  // }, []);
   const formatData = () => {
     const chapters = chapter_name.map((chap, i) => {
       return {
         index: i,
+        chapter_index: i,
         chapter_name: chap,
         chapter_link: chapter_link[i],
+        prevChapter: i > 0 ? chapter_link[i - 1] : '',
+        nextChapter: i < chapter_link.length - 1 ? chapter_link[i + 1] : '',
       };
     });
     return {
       seasons: season_name.map((season, i) => {
         return {
           index: i,
+          season_index: i,
           season_name: season,
           chapters: chapters.slice(season_index[i], season_index[i + 1]),
         };

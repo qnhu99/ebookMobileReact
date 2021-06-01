@@ -2,24 +2,16 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { View, TouchableWithoutFeedback } from 'react-native';
 import { Overlay, Icon, Button, Input } from 'react-native-elements';
-import RNFS from 'react-native-fs';
+// import RNFS from 'react-native-fs';
 import { connect } from 'react-redux';
-import showToast from '../components/Toast';
+// import showToast from '../components/Toast';
 import * as actions from '../actions';
-
-// Components
-import ErrorAlert from './ErrorAlert';
-import Loading from './Loading';
-// import Icon from "./Icon";
 import { primaryColor } from '../constants';
 import dimensions from 'src/res/dimensions';
-
-import axios, { BookApi } from '../api';
 
 function AddButton(props) {
   const navigation = useNavigation();
   const [errorSubmitEmptyInput, setErrorSubmitEmptyInput] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
   const [visibleInputLink, setVisibleInputLink] = useState(false);
   const [inputLink, onChangeInput] = React.useState(
@@ -43,7 +35,6 @@ function AddButton(props) {
     }
     setVisible(false);
     setVisibleInputLink(false);
-    // setLoading(true);
     navigation.navigate('online-book-detail', { link: inputLink });
     // axios(BookApi.getBookDetail(inputLink))
     //   .then(res => {
@@ -173,7 +164,6 @@ function AddButton(props) {
           </View>
         </View>
       </Overlay>
-      <Loading loading={loading} />
     </>
   );
 }

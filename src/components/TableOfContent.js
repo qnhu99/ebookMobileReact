@@ -3,10 +3,15 @@ import { View, Text } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 
-function TableOfContent({ data: { seasons } }) {
+function TableOfContent(props) {
+  const { data } = props;
+  const { seasons } = data;
   const navigation = useNavigation();
-  const redirectToReader = link => {
-    navigation.navigate('online-book-reader', { data: link });
+  const redirectToReader = chapter => {
+    navigation.navigate('online-book-reader', {
+      chapter,
+      tableOfContent: seasons,
+    });
   };
 
   return (
@@ -20,7 +25,7 @@ function TableOfContent({ data: { seasons } }) {
             {season.chapters.map((chapter, index_chapter) => (
               <ListItem
                 key={index_chapter}
-                onPress={() => redirectToReader(chapter.chapter_link)}
+                onPress={() => redirectToReader(chapter)}
                 bottomDivider
               >
                 <ListItem.Content>
