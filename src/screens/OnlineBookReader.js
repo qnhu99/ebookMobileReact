@@ -1,16 +1,19 @@
 import React from 'react';
 import useSWR from 'swr';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
-import ChapterContent from './ChapterContent';
-import Icons from '../../res/icons';
-import Loading from '../../components/Loading';
+import ChapterContent from '../components/ChapterContent';
+import Icons from '../res/icons';
+import Loading from '../components/Loading';
+import axios, { BookApi } from 'src/api';
 
 function OnlineBookReaderContainer(props) {
   const navigation = useNavigation();
   const link = props.route.params.data;
-  const { data } = useSWR(link);
+  const { data, error } = useSWR(link, url =>
+    axios(BookApi.getChapterContent(url)).then(res => res.data),
+  );
   // const [data, setData] = useState(null);
   // useEffect(() => {
   //   let mounted = true;
@@ -23,6 +26,12 @@ function OnlineBookReaderContainer(props) {
   //     mounted = false;
   //   };
   // }, [data]);
+
+  if (error) {
+    console.log(error);
+    Alert.alert('Error', error.message);
+    return <></>;
+  }
 
   if (!data) {
     navigation.setOptions({ headerShown: false });

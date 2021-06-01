@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from 'src/screens/Home';
 import SettingsScreen from 'src/screens/Settings';
 import OnlineBookDetail from 'src/screens/OnlineBookDetail';
-import OnlineBookReaderContainer from 'src/screens/OnlineBookReader/OnlineBookReaderContainer';
+import OnlineBookReaderContainer from 'src/screens/OnlineBookReader';
 import EpubReader from 'src/screens/EpubReader';
 import PdfReader from 'src/screens/PdfReader';
 import Help from 'src/screens/Help';
@@ -169,7 +169,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  null,
-)(Navigator);
+export default connect(mapStateToProps, null)(Navigator);

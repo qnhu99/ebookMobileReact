@@ -41,22 +41,25 @@ function AddButton(props) {
       console.log(errorSubmitEmptyInput);
       return;
     }
-    setLoading(true);
-    axios(BookApi.getBookDetail(inputLink))
-      .then(res => {
-        setVisible(false);
-        setVisibleInputLink(false);
-        setErrorSubmitEmptyInput(false);
-        onChangeInput('');
-        setLoading(false);
-        navigation.navigate('online-book-detail', {
-          data: res.data,
-        });
-      })
-      .catch(err => {
-        setLoading(false);
-        return ErrorAlert({ errorMessage: err.message });
-      });
+    setVisible(false);
+    setVisibleInputLink(false);
+    // setLoading(true);
+    navigation.navigate('online-book-detail', { link: inputLink });
+    // axios(BookApi.getBookDetail(inputLink))
+    //   .then(res => {
+    //     setVisible(false);
+    //     setVisibleInputLink(false);
+    //     setErrorSubmitEmptyInput(false);
+    //     onChangeInput('');
+    //     setLoading(false);
+    //     navigation.navigate('online-book-detail', {
+    //       data: res.data,
+    //     });
+    //   })
+    //   .catch(err => {
+    //     setLoading(false);
+    //     return ErrorAlert({ errorMessage: err.message });
+    //   });
     // if (inputLink !== '') {
     //   setVisible(false);
     //   setVisibleInputLink(false);

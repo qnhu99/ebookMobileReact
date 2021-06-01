@@ -1,20 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { Card, Button, ListItem } from 'react-native-elements';
-import axios from '../api';
 
 import dimensions from '../res/dimensions';
 
-function BookInfo({
-  link,
-  data: { img_url, book_name, book_intro, book_author },
-}) {
+function BookInfo({ data: { img_url, book_name, book_intro, book_author } }) {
   book_author = book_author.replace('\n', '');
   const [expanded, setExpanded] = useState(false);
   const handlePress = () => setExpanded(!expanded);
-
-  const [bookInfo, setBookInfo] = useState({});
-
   return (
     <View>
       <Card>
