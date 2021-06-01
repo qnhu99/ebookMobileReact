@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from 'src/screens/Home';
 import SettingsScreen from 'src/screens/Settings';
 import OnlineBookDetail from 'src/screens/OnlineBookDetail';
-import OnlineBookReader from 'src/screens/OnlineBookReader';
+import OnlineBookReaderContainer from 'src/screens/OnlineBookReader/OnlineBookReaderContainer';
 import EpubReader from 'src/screens/EpubReader';
 import PdfReader from 'src/screens/PdfReader';
 import Help from 'src/screens/Help';
@@ -138,7 +138,10 @@ function Navigator(props) {
         options={{ headerShown: false }}
       />
       <Stack.Screen name="online-book-detail" component={OnlineBookDetail} />
-      <Stack.Screen name="online-book-reader" component={OnlineBookReader} />
+      <Stack.Screen
+        name="online-book-reader"
+        component={OnlineBookReaderContainer}
+      />
       <Stack.Screen
         name="epub-reader"
         component={EpubReader}

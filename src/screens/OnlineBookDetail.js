@@ -2,9 +2,12 @@ import React, { useEffect } from 'react';
 import { View, ScrollView } from 'react-native';
 import BookInfo from '../components/BookInfo';
 import TableOfContent from '../components/TableOfContent';
+import { useNavigation } from '@react-navigation/core';
 
-function OnlineBookDetail({ route, navigation }) {
-  const data = route.params.data;
+function OnlineBookDetail(props) {
+  const navigation = useNavigation();
+  const data = props.route.params.data;
+
   const { chapter_name, chapter_link, season_name, season_index } = data;
   useEffect(() => {
     navigation.setOptions({

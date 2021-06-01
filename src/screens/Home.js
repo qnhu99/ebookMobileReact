@@ -95,8 +95,12 @@ function HomeScreen(props) {
             height: 100,
           }}
         >
-          <Text style={{ ...styles.message, fontFamily }}>{'Your library is empty!'}</Text>
-          <Text style={{ ...styles.message, fontFamily }}>{'Add some books to get started'}</Text>
+          <Text style={{ ...styles.message, fontFamily }}>
+            {'Your library is empty!'}
+          </Text>
+          <Text style={{ ...styles.message, fontFamily }}>
+            {'Add some books to get started'}
+          </Text>
         </View>
       );
     }
