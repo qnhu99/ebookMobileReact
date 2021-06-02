@@ -10,7 +10,7 @@ function TableOfContent(props) {
   const redirectToReader = chapter => {
     navigation.navigate('online-book-reader', {
       chapter,
-      tableOfContent: seasons,
+      tableOfContent: data,
     });
   };
 
