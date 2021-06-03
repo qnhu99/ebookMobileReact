@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Navigator from './navigation/Modal';
-import ErrorBoundary from './helpers/ErrorBoundary';
-import ChapterContent from './components/ChapterContent';
-import data from './dummy_data/chapter';
 
 function Root() {
   return <Navigator />;

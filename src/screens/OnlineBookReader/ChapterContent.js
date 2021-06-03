@@ -3,7 +3,7 @@ import { Text, ScrollView, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
-import * as actions from '../actions/onlineBook';
+import * as actions from '../../actions/onlineBook';
 
 const Controller = props => {
   const { prevChapter, nextChapter, chapterLinkArray } = props;
