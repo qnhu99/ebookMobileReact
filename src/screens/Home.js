@@ -123,7 +123,7 @@ function HomeScreen(props) {
       <AddButton />
       <ScrollView style={styles.wrapper}>
         <WelcomeIntro />
-        <HorizontalList />
+        {/* <HorizontalList /> */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>{'Recent files'}</Text>
           {renderBooks()}
