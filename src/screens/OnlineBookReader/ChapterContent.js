@@ -43,25 +43,22 @@ function ChapterContent(props) {
   const { data, currentBook } = props;
   const { chapter_link_array } = currentBook;
   const { prev_chap, next_chap, content } = data;
-
-  const settings = props?.settings || {
-    backgroundColor: 'white',
-    lineHeight: 30,
-    fontSize: 20,
-  };
+  const backgroundColor = props.settings.theme.value;
+  const textColor = props.settings.theme.textColor;
+  const fontSize = props.settings.fontSize;
+  const lineHeight = props.settings.lineHeight;
 
   return (
-    <View
-      style={[styles.wrapper, { backgroundColor: settings?.backgroundColor }]}
-    >
+    <View style={[styles.wrapper, { backgroundColor }]}>
       <ScrollView>
-        <View style={[styles.container, {}]}>
+        <View style={styles.container}>
           <Text
             style={[
               styles.text,
               {
-                fontSize: settings?.fontSize,
-                lineHeight: settings?.lineHeight,
+                color: textColor,
+                fontSize,
+                lineHeight: fontSize * lineHeight,
               },
             ]}
           >
@@ -82,6 +79,7 @@ function ChapterContent(props) {
 const mapStateToProps = state => {
   return {
     currentBook: state.onlineBook[0],
+    settings: state.readerSettings,
   };
 };
 

@@ -2,9 +2,8 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Slider } from 'react-native-elements';
 function LineHeight(props) {
-  const selections = props.setup.items;
-  const [sliderValue, setSliderValue] = React.useState(1);
-  const [lineHeight, setLineHeight] = React.useState(1.4);
+  const initialSlider = Math.round((props.initial - 1.4) / 0.2);
+  const [slider, setSlider] = React.useState(initialSlider);
   return (
     <View style={styles.wrapper}>
       <Text style={styles.header}>Line Height</Text>
@@ -27,17 +26,17 @@ function LineHeight(props) {
             borderRadius: 50,
             backgroundColor: 'transparent',
           }}
-          value={sliderValue}
+          value={slider}
           onValueChange={value => {
-            setSliderValue(value);
-            setLineHeight((1.4 + 0.2 * value).toFixed(1));
+            setSlider(value);
+            props.handleChange((1.4 + 0.2 * value).toFixed(1));
           }}
           maximumValue={5}
           minimumValue={0}
           step={1}
           minimumTrackTintColor="transparent"
         />
-        <Text>{lineHeight}</Text>
+        <Text>Line height: {props.initial}</Text>
       </View>
     </View>
   );

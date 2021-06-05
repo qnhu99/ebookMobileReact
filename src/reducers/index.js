@@ -4,6 +4,7 @@ import locations from './locations';
 import settings from './settings';
 import globalSettings from './globalSettings';
 import onlineBook from './onlineBook';
+import readerSettings from './readerSettings';
 
 export default combineReducers({
   books,
@@ -11,4 +12,5 @@ export default combineReducers({
   settings,
   globalSettings,
   onlineBook,
+  readerSettings,
 });

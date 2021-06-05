@@ -1,16 +1,20 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import RadioButtonRN from 'radio-buttons-react-native';
+import { settings } from '../../constants';
 
 function Theme(props) {
-  const selections = props.setup.items;
-  const [value, setValue] = React.useState(selections[0].value);
+  const selections = settings[0].items;
+  const initialValue =
+    selections.findIndex(elements => elements.label === props.initial.label) +
+    1;
   return (
     <View style={styles.wrapper}>
       <Text style={styles.header}>Theme</Text>
       <RadioButtonRN
+        initial={initialValue}
         data={selections}
-        selectedBtn={e => console.log(e)}
+        selectedBtn={e => props.handleChange(e)}
         box={false}
       />
     </View>

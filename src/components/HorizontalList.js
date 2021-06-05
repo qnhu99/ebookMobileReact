@@ -7,7 +7,7 @@ import Images from './Images';
 import Colors from 'src/res/icons';
 
 // dummy data
-import BooksData from '../dummy_data/books';
+// import BooksData from '../dummy_data/books';
 
 const BookItem = ({ data }) => {
   const navigation = useNavigation();
@@ -33,12 +33,12 @@ function HorizontalList({ navigation }) {
   return (
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>{'Recent book'}</Text>
-      <FlatList
+      {/* <FlatList
         horizontal
         data={BooksData}
         renderItem={renderBook}
         keyExtractor={(_, index) => index.toString()}
-      />
+      /> */}
       <Divider style={{ marginTop: 5, cover: 'black' }} />
       <TouchableOpacity
         style={{ paddingVertical: 5 }}

@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Slider } from 'react-native-elements';
+import { settings } from '../../constants';
+
 function FontSize(props) {
-  const selections = props.setup.items;
-  const [size, setSize] = React.useState(16);
+  const [slider, setSlider] = React.useState(props.initial);
 
   return (
     <View style={styles.wrapper}>
@@ -27,13 +28,17 @@ function FontSize(props) {
             borderRadius: 50,
             backgroundColor: 'transparent',
           }}
-          value={size}
-          onValueChange={value => setSize(value)}
+          value={slider}
+          onValueChange={value => {
+            setSlider(value);
+            props.handleChange(value);
+          }}
           maximumValue={24}
           minimumValue={15}
           step={1}
           minimumTrackTintColor="transparent"
         />
+        <Text>Font size: {slider}</Text>
       </View>
     </View>
   );

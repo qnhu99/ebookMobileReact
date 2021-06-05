@@ -3,21 +3,35 @@ import { View, ScrollView } from 'react-native';
 import Theme from './Theme';
 import FontSize from './FontSize';
 import LineHeight from './LineHeight';
-import { settings } from '../../constants';
+import { connect } from 'react-redux';
+import * as actions from '../../actions/readerSettings';
 
 function Settings(props) {
   return (
     <View style={styles.wrapper}>
       <ScrollView>
-        <Theme setup={settings[0]} />
-        <FontSize setup={settings[1]} />
-        <LineHeight setup={settings[2]} />
+        <Theme initial={props.settings.theme} handleChange={props.setTheme} />
+        <FontSize
+          initial={props.settings.fontSize}
+          handleChange={props.setFontSize}
+        />
+        <LineHeight
+          initial={props.settings.lineHeight}
+          handleChange={props.setLineHeight}
+        />
       </ScrollView>
     </View>
   );
 }
 
-export default Settings;
+const mapStateToProps = state => {
+  return { settings: state.readerSettings };
+};
+
+export default connect(
+  mapStateToProps,
+  actions,
+)(Settings);
 
 const styles = {
   wrapper: { paddingHorizontal: 10, paddingVertical: 10 },
