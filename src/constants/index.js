@@ -2,7 +2,6 @@ export const primaryColor = '#0f2439';
 export const elevatedBG = '#F7F8FB';
 export const contrastColor = '#000000';
 
-
 export const settings = [
   {
     id: 'bg',
@@ -10,11 +9,11 @@ export const settings = [
     text: 'Theme',
     title: 'Choose theme',
     items: [
-      { label: 'Light', value: '#fafafa' },
-      { label: 'Dark', value: '#121212' },
-      { label: 'Classic', value: '#f8f1e3' },
-      { label: 'Silver', value: '#bebebe' },
-      { label: 'Grey', value: '#5a5a5c' },
+      { label: 'Light', value: '#fafafa', textColor: '#000000' },
+      { label: 'Dark', value: '#121212', textColor: '#fafafa' },
+      { label: 'Classic', value: '#f8f1e3', textColor: '#000000' },
+      { label: 'Silver', value: '#bebebe', textColor: '#121212' },
+      { label: 'Grey', value: '#5a5a5c', textColor: '#fafafa' },
     ],
   },
   {
@@ -48,7 +47,6 @@ export const settings = [
     }
   },
 ];
-
 
 export const globalSettings = [
   {

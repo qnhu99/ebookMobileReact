@@ -2,18 +2,12 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { View, TouchableWithoutFeedback } from 'react-native';
 import { Overlay, Icon, Button, Input } from 'react-native-elements';
-import RNFS from 'react-native-fs';
+// import RNFS from 'react-native-fs';
 import { connect } from 'react-redux';
-import showToast from '../components/Toast';
+// import showToast from '../components/Toast';
 import * as actions from '../actions';
-
-// Components
-import ErrorAlert from './ErrorAlert';
-// import Icon from "./Icon";
 import { primaryColor } from '../constants';
 import dimensions from 'src/res/dimensions';
-
-import axios, { BookApi } from '../api';
 
 function AddButton(props) {
   const navigation = useNavigation();
@@ -24,7 +18,7 @@ function AddButton(props) {
     // 'https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf',
     //"https://www.gutenberg.org/ebooks/65411.epub.images?session_id=52efbda7ce1646cb919e4fc14bf3d0900b02be82"
     //"https://s3.amazonaws.com/epubjs/books/moby-dick.epub",
-    "",
+    '',
   );
   const toggleOverlay = () => {
     setVisible(!visible);
@@ -33,26 +27,31 @@ function AddButton(props) {
     setVisibleInputLink(!visibleInputLink);
   };
 
-
-
   const onPressSendLink = () => {
     if (inputLink.trim().length === 0) {
       setErrorSubmitEmptyInput(true);
       console.log(errorSubmitEmptyInput);
       return;
     }
-    axios(BookApi.getBookDetail(inputLink))
-      .then(res => {
-        setVisible(false);
-        setVisibleInputLink(false);
-        setErrorSubmitEmptyInput(false);
-        navigation.navigate('online-book-detail', {
-          data: res.data,
-        });
-      })
-      .catch(err => {
-        return ErrorAlert({ errorMessage: err.message });
-      });
+    setVisible(false);
+    setVisibleInputLink(false);
+    onChangeInput('');
+    navigation.navigate('online-book-detail', { link: inputLink });
+    // axios(BookApi.getBookDetail(inputLink))
+    //   .then(res => {
+    //     setVisible(false);
+    //     setVisibleInputLink(false);
+    //     setErrorSubmitEmptyInput(false);
+    //     onChangeInput('');
+    //     setLoading(false);
+    //     navigation.navigate('online-book-detail', {
+    //       data: res.data,
+    //     });
+    //   })
+    //   .catch(err => {
+    //     setLoading(false);
+    //     return ErrorAlert({ errorMessage: err.message });
+    //   });
     // if (inputLink !== '') {
     //   setVisible(false);
     //   setVisibleInputLink(false);

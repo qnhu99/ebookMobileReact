@@ -82,26 +82,6 @@ const demo = {
 const BooksData = [
   demo,
   {
-    book_name: 'Pride & Prejudice',
-    book_author: 'Jane Austen',
-    img_url:
-      'https://www.google.com/url?sa=i&url=https%3A%2F%2Fbukharibooks.com%2Fproduct%2Fpride-and-prejudice-by-jane-austen%2F&psig=AOvVaw0nRSGtmc8C92R9MNNFxTQo&ust=1621839962535000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKCuqOie3_ACFQAAAAAdAAAAABAH',
-    book_intro: '',
-  },
-  {
-    book_name: "Alice's Adventures in Wonderland",
-    book_author: 'Lewis Carroll',
-    img_url: 'https://www.gutenberg.org/cache/epub/11/pg11.img_url.medium.jpg',
-    book_intro: '',
-  },
-  {
-    book_name: 'The Great Gatsby',
-    book_author: 'F. Scott Fitzgerald',
-    img_url:
-      'https://www.gutenberg.org/cache/epub/64317/pg64317.img_url.medium.jpg',
-    book_intro: '',
-  },
-  {
     book_name: 'Dracula',
     book_author: 'Bram Stoker',
     img_url: 'https://m.media-amazon.com/images/I/5126hLd7jsL.jpg',
@@ -109,22 +89,9 @@ const BooksData = [
       'In appearance, Count Dracula is described as being a "tall old man, clean shaven, save for a long white mustache and clad in black from head to foot, without a single speck of color about him anywhere." Contrary to popular understanding, Stoker has his Dracula sporting a large, bushy Victorian mustache and having a',
   },
   {
-    book_name: 'The Complete Works of William Shakespeare',
-    book_author: 'William Shakespeare',
-    img_url:
-      'https://www.gutenberg.org/cache/epub/100/pg100.img_url.medium.jpg',
-    book_intro: '',
-  },
-  {
     book_name: 'Les Misérables',
     book_author: 'Victor Hugo',
     img_url: 'https://m.media-amazon.com/images/I/51fyLYwnWwL.jpg',
-    book_intro: '',
-  },
-  {
-    book_name: 'Sense and Sensibility',
-    book_author: 'Jane Austen',
-    img_url: 'https://images.penguinrandomhouse.com/img_url/9780307390769',
     book_intro: '',
   },
   {

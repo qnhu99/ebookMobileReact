@@ -1,47 +1,46 @@
 package com.duofolio;
 
-import android.content.Context;
-import android.webkit.WebView;
 import androidx.multidex.MultiDexApplication;
+import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import io.github.elyx0.reactnativedocumentpicker.DocumentPickerPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import net.no_mad.tts.TextToSpeechPackage;
+import com.rnfs.RNFSPackage;
+import com.futurepress.staticserver.FPStaticServerPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.futurepress.staticserver.FPStaticServerPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
-import com.rnfs.RNFSPackage;
-import io.github.elyx0.reactnativedocumentpicker.DocumentPickerPackage;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import net.no_mad.tts.TextToSpeechPackage;
-import ui.fileselector.RNFileSelectorPackage;
+import android.webkit.WebView;
 
-public class MainApplication
-  extends MultiDexApplication
-  implements ReactApplication {
 
-  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-    @Override
-    public boolean getUseDeveloperSupport() {
-      return BuildConfig.DEBUG;
-    }
+public class MainApplication extends MultiDexApplication implements ReactApplication {
 
-    @Override
-    protected List<ReactPackage> getPackages() {
-      @SuppressWarnings("UnnecessaryLocalVariable")
-      List<ReactPackage> packages = new PackageList(this).getPackages();
-      // Packages that cannot be autolinked yet can be added manually here, for example:
-      //packages.add(new RNFileSelectorPackage());
-      return packages;
-    }
+  private final ReactNativeHost mReactNativeHost =
+      new ReactNativeHost(this) {
+        @Override
+        public boolean getUseDeveloperSupport() {
+          return BuildConfig.DEBUG;
+        }
 
-    @Override
-    protected String getJSMainModuleName() {
-      return "index";
-    }
-  };
+        @Override
+        protected List<ReactPackage> getPackages() {
+          @SuppressWarnings("UnnecessaryLocalVariable")
+          List<ReactPackage> packages = new PackageList(this).getPackages();
+          // Packages that cannot be autolinked yet can be added manually here, for example:
+          // packages.add(new MyReactNativePackage());
+          return packages;
+        }
+
+        @Override
+        protected String getJSMainModuleName() {
+          return "index";
+        }
+      };
 
   @Override
   public ReactNativeHost getReactNativeHost() {
@@ -51,7 +50,7 @@ public class MainApplication
   @Override
   public void onCreate() {
     super.onCreate();
-    SoLoader.init(this, /* native exopackage */false);
+    SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
     WebView.setWebContentsDebuggingEnabled(true);
   }
@@ -64,9 +63,7 @@ public class MainApplication
    * @param reactInstanceManager
    */
   private static void initializeFlipper(
-    Context context,
-    ReactInstanceManager reactInstanceManager
-  ) {
+      Context context, ReactInstanceManager reactInstanceManager) {
     if (BuildConfig.DEBUG) {
       try {
         /*
@@ -75,12 +72,8 @@ public class MainApplication
         */
         Class<?> aClass = Class.forName("com.duofolio.ReactNativeFlipper");
         aClass
-          .getMethod(
-            "initializeFlipper",
-            Context.class,
-            ReactInstanceManager.class
-          )
-          .invoke(null, context, reactInstanceManager);
+            .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
+            .invoke(null, context, reactInstanceManager);
       } catch (ClassNotFoundException e) {
         e.printStackTrace();
       } catch (NoSuchMethodException e) {

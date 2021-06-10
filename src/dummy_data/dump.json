@@ -1,0 +1,443 @@
+{
+  "seasons": [
+    {
+      "index": 0,
+      "season_index": 0,
+      "season_name": "Quyển 1 ",
+      "chapters": [
+        {
+          "index": 0,
+          "chapter_index": 0,
+          "chapter_name": "Chương 1 : Thần Ma Điện",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-1",
+          "prevChapter": "",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-2"
+        },
+        {
+          "index": 1,
+          "chapter_index": 1,
+          "chapter_name": "Chương 2 : Phụ thân cố nhân",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-2",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-1",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-3"
+        },
+        {
+          "index": 2,
+          "chapter_index": 2,
+          "chapter_name": "Chương 3 : Võ Đấu sĩ",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-3",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-2",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-4"
+        },
+        {
+          "index": 3,
+          "chapter_index": 3,
+          "chapter_name": "Chương 4 : Đơn giản phương pháp",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-4",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-3",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-5"
+        },
+        {
+          "index": 4,
+          "chapter_index": 4,
+          "chapter_name": "Chương 5 : Lý Đống Lôi mộng tưởng",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-5",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-4",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-6"
+        },
+        {
+          "index": 5,
+          "chapter_index": 5,
+          "chapter_name": "Chương 6 : Chu Khải",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-6",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-5",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-7"
+        },
+        {
+          "index": 6,
+          "chapter_index": 6,
+          "chapter_name": "Chương 7 : Hiếu tử",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-7",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-6",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-8"
+        },
+        {
+          "index": 7,
+          "chapter_index": 7,
+          "chapter_name": "Chương 8 : Đến từ Chu Khải ước chiến",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-8",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-7",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-9"
+        },
+        {
+          "index": 8,
+          "chapter_index": 8,
+          "chapter_name": "Chương 9 : Biên ca",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-9",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-8",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-10"
+        },
+        {
+          "index": 9,
+          "chapter_index": 9,
+          "chapter_name": "Chương 10 : Chu Khải kiêu ngạo",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-10",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-9",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-11"
+        },
+        {
+          "index": 10,
+          "chapter_index": 10,
+          "chapter_name": "Chương 11 : Thiên tài!",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-11",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-10",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-12"
+        },
+        {
+          "index": 11,
+          "chapter_index": 11,
+          "chapter_name": "Chương 12 : Thiên tài, không chỉ một cái",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-12",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-11",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-13"
+        },
+        {
+          "index": 12,
+          "chapter_index": 12,
+          "chapter_name": "Chương 13 : Phê bình",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-13",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-12",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-14"
+        },
+        {
+          "index": 13,
+          "chapter_index": 13,
+          "chapter_name": "Chương 14 : Cự tuyệt",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-14",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-13",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-15"
+        },
+        {
+          "index": 14,
+          "chapter_index": 14,
+          "chapter_name": "Chương 15 : Con nhà người ta",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-15",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-14",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-16"
+        },
+        {
+          "index": 15,
+          "chapter_index": 15,
+          "chapter_name": "Chương 16 : Không chịu thua tâm",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-16",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-15",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-17"
+        },
+        {
+          "index": 16,
+          "chapter_index": 16,
+          "chapter_name": "Chương 17 : Trời đã sáng",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-17",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-16",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-18"
+        },
+        {
+          "index": 17,
+          "chapter_index": 17,
+          "chapter_name": "Chương 18 : Chu Khải quyết tâm",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-18",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-17",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-19"
+        },
+        {
+          "index": 18,
+          "chapter_index": 18,
+          "chapter_name": "Chương 19 : Vị hôn thê?",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-19",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-18",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-20"
+        },
+        {
+          "index": 19,
+          "chapter_index": 19,
+          "chapter_name": "Chương 20 : Ly khai",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-20",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-19",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-21"
+        },
+        {
+          "index": 20,
+          "chapter_index": 20,
+          "chapter_name": "Chương 21 : Mới vào Thần Ma Điện",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-21",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-20",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-22"
+        },
+        {
+          "index": 21,
+          "chapter_index": 21,
+          "chapter_name": "Chương 22 : Mỗi người một vẻ",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-22",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-21",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-23"
+        },
+        {
+          "index": 22,
+          "chapter_index": 22,
+          "chapter_name": "Chương 23 : Đám nữ lưu manh",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-23",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-22",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-24"
+        },
+        {
+          "index": 23,
+          "chapter_index": 23,
+          "chapter_name": "Chương 24 : Mạnh Tuyết",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-24",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-23",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-25"
+        },
+        {
+          "index": 24,
+          "chapter_index": 24,
+          "chapter_name": "Chương 25 : Sự tình đại đầu",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-25",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-24",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-26"
+        },
+        {
+          "index": 25,
+          "chapter_index": 25,
+          "chapter_name": "Chương 26 : Nam nhân cùng nữ nhân khác nhau",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-26",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-25",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-27"
+        },
+        {
+          "index": 26,
+          "chapter_index": 26,
+          "chapter_name": "Chương 27 : Cự hôn",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-27",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-26",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-28"
+        },
+        {
+          "index": 27,
+          "chapter_index": 27,
+          "chapter_name": "Chương 28 : Ở chung?",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-28",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-27",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-29"
+        },
+        {
+          "index": 28,
+          "chapter_index": 28,
+          "chapter_name": "Chương 29 : Không theo như sáo lộ ra bài",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-29",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-28",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-30"
+        },
+        {
+          "index": 29,
+          "chapter_index": 29,
+          "chapter_name": "Chương 30 : Tìm đường chết",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-30",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-29",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-31"
+        },
+        {
+          "index": 30,
+          "chapter_index": 30,
+          "chapter_name": "Chương 31 : Không xong quan hệ",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-31",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-30",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-32"
+        },
+        {
+          "index": 31,
+          "chapter_index": 31,
+          "chapter_name": "Chương 32 : Ai sai?",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-32",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-31",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-33"
+        },
+        {
+          "index": 32,
+          "chapter_index": 32,
+          "chapter_name": "Chương 33 : Lại tìm đường chết",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-33",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-32",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-34"
+        },
+        {
+          "index": 33,
+          "chapter_index": 33,
+          "chapter_name": "Chương 34 : Rình coi Mạnh gia phụ nữ huấn luyện",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-34",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-33",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-35"
+        },
+        {
+          "index": 34,
+          "chapter_index": 34,
+          "chapter_name": "Chương 35 : Lý Đống Lôi ném đi",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-35",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-34",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-36"
+        },
+        {
+          "index": 35,
+          "chapter_index": 35,
+          "chapter_name": "Chương 36 : Tác dụng phụ",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-36",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-35",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-37"
+        },
+        {
+          "index": 36,
+          "chapter_index": 36,
+          "chapter_name": "Chương 37 : Lại đến Thần Ma Điện",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-37",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-36",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-38"
+        },
+        {
+          "index": 37,
+          "chapter_index": 37,
+          "chapter_name": "Chương 38 : Thần Ma Điện lịch sử",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-38",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-37",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-39"
+        },
+        {
+          "index": 38,
+          "chapter_index": 38,
+          "chapter_name": "Chương 39 : Thần Ma Điện Tam đại nguyên tắc",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-39",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-38",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-40"
+        },
+        {
+          "index": 39,
+          "chapter_index": 39,
+          "chapter_name": "Chương 40 : Không phải tỷ tỷ mà là ca ca",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-40",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-39",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-41"
+        },
+        {
+          "index": 40,
+          "chapter_index": 40,
+          "chapter_name": "Chương 41 : Thân thể là căn bản",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-41",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-40",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-42"
+        },
+        {
+          "index": 41,
+          "chapter_index": 41,
+          "chapter_name": "Chương 42 : Tàn khốc huấn luyện",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-42",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-41",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-43"
+        },
+        {
+          "index": 42,
+          "chapter_index": 42,
+          "chapter_name": "Chương 43 : Kiên trì",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-43",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-42",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-44"
+        },
+        {
+          "index": 43,
+          "chapter_index": 43,
+          "chapter_name": "Chương 44 : Viễn siêu mọi người",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-44",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-43",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-45"
+        },
+        {
+          "index": 44,
+          "chapter_index": 44,
+          "chapter_name": "Chương 45 : Trong nội tâm nắm chắc",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-45",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-44",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-46"
+        },
+        {
+          "index": 45,
+          "chapter_index": 45,
+          "chapter_name": "Chương 46 : Nát. . . Lại nát. . .",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-46",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-45",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-47"
+        },
+        {
+          "index": 46,
+          "chapter_index": 46,
+          "chapter_name": "Chương 47 : Đoàn trưởng bà bà mượn thứ đồ vật",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-47",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-46",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-48"
+        },
+        {
+          "index": 47,
+          "chapter_index": 47,
+          "chapter_name": "Chương 48 : Ngoài ý liệu, hợp tình lý",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-48",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-47",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-49"
+        },
+        {
+          "index": 48,
+          "chapter_index": 48,
+          "chapter_name": "Chương 49 : Cùng thiên địa câu thông",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-49",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-48",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-50"
+        },
+        {
+          "index": 49,
+          "chapter_index": 49,
+          "chapter_name": "Chương 50 : Bị kinh ngạc đến ngây người Vệ Lộ",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-50",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-49",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-51"
+        },
+        {
+          "index": 50,
+          "chapter_index": 50,
+          "chapter_name": "Chương 51 : Đến tột cùng đã ẩn tàng như thế nào bí mật?",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-51",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-50",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-52"
+        },
+        {
+          "index": 51,
+          "chapter_index": 51,
+          "chapter_name": "Chương 52 : Thời cơ chưa tới",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-52",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-51",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-53"
+        },
+        {
+          "index": 52,
+          "chapter_index": 52,
+          "chapter_name": "Chương 53 : Biệt khuất Lý Đống Lôi",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-53",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-52",
+          "nextChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-54"
+        },
+        {
+          "index": 53,
+          "chapter_index": 53,
+          "chapter_name": "Chương 54 : Khôi phục năng lực",
+          "chapter_link": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-54",
+          "prevChapter": "https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan/chuong-53",
+          "nextChapter": ""
+        }
+      ]
+    }
+  ]
+}
