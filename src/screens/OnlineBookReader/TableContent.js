@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, SectionList } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
-const Chapter = ({ item, tableOfContent, disabled }) => {
+const Chapter = ({ item, disabled, setDrawer }) => {
   const navigation = useNavigation();
   const redirectToReader = chapter => {
+    setDrawer(false);
     navigation.navigate('online-book-reader', {
-      chapter,
-      tableOfContent,
+      link: chapter.chapter_link,
     });
   };
   return (
@@ -33,7 +33,7 @@ const Chapter = ({ item, tableOfContent, disabled }) => {
 const SectionHeader = ({ title }) => <Text style={styles.header}>{title}</Text>;
 
 function TableContent(props) {
-  const { tableOfContent, currentChapterLink } = props;
+  const { tableOfContent, currentChapterLink, setDrawer } = props;
 
   const formatData = () => {
     return tableOfContent.seasons.map(season => ({
@@ -43,8 +43,8 @@ function TableContent(props) {
   };
   const renderItem = ({ item }) => (
     <Chapter
+      setDrawer={setDrawer}
       item={item}
-      tableOfContent={tableOfContent}
       disabled={item.chapter_link === currentChapterLink}
     />
   );

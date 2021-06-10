@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Dimensions, TouchableOpacity, Text } from 'react-native';
+import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements';
 import TableContent from './TableContent';
 import Settings from './Settings';
@@ -16,7 +17,13 @@ function MenuDrawer(props) {
   function renderSection() {
     switch (currentSection) {
       case 'contents':
-        return <TableContent {...props} />;
+        return (
+          <TableContent
+            tableOfContent={props.tableOfContent}
+            currentChapterLink={props.currentChapterLink}
+            setDrawer={props.setDrawer}
+          />
+        );
       case 'settings':
         return <Settings />;
       default:
@@ -51,7 +58,14 @@ function MenuDrawer(props) {
   );
 }
 
-export default MenuDrawer;
+const mapStateToProps = state => {
+  return {
+    tableOfContent: state.recentBooks[0].tableOfContent,
+    currentChapterLink: state.recentBooks[0].currentChapterLink,
+  };
+};
+
+export default connect(mapStateToProps)(MenuDrawer);
 
 const styles = {
   wrapper: {

@@ -18,7 +18,7 @@ function AddButton(props) {
     // 'https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf',
     //"https://www.gutenberg.org/ebooks/65411.epub.images?session_id=52efbda7ce1646cb919e4fc14bf3d0900b02be82"
     //"https://s3.amazonaws.com/epubjs/books/moby-dick.epub",
-    'https://truyen.tangthuvien.vn/doc-truyen/bao-tang-liep-nhan',
+    '',
   );
   const toggleOverlay = () => {
     setVisible(!visible);
@@ -35,6 +35,7 @@ function AddButton(props) {
     }
     setVisible(false);
     setVisibleInputLink(false);
+    onChangeInput('');
     navigation.navigate('online-book-detail', { link: inputLink });
     // axios(BookApi.getBookDetail(inputLink))
     //   .then(res => {

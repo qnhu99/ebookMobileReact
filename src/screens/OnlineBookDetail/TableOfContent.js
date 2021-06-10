@@ -1,19 +1,9 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
-import { useNavigation } from '@react-navigation/native';
 
 function TableOfContent(props) {
-  const { data } = props;
-  const { seasons } = data;
-  const navigation = useNavigation();
-  const redirectToReader = chapter => {
-    navigation.navigate('online-book-reader', {
-      chapter,
-      tableOfContent: data,
-    });
-  };
-
+  const { seasons } = props.data;
   return (
     <Card>
       <Card.Title>Table of content</Card.Title>
@@ -21,11 +11,11 @@ function TableOfContent(props) {
       {seasons.map((season, index_season) => {
         return (
           <View key={index_season} style={styles.seasonTitle.container}>
-            <Text style={styles.seasonTitle.text}>{season.season_name}</Text>
+            {<Text style={styles.seasonTitle.text}>{season.season_name}</Text>}
             {season.chapters.map((chapter, index_chapter) => (
               <ListItem
                 key={index_chapter}
-                onPress={() => redirectToReader(chapter)}
+                onPress={() => props.redirectToReader(chapter)}
                 bottomDivider
               >
                 <ListItem.Content>
@@ -41,6 +31,8 @@ function TableOfContent(props) {
     </Card>
   );
 }
+
+export default TableOfContent;
 
 const styles = {
   seasonTitle: {
@@ -58,5 +50,3 @@ const styles = {
     container: {},
   },
 };
-
-export default TableOfContent;

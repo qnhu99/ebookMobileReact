@@ -3,11 +3,9 @@ import { Text, ScrollView, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/onlineBook';
 
 const Controller = props => {
-  const { prevChapter, nextChapter, chapterLinkArray } = props;
-
+  const { prevChapter, nextChapter, chapterLinksArray } = props;
   const navigation = useNavigation();
   return (
     <View style={styles.controller}>
@@ -18,9 +16,7 @@ const Controller = props => {
         iconLeft
         disabled={prevChapter === ''}
         onPress={() =>
-          navigation.navigate('online-book-reader', {
-            chapter: { chapter_link: prevChapter },
-          })
+          navigation.navigate('online-book-reader', { link: prevChapter })
         }
       />
       <Button
@@ -28,11 +24,9 @@ const Controller = props => {
         type="clear"
         icon={<Icon name="arrow-right" size={30} color="black" />}
         iconRight
-        disabled={!chapterLinkArray.some(item => item === nextChapter)}
+        disabled={!chapterLinksArray.some(item => item === nextChapter)}
         onPress={() =>
-          navigation.navigate('online-book-reader', {
-            chapter: { chapter_link: nextChapter },
-          })
+          navigation.navigate('online-book-reader', { link: nextChapter })
         }
       />
     </View>
@@ -40,9 +34,8 @@ const Controller = props => {
 };
 
 function ChapterContent(props) {
-  const { data, currentBook } = props;
-  const { chapter_link_array } = currentBook;
-  const { prev_chap, next_chap, content } = data;
+  const { prev_chap, next_chap, content } = props.data;
+  const { chapterLinksArray } = props;
   const backgroundColor = props.settings.theme.value;
   const textColor = props.settings.theme.textColor;
   const fontSize = props.settings.fontSize;
@@ -67,10 +60,9 @@ function ChapterContent(props) {
         </View>
       </ScrollView>
       <Controller
-        content={content}
         prevChapter={prev_chap}
         nextChapter={next_chap}
-        chapterLinkArray={chapter_link_array}
+        chapterLinksArray={chapterLinksArray}
       />
     </View>
   );
@@ -78,15 +70,12 @@ function ChapterContent(props) {
 
 const mapStateToProps = state => {
   return {
-    currentBook: state.onlineBook[0],
+    chapterLinksArray: state.recentBooks[0].chapterLinksArray,
     settings: state.readerSettings,
   };
 };
 
-export default connect(
-  mapStateToProps,
-  actions,
-)(ChapterContent);
+export default connect(mapStateToProps)(ChapterContent);
 
 const styles = {
   wrapper: { flex: 1 },

@@ -2,16 +2,14 @@ import React, { useState, useLayoutEffect, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { View, ScrollView, Text, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-
 // Custom components
 import AddButton from '../components/AddButton';
 import BookItem from '../components/BookItem';
 import SearchBar from '../components/SearchBar';
 import Icon from '../components/Icon';
 import WelcomeIntro from '../components/WelcomeIntro';
-import HorizontalList from '../components/HorizontalList';
-
-import Colors from 'src/res/icons';
+import RecentBookList from 'src/components/RecentBookList';
+import Colors from 'src/res/colors';
 import { contrastColor } from 'src/constants';
 
 // Main
@@ -123,7 +121,7 @@ function HomeScreen(props) {
       <AddButton />
       <ScrollView style={styles.wrapper}>
         <WelcomeIntro />
-        {/* <HorizontalList /> */}
+        <RecentBookList />
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>{'Recent files'}</Text>
           {renderBooks()}
