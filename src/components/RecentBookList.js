@@ -68,7 +68,7 @@ function RecentBookList(props) {
 
   return (
     <View style={styles.section}>
-      <Text style={styles.sectionTitle}>Recent files</Text>
+      <Text style={styles.sectionTitle}>Recent Online Books</Text>
       {renderSection()}
     </View>
   );
