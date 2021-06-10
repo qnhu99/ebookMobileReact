@@ -102,7 +102,7 @@ function HomeScreen(props) {
     }
     return (
       <View>
-        {listFilter().map((item, index) => (
+        {listFilter().slice(0, 10).map((item, index) => (
           <BookItem
             {...item}
             navigation={props.navigation}
