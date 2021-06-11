@@ -100,6 +100,7 @@ function AddButton(props) {
         onBackdropPress={toggleOverlay}
         animationType={'fade'}
       >
+
         <Button
           title="Open book via link"
           onPress={toggleInputLinkOverlay}

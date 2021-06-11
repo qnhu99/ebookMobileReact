@@ -11,7 +11,6 @@ const screenOptions = {
   cardOverlayEnabled: true,
 };
 
-// const noHeader = { headerShown: false };
 
 function ModalNavigator() {
   const Modal = createStackNavigator();

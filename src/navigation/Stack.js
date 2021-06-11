@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from 'src/screens/Home';
 import OnlineBookLibrary from 'src/screens/OnlineBookLibrary';
-import FileLibrary from 'src/screens/OnlineBookLibrary';
+import FileLibrary from 'src/screens/FileLibrary';
 import SettingsScreen from 'src/screens/Settings';
 import OnlineBookDetail from 'src/screens/OnlineBookDetail';
 import OnlineBookReader from 'src/screens/OnlineBookReader';
@@ -46,9 +46,9 @@ const options = {
           );
         case 'file-library':
           return focused ? (
-            <Icons.file color={color} size={size} />
+            <Icons.file color={color} size={size - 5} />
           ) : (
-            <Icons.file_outline color={color} size={size} />
+            <Icons.file_outline color={color} size={size - 5} />
           );
         case 'settings':
           return focused ? (
