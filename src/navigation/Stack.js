@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from 'src/screens/Home';
+import OnlineBookLibrary from 'src/screens/OnlineBookLibrary';
+import FileLibrary from 'src/screens/OnlineBookLibrary';
 import SettingsScreen from 'src/screens/Settings';
 import OnlineBookDetail from 'src/screens/OnlineBookDetail';
 import OnlineBookReader from 'src/screens/OnlineBookReader';
@@ -35,6 +37,18 @@ const options = {
             <Icons.home color={color} size={size} />
           ) : (
             <Icons.home_outline color={color} size={size} />
+          );
+        case 'online-book-library':
+          return focused ? (
+            <Icons.earth color={color} size={size} />
+          ) : (
+            <Icons.earth_outline color={color} size={size} />
+          );
+        case 'file-library':
+          return focused ? (
+            <Icons.file color={color} size={size} />
+          ) : (
+            <Icons.file_outline color={color} size={size} />
           );
         case 'settings':
           return focused ? (
@@ -87,6 +101,37 @@ function HomeStackScreen() {
     />
   );
 }
+
+function OnlineBookLibraryStackScreen() {
+  return (
+    <StackScreen
+      name="online-book-library-screen"
+      component={OnlineBookLibrary}
+      options={{
+        title: 'Online Book',
+        headerStyle: {
+          fontFamily: globalSettings.fontFamily,
+        },
+      }}
+    />
+  );
+}
+
+function FileLibraryStackScreen() {
+  return (
+    <StackScreen
+      name="file-library-screen"
+      component={FileLibrary}
+      options={{
+        title: 'Files',
+        headerStyle: {
+          fontFamily: globalSettings.fontFamily,
+        },
+      }}
+    />
+  );
+}
+
 function SettingsStackScreen() {
   return (
     <StackScreen
@@ -106,6 +151,11 @@ function BottomTabNavigator() {
       tabBarOptions={options.TabNavigatorTabBarOptions}
     >
       <Tab.Screen name="home" component={HomeStackScreen} />
+      <Tab.Screen
+        name="online-book-library"
+        component={OnlineBookLibraryStackScreen}
+      />
+      <Tab.Screen name="file-library" component={FileLibraryStackScreen} />
       <Tab.Screen name="settings" component={SettingsStackScreen} />
     </Tab.Navigator>
   );

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-function NotificationsScreen() {
+function OnlineBookLibraryScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Notifications Screen</Text>
+      <Text>Library Screen</Text>
     </View>
   );
 }
-export default NotificationsScreen;
+export default OnlineBookLibraryScreen;
