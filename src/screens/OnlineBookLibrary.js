@@ -30,29 +30,29 @@ function OnlineBookLibraryScreen(props) {
   const render = () => {
     if (books.length === 0) {
       return (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Text style={styles.message}>{'Your Online library is empty!'}</Text>
-          <Text style={styles.message}>
-            {'Add some books via Link to get started'}
-          </Text>
+        <View style={styles.wrapper}>
+          <View style={styles.wrapper}>
+            <Text style={styles.message}>
+              {'Your Online library is empty!'}
+            </Text>
+            <Text style={styles.message}>
+              {'Add some books via Link to get started'}
+            </Text>
+          </View>
         </View>
       );
     }
     return (
-      <FlatList
-        data={books}
-        renderItem={renderItem}
-        keyExtractor={item => item.bookUrl}
-      />
+      <View>
+        <FlatList
+          data={books}
+          renderItem={renderItem}
+          keyExtractor={item => item.bookUrl}
+        />
+      </View>
     );
   };
-  return <View style={styles.wrapper}>{render()}</View>;
+  return <>{render()}</>;
 }
 
 const mapStateToProps = state => ({
