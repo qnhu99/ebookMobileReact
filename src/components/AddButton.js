@@ -6,7 +6,6 @@ import { Overlay, Icon, Button, Input } from 'react-native-elements';
 import { connect } from 'react-redux';
 // import showToast from '../components/Toast';
 import * as actions from '../actions';
-import { primaryColor } from '../constants';
 import dimensions from 'src/res/dimensions';
 import Icons from 'src/res/icons.js';
 import Colors from 'src/res/colors';
@@ -59,7 +58,7 @@ function AddButton(props) {
             style={[styles.insideBtn, { marginRight: 5 }]}
             onPress={toggleInputLinkOverlay}
           >
-            <Icons.file color={"purple"} size={25} />
+            <Icons.earth color={Colors.green} size={25} />
             <Text>
               Open book via link
             </Text>
@@ -71,7 +70,7 @@ function AddButton(props) {
               props.addBook({ navigation: navigation });
             }}
           >
-            <Icons.file color={"purple"} size={25} />
+            <Icons.file color={Colors.green} size={25} />
             <Text>
               Open new files
             </Text>
@@ -94,7 +93,7 @@ function AddButton(props) {
             flexDirection: 'column',
             alignItems: 'center',
             margin: 0,
-            borderColor: "purple",
+            borderColor: Colors.green,
             borderWidth: 1,
           }}
         >
@@ -102,6 +101,9 @@ function AddButton(props) {
             <Input
               containerStyle={{ marginTop: 2 }}
               inputStyle={{ fontSize: 15, paddingBottom: 2, }}
+              labelStyle={{
+                color: 'black',
+              }}
               label="Open via link"
               placeholder="Book link"
               onChangeText={setInputLink}
@@ -124,22 +126,20 @@ function AddButton(props) {
             />
           </View>
 
-          <View style={{
-            display: 'flex', flexDirection: 'row',
-          }}>
+          <View style={styles.displayRow}>
             <Button
               type="clear"
               title="Cancel"
               onPress={toggleInputLinkOverlay}
               containerStyle={{ width: 85 }}
-              titleStyle={{ color: "purple" }}
+              titleStyle={styles.color}
             />
             <Button
               title="Continue"
               containerStyle={{ marginLeft: 25, width: 85 }}
               onPress={onPressSendLink}
-              buttonStyle={{ backgroundColor: "purple" }}
-              titleStyle={{ backgroundColor: "purple", padding: 0, margin: 0 }}
+              buttonStyle={styles.bgColor}
+              titleStyle={styles.bgColor}
             />
           </View>
         </View>
@@ -148,14 +148,11 @@ function AddButton(props) {
   );
 }
 
-export default connect(
-  null,
-  actions,
-)(AddButton);
+export default connect(null, actions)(AddButton);
 
 const styles = {
   view: {
-    backgroundColor: primaryColor,
+    backgroundColor: Colors.green,
     position: 'absolute',
     bottom: 20,
     right: 20,
@@ -169,7 +166,7 @@ const styles = {
   insideBtn: {
     flex: 1,
     borderWidth: 1,
-    borderColor: "purple",
+    borderColor: "#5c6120",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -180,7 +177,17 @@ const styles = {
   border: {
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: "purple",
+    borderColor: "#5c6120",
+  },
+  bgColor: {
+    backgroundColor: Colors.green
+  },
+  color: {
+    color: Colors.green
+  },
+  displayRow: {
+    display: "flex",
+    flexDirection: "row",
   },
   icon: {
     name: 'plus',
