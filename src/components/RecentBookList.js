@@ -26,6 +26,7 @@ const Item = ({ data, index }) => {
 
 function RecentBookList(props) {
   const fontFamily = props.globalSettings.fontFamily;
+  const navigation = useNavigation();
 
   const renderItem = () => {
     return props.list
@@ -54,22 +55,20 @@ function RecentBookList(props) {
         </View>
       );
     }
-    return (
-      <View>
-        {renderItem()}
-        <TouchableOpacity style={{ paddingVertical: 5 }}>
-          <Text style={{ textAlign: 'center', fontSize: 16 }}>
-            {'View more'}
-          </Text>
-        </TouchableOpacity>
-      </View>
-    );
+    return <View>{renderItem()}</View>;
   };
 
   return (
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>Recent Online Books</Text>
       {renderSection()}
+      <Divider />
+      <TouchableOpacity
+        style={{ paddingVertical: 5 }}
+        onPress={() => navigation.navigate('online-book-library')}
+      >
+        <Text style={{ textAlign: 'center', fontSize: 16 }}>{'View more'}</Text>
+      </TouchableOpacity>
     </View>
   );
 }
