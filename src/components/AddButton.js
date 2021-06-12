@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
-import { View, TouchableWithoutFeedback, TouchableOpacity, Text } from 'react-native';
+import {
+  View,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+  Text,
+  Alert,
+} from 'react-native';
 import { Overlay, Icon, Button, Input } from 'react-native-elements';
 // import RNFS from 'react-native-fs';
 import { connect } from 'react-redux';
@@ -11,10 +17,12 @@ import dimensions from 'src/res/dimensions';
 import Icons from 'src/res/icons.js';
 import Colors from 'src/res/colors';
 import Clipboard from '@react-native-clipboard/clipboard';
+import LoadingForDetail from 'src/components/LoadingForDetail';
 
 function AddButton(props) {
   const navigation = useNavigation();
   const [errorSubmitEmptyInput, setErrorSubmitEmptyInput] = useState(false);
+  const [error, setError] = useState(null);
   const [visible, setVisible] = useState(false);
   const [visibleInputLink, setVisibleInputLink] = useState(false);
   const [inputLink, setInputLink] = React.useState(
@@ -23,23 +31,34 @@ function AddButton(props) {
     //"https://s3.amazonaws.com/epubjs/books/moby-dick.epub",
     '',
   );
+
+  React.useEffect(() => {
+    if (error) {
+      const message = error.message;
+      Alert.alert('Error', message);
+      setError(null);
+    }
+  });
+
+  const [loadingOnlineBookDetail, setLoadingOnlineBookDetail] = useState(false);
+
   const toggleOverlay = () => {
     setVisible(!visible);
   };
   const toggleInputLinkOverlay = () => {
     setVisibleInputLink(!visibleInputLink);
+    setInputLink('');
   };
 
   const onPressSendLink = () => {
     if (inputLink.trim().length === 0) {
       setErrorSubmitEmptyInput(true);
-      console.log(errorSubmitEmptyInput);
       return;
     }
-    setVisible(false);
-    setVisibleInputLink(false);
-    setInputLink('');
-    navigation.navigate('online-book-detail', { link: inputLink });
+    // setVisible(false);
+    // setVisibleInputLink(false);
+    // // navigation.navigate('online-book-detail', { link: inputLink });
+    setLoadingOnlineBookDetail(true);
   };
 
   return (
@@ -54,15 +73,13 @@ function AddButton(props) {
         onBackdropPress={toggleOverlay}
         animationType={'fade'}
       >
-        <View style={{ display: "flex", flexDirection: "row", width: 300 }}>
+        <View style={{ display: 'flex', flexDirection: 'row', width: 300 }}>
           <TouchableOpacity
             style={[styles.insideBtn, { marginRight: 5 }]}
             onPress={toggleInputLinkOverlay}
           >
-            <Icons.file color={"purple"} size={25} />
-            <Text>
-              Open book via link
-            </Text>
+            <Icons.file color={'purple'} size={25} />
+            <Text>Open book via link</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.insideBtn, { marginLeft: 5 }]}
@@ -71,10 +88,8 @@ function AddButton(props) {
               props.addBook({ navigation: navigation });
             }}
           >
-            <Icons.file color={"purple"} size={25} />
-            <Text>
-              Open new files
-            </Text>
+            <Icons.file color={'purple'} size={25} />
+            <Text>Open new files</Text>
           </TouchableOpacity>
         </View>
       </Overlay>
@@ -94,56 +109,82 @@ function AddButton(props) {
             flexDirection: 'column',
             alignItems: 'center',
             margin: 0,
-            borderColor: "purple",
+            borderColor: 'purple',
             borderWidth: 1,
           }}
         >
           <View style={{ display: 'flex', flexDirection: 'row', padding: 0 }}>
             <Input
               containerStyle={{ marginTop: 2 }}
-              inputStyle={{ fontSize: 15, paddingBottom: 2, }}
+              inputStyle={{ fontSize: 15, paddingBottom: 2 }}
               label="Open via link"
               placeholder="Book link"
               onChangeText={setInputLink}
               value={inputLink}
               errorMessage={errorSubmitEmptyInput ? 'Empty input' : ''}
               rightIcon={
-                <TouchableOpacity style={[styles.border, { padding: 5 }]} onPress={
-                  async () => {
+                <TouchableOpacity
+                  style={[styles.border, { padding: 5 }]}
+                  onPress={async () => {
                     const text = await Clipboard.getString();
                     setInputLink(text);
-                  }
-                }>
-                  <Text>
-                    Paste
-                  </Text>
+                  }}
+                >
+                  <Text>Paste</Text>
                 </TouchableOpacity>
               }
               rightIconContainerStyle={{ paddingBottom: 0, marginBottom: 0 }}
-              onSelectionChange={(event) => console.log(event.nativeEvent.selection)}
+              onSelectionChange={event =>
+                console.log(event.nativeEvent.selection)
+              }
             />
           </View>
 
-          <View style={{
-            display: 'flex', flexDirection: 'row',
-          }}>
+          <View
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+            }}
+          >
             <Button
               type="clear"
               title="Cancel"
               onPress={toggleInputLinkOverlay}
               containerStyle={{ width: 85 }}
-              titleStyle={{ color: "purple" }}
+              titleStyle={{ color: 'purple' }}
             />
             <Button
               title="Continue"
               containerStyle={{ marginLeft: 25, width: 85 }}
               onPress={onPressSendLink}
-              buttonStyle={{ backgroundColor: "purple" }}
-              titleStyle={{ backgroundColor: "purple", padding: 0, margin: 0 }}
+              buttonStyle={{ backgroundColor: 'purple' }}
+              titleStyle={{ backgroundColor: 'purple', padding: 0, margin: 0 }}
             />
           </View>
         </View>
       </Overlay>
+      <LoadingForDetail
+        show={loadingOnlineBookDetail}
+        url={inputLink}
+        handleSuccess={newData => {
+          setInputLink('');
+          setVisible(false);
+          setVisibleInputLink(false);
+          setLoadingOnlineBookDetail(false);
+          navigation.navigate('online-book-detail', { data: newData });
+        }}
+        handleError={newError => {
+          setLoadingOnlineBookDetail(false);
+          console.log(
+            '🚀 ~ file: AddButton.js ~ line 198 ~ AddButton ~ newError',
+            newError,
+          );
+          setError(newError);
+        }}
+        handleCancel={() => {
+          setLoadingOnlineBookDetail(false);
+        }}
+      />
     </>
   );
 }
@@ -169,10 +210,10 @@ const styles = {
   insideBtn: {
     flex: 1,
     borderWidth: 1,
-    borderColor: "purple",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    borderColor: 'purple',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 10,
     height: 140,
     borderRadius: 5,
@@ -180,7 +221,7 @@ const styles = {
   border: {
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: "purple",
+    borderColor: 'purple',
   },
   icon: {
     name: 'plus',

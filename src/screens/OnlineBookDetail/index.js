@@ -1,22 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { View, ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
-import useSWR from 'swr';
 import { useNavigation } from '@react-navigation/native';
-import Loading from '../../components/Loading';
 import { updateRecentOnlineBooks } from 'src/actions/recentBooks';
-import axios, { BookApi } from 'src/api';
 import BookInfo from './BookInfo';
 import TableOfContent from './TableOfContent';
-
-const Error = props => (
-  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
-      Something went wrong...
-    </Text>
-    <Text style={{ fontSize: 16 }}>{props.message}</Text>
-  </View>
-);
 
 const formatBookInfo = data => {
   const {
@@ -25,7 +13,12 @@ const formatBookInfo = data => {
     book_intro: bookIntro,
     book_author: bookAuthor,
   } = data;
-  return { imgUrl, bookName, bookIntro, bookAuthor };
+  return {
+    imgUrl,
+    bookName,
+    bookIntro,
+    bookAuthor: bookAuthor.replace('\n', ''),
+  };
 };
 const formatTableOfContent = data => {
   const { chapter_name, chapter_link, season_name, season_index } = data;
@@ -51,55 +44,89 @@ const formatTableOfContent = data => {
 
 function OnlineBookDetail(props) {
   const navigation = useNavigation();
-  const link = props.route.params.link;
-  const fetcher = url =>
-    axios(BookApi.getBookDetail(url)).then(res => res.data);
-
-  const { data, error } = useSWR(link, fetcher, {
-    refreshInterval: 21600,
-    onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
-      if (error.status === 404) return;
-      if (retryCount >= 10) return;
-      setTimeout(() => revalidate({ retryCount }), 500);
-    },
+  const data = props.route.params.data;
+  const bookInfo = formatBookInfo(data);
+  const tableOfContent = formatTableOfContent(data);
+  useEffect(() => {
+    console.log(typeof data);
+    // const currentBook = {
+    //   bookUrl: data.book_url,
+    //   bookName: bookInfo.bookName,
+    //   bookAuthor: bookInfo.bookAuthor,
+    //   imgUrl: bookInfo.imgUrl,
+    //   tableOfContent,
+    //   chapterLinksArray: data.chapter_link,
+    // };
+    // props.updateRecentOnlineBooks(currentBook);
   });
+  navigation.setOptions({ title: data.book_name, headerShown: true });
 
-  if (error) {
-    navigation.setOptions({ title: 'Error', headerShown: true });
-    return <Error message={error.message} />;
-  }
+  return (
+    <ScrollView>
+      <View>
+        <Text>Testing...</Text>
+        {/* <BookInfo data={bookInfo} /> */}
+        {/* <TableOfContent data={tableOfContent} /> */}
+      </View>
+    </ScrollView>
+  );
 
-  if (data) {
-    const tableOfContent = formatTableOfContent(data);
-    const currentBook = {
-      bookUrl: link,
-      bookName: data.book_name,
-      bookAuthor: data.book_author.replace('\n', ''),
-      imgUrl: data.img_url,
-      tableOfContent,
-      chapterLinksArray: data.chapter_link,
-    };
-    props.updateRecentOnlineBooks(currentBook);
-    navigation.setOptions({ title: data.book_name, headerShown: true });
-    const redirectToReader = chapter => {
-      navigation.navigate('online-book-reader', { link: chapter.chapter_link });
-    };
+  // const navigation = useNavigation();
+  // const link = props.route.params.link;
+  // const [{ data, error }, controller] = useCancellableSWR(link);
 
-    return (
-      <ScrollView>
-        <View>
-          <BookInfo data={formatBookInfo(data)} />
-          <TableOfContent
-            data={tableOfContent}
-            redirectToReader={redirectToReader}
-          />
-        </View>
-      </ScrollView>
-    );
-  } else {
-    navigation.setOptions({ headerShown: false });
-    return <Loading />;
-  }
+  // useEffect(() => {
+  //   if (data) console.log(JSON.stringify(data, null, 2));
+  // });
+
+  // if (error) {
+  //   const message = error.message;
+  //   navigation.setOptions({ title: 'Error', headerShown: true });
+  //   return <Error message={message} />;
+  // }
+
+  // if (data) {
+  //   if (data?.message) {
+  //     const message = data.message;
+  //     navigation.setOptions({ title: 'Error', headerShown: true });
+  //     return <Error message={message} />;
+  //   }
+  //   const tableOfContent = formatTableOfContent(data);
+  //   const currentBook = {
+  //     bookUrl: link,
+  //     bookName: data.book_name,
+  //     bookAuthor: data.book_author.replace('\n', ''),
+  //     imgUrl: data.img_url,
+  //     tableOfContent,
+  //     chapterLinksArray: data.chapter_link,
+  //   };
+  //   props.updateRecentOnlineBooks(currentBook);
+  //   navigation.setOptions({ title: data.book_name, headerShown: true });
+  //   const redirectToReader = chapter => {
+  //     navigation.navigate('online-book-reader', { link: chapter.chapter_link });
+  //   };
+
+  //   return (
+  //     <ScrollView>
+  //       <View>
+  //         <BookInfo data={formatBookInfo(data)} />
+  //         <TableOfContent
+  //           data={tableOfContent}
+  //           redirectToReader={redirectToReader}
+  //         />
+  //       </View>
+  //     </ScrollView>
+  //   );
+  // } else {
+  //   navigation.setOptions({ headerShown: false });
+  //   return (
+  //     <Loading
+  //       handleCancel={() => {
+  //         controller.cancel('Cancel-Request');
+  //       }}
+  //     />
+  //   );
+  // }
 }
 
 const mapDispatchToProps = dispatch => {

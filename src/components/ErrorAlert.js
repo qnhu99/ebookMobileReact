@@ -1,8 +1,4 @@
 import { Alert } from 'react-native';
-
-function ErrorAlert(props) {
-  const errorMessage = props.errorMessage;
-  return Alert.alert('Error', errorMessage);
-}
+const ErrorAlert = ({ message }) => Alert.alert('Error', message);
 
 export default ErrorAlert;

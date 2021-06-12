@@ -8,17 +8,19 @@ import dimensions from '../../res/dimensions';
 function BookInfo(props) {
   const navigation = useNavigation();
   const { currentBook } = props;
-  const { imgUrl, bookName, bookIntro } = props.data;
-  const bookAuthor = props.data.bookAuthor.replace('\n', '');
+  const { imgUrl, bookName, bookIntro, bookAuthor } = props.data;
   const [expanded, setExpanded] = useState(false);
   const [buttonTitle, setButtonTitle] = useState('Continue Reading');
   useEffect(() => {
-    if (currentBook.currentChapterLink) {
-      setButtonTitle('Continue Reading');
-    } else {
-      setButtonTitle('Start Reading');
-    }
-  }, [currentBook.currentChapterLink]);
+    const { tableOfContent, chapterLinksArray, ...others } = currentBook;
+    console.log(JSON.stringify({ ...others }));
+    // if (currentBook?.currentChapterLink) {
+    //   setButtonTitle('Continue Reading');
+    // } else {
+    //   setButtonTitle('Start Reading');
+    // }
+  }, []);
+
   const handlePress = () => setExpanded(!expanded);
 
   const reading = () => {
@@ -35,7 +37,8 @@ function BookInfo(props) {
   };
   return (
     <View>
-      <Card>
+      <Text>Testing</Text>
+      {/* <Card>
         <Card.Image
           source={{ uri: imgUrl }}
           resizeMode="cover"
@@ -66,6 +69,7 @@ function BookInfo(props) {
           onPress={reading}
         />
       </Card>
+     */}
     </View>
   );
 }
