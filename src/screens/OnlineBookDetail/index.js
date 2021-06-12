@@ -49,11 +49,11 @@ const formatTableOfContent = data => {
   };
 };
 
-const fetcher = url => axios(BookApi.getBookDetail(url)).then(res => res.data);
-
 function OnlineBookDetail(props) {
   const navigation = useNavigation();
   const link = props.route.params.link;
+  const fetcher = url =>
+    axios(BookApi.getBookDetail(url)).then(res => res.data);
 
   const { data, error } = useSWR(link, fetcher, {
     refreshInterval: 21600,

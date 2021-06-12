@@ -1,6 +1,13 @@
 import React, { useState, useLayoutEffect, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/core';
-import { View, ScrollView, Text, StatusBar } from 'react-native';
+import {
+  View,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  StatusBar,
+} from 'react-native';
+import { Divider } from 'react-native-elements';
 import { connect } from 'react-redux';
 // Custom components
 import AddButton from '../components/AddButton';
@@ -104,14 +111,16 @@ function HomeScreen(props) {
     }
     return (
       <View>
-        {listFilter().slice(0, 10).map((item, index) => (
-          <BookItem
-            {...item}
-            navigation={props.navigation}
-            index={index}
-            key={index}
-          />
-        ))}
+        {listFilter()
+          .slice(0, 10)
+          .map((item, index) => (
+            <BookItem
+              {...item}
+              navigation={props.navigation}
+              index={index}
+              key={index}
+            />
+          ))}
       </View>
     );
   }
@@ -125,6 +134,15 @@ function HomeScreen(props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>{'Recent files'}</Text>
           {renderBooks()}
+          <Divider />
+          <TouchableOpacity
+            style={{ paddingVertical: 5 }}
+            onPress={() => navigation.navigate('file-library')}
+          >
+            <Text style={{ textAlign: 'center', fontSize: 16 }}>
+              {'View more'}
+            </Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </>
