@@ -108,7 +108,7 @@ function OnlineBookLibraryStackScreen() {
       name="online-book-library-screen"
       component={OnlineBookLibrary}
       options={{
-        title: 'Online Book',
+        title: 'Online Books',
         headerStyle: {
           fontFamily: globalSettings.fontFamily,
         },
