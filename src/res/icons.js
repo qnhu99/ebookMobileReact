@@ -24,6 +24,10 @@ const Icons = {
   settings_outline: props => (
     <Icon name="settings-outline" type="ionicon" {...props} />
   ),
+  help: props => <Icon name="help-circle" type="ionicon" {...props} />,
+  help_outline: props => (
+    <Icon name="help-circle-outline" type="ionicon" {...props} />
+  ),
   search: props => <Icon name="search" type="material-community" {...props} />,
   plus: props => <Icon name="plus" type="material-community" {...props} />,
   sign_in: props => <Icon name="sign-in" type="font-awesome" {...props} />,

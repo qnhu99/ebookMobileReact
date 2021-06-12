@@ -52,20 +52,7 @@ function HomeScreen(props) {
         header: undefined,
         headerRight: () => (
           <View style={styles.headerIconsWrapper}>
-            <Icon
-              name="search"
-              size={20}
-              color={contrastColor}
-              style={styles.searchIcon}
-              onPress={() => setSearchBar(true)}
-            />
-            <Icon
-              name="help-circle"
-              size={20}
-              color={contrastColor}
-              style={styles.helpIcon}
-              onPress={() => props.navigation.navigate('help')}
-            />
+
           </View>
         ),
       });

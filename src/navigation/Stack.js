@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from 'src/screens/Home';
 import OnlineBookLibrary from 'src/screens/OnlineBookLibrary';
 import FileLibrary from 'src/screens/FileLibrary';
-import SettingsScreen from 'src/screens/Settings';
+import HelpScreen from 'src/screens/Help';
 import OnlineBookDetail from 'src/screens/OnlineBookDetail';
 import OnlineBookReader from 'src/screens/OnlineBookReader';
 import EpubReader from 'src/screens/EpubReader';
@@ -50,11 +50,11 @@ const options = {
           ) : (
             <Icons.file_outline color={color} size={size - 5} />
           );
-        case 'settings':
+        case 'help':
           return focused ? (
-            <Icons.settings color={color} size={size} />
+            <Icons.help color={color} size={size + 7} />
           ) : (
-            <Icons.settings_outline color={color} size={size} />
+            <Icons.help_outline color={color} size={size + 7} />
           );
       }
       return (
@@ -132,11 +132,11 @@ function FileLibraryStackScreen() {
   );
 }
 
-function SettingsStackScreen() {
+function HelpStackScreen() {
   return (
     <StackScreen
       name="settings-screen"
-      component={SettingsScreen}
+      component={HelpScreen}
       options={{
         headerShown: false,
       }}
@@ -156,7 +156,7 @@ function BottomTabNavigator() {
         component={OnlineBookLibraryStackScreen}
       />
       <Tab.Screen name="file-library" component={FileLibraryStackScreen} />
-      <Tab.Screen name="settings" component={SettingsStackScreen} />
+      <Tab.Screen name="help" component={HelpStackScreen} />
     </Tab.Navigator>
   );
 }

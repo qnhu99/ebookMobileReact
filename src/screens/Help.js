@@ -1,57 +1,96 @@
 import React, { useState } from 'react';
-import { ScrollView, Text, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Dimensions, Text, Image, ScrollView } from 'react-native';
 import { contrastColor } from '../constants';
-import { connect } from 'react-redux';
 
 const { height } = Dimensions.get('window');
 
-function Help(props) {
+const styles = {
+  view: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  scrollView: {
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  title: {
+    fontSize: 15, fontWeight: "bold"
+  }
+};
 
+function HelpScreen(props) {
   return (
-    <ScrollView style={styles.wrapper} contentContainerStyle={styles.wrapperContent}>
-      <Text style={styles.heading}>Ebook Reader</Text>
-      <Text style={styles.text}>
-        &quot;Save your favorite stories&quot; and find more in the internet.{' '}
-        <Text style={styles.emphasize}>
-          Ebook Reader help you read ebook from your device and stories from tangthuvien.vn
-				</Text>
-      </Text>
-
-    </ScrollView>
+    <View style={styles.view}>
+      <ScrollView style={styles.scrollView}>
+        <Text style={styles.title}>
+          1. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut aliquip ex ea commodo consequat.
+        </Text>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+          ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+          deserunt mollit anim id est laborum.
+        </Text>
+        <Text style={styles.title}>
+          2. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut aliquip ex ea commodo consequat.
+        </Text>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+          ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+          deserunt mollit anim id est laborum.
+        </Text>
+        <Image
+          style={{
+            width: 66,
+            height: 58,
+          }}
+          source={{
+            uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
+          }}
+        />
+        <Text style={styles.title}>
+          3. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+          laboris nisi ut aliquip ex ea commodo consequat.
+        </Text>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+          ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+          deserunt mollit anim id est laborum.
+        </Text>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+          ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+          deserunt mollit anim id est laborum.
+        </Text>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+          ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+          deserunt mollit anim id est laborum.
+        </Text>
+      </ScrollView>
+    </View>
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    globalSettings: state.globalSettings,
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  null,
-)(Help);
-
-const styles = {
-  wrapper: {
-    flex: 1,
-    height,
-    paddingTop: 10,
-    paddingLeft: 15,
-  },
-  iconWrapper: {
-    flexDirection: 'row',
-    paddingRight: 15,
-    paddingBottom: 10,
-  },
-  sectionButton: {
-    height: 50,
-    width: '33.33%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  selectedSectionButton: {
-    borderColor: contrastColor,
-    borderBottomWidth: 2,
-  },
-};
+export default HelpScreen;

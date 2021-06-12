@@ -1,4 +1,5 @@
 export const primaryColor = '#0f2439';
+export const green = '#5c6120';
 export const elevatedBG = '#F7F8FB';
 export const contrastColor = '#000000';
 
