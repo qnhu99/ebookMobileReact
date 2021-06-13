@@ -90,6 +90,9 @@ function RecentBookList(props) {
         handleError={() => {
           setLoading(false);
         }}
+        handleCancel={() => {
+          setLoading(false);
+        }}
       />
     </View>
   );
