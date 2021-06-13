@@ -1,19 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
-import { Text, View, FlatList, Dimensions } from 'react-native';
+import { Text, View, FlatList, Alert } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
 import Colors from 'src/res/colors';
+import LoadingForDetail from 'src/components/LoadingForDetail';
 
-const Item = ({ data }) => {
-  const navigation = useNavigation();
+const Item = ({ data, handlePress }) => {
   return (
-    <ListItem
-      bottomDivider
-      onPress={() =>
-        navigation.navigate('online-book-detail', { link: data.bookUrl })
-      }
-    >
+    <ListItem bottomDivider onPress={() => handlePress(data.bookUrl)}>
       <Avatar source={{ uri: data.imgUrl }} size="large" />
       <ListItem.Content>
         <ListItem.Title numberOfLines={2}>{data.bookName}</ListItem.Title>
@@ -23,36 +17,78 @@ const Item = ({ data }) => {
   );
 };
 
-function OnlineBookLibraryScreen(props) {
+function OnlineBookLibraryScreen(props, { navigation }) {
   const { books } = props;
-  const renderItem = ({ item }) => <Item data={item} />;
+  const [loading, setLoading] = useState(false);
+  const [url, setUrl] = useState('');
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    if (error) {
+      const message = error.message;
+      Alert.alert('Error', message);
+      setError(null);
+    }
+  }, [error]);
+
+  const handlePress = bookUrl => {
+    setLoading(true);
+    setUrl(bookUrl);
+  };
+
+  const renderItem = ({ item }) => (
+    <Item
+      data={{ ...item.bookInfo, bookUrl: item.bookUrl }}
+      handlePress={handlePress}
+    />
+  );
 
   const render = () => {
     if (books.length === 0) {
       return (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Text style={styles.message}>{'Your Online library is empty!'}</Text>
-          <Text style={styles.message}>
-            {'Add some books via Link to get started'}
-          </Text>
+        <View style={styles.wrapper}>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Text style={styles.message}>
+              {'Your Online library is empty!'}
+            </Text>
+            <Text style={styles.message}>
+              {'Add some books via Link to get started'}
+            </Text>
+          </View>
         </View>
       );
     }
     return (
-      <FlatList
-        data={books}
-        renderItem={renderItem}
-        keyExtractor={item => item.bookUrl}
-      />
+      <>
+        <FlatList
+          data={books}
+          renderItem={renderItem}
+          keyExtractor={item => item.bookUrl}
+        />
+        <LoadingForDetail
+          show={loading}
+          url={url}
+          handleSuccess={newData => {
+            setLoading(false);
+            navigation.navigate('online-book-detail', { data: newData });
+          }}
+          handleError={newError => {
+            setLoading(false);
+            setError(newError);
+          }}
+          handleCancel={() => {
+            setLoading(false);
+          }}
+        />
+      </>
     );
   };
-  return <View style={styles.wrapper}>{render()}</View>;
+  return <>{render()}</>;
 }
 
 const mapStateToProps = state => ({

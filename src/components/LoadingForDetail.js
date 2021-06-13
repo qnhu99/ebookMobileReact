@@ -53,7 +53,7 @@ function useCancellableSWR(key, swrOptions) {
           cancelToken: source.token,
         }).then(res => res.data),
       {
-        refreshInterval: 1000,
+        refreshInterval: 3000,
         ...swrOptions,
       },
     ),

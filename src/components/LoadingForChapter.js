@@ -25,23 +25,26 @@ function useCancellableSWR(key, swrOptions) {
   ];
 }
 
+function loadChapter(key, swrOptions) {
+  return useSWR(
+    key,
+    url =>
+      request({
+        ...BookApi.getChapterContent(url),
+      }).then(res => res.data),
+    {
+      refreshInterval: 3000,
+      ...swrOptions,
+    },
+  );
+}
+
 const LoadingForChapter = props => {
   if (!props.show) return null;
   const { url, handleSuccess, handleError, handleCancel } = props;
   const [{ data, error, isValidating }, controller] = useCancellableSWR(url);
 
-  if (data) {
-    props.updateRecentOnlineChapter(url);
-    handleSuccess(data);
-  }
-  if (error) {
-    if (error.message === 'Cancel-Request') {
-      handleCancel();
-    } else {
-      handleError(error);
-    }
-  }
-  if (isValidating) {
+  if (isValidating && !data) {
     return (
       <Overlay isVisible={props.show} style={styles.wrapper}>
         <ActivityIndicator />
@@ -52,6 +55,19 @@ const LoadingForChapter = props => {
         />
       </Overlay>
     );
+  }
+
+  if (data) {
+    props.updateRecentOnlineChapter(url);
+
+    handleSuccess(data);
+  }
+  if (error) {
+    if (error.message === 'Cancel-Request') {
+      handleCancel();
+    } else {
+      handleError(error);
+    }
   }
 
   return null;
