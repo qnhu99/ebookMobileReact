@@ -4,10 +4,8 @@ import { View, Text } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
 
 function TableOfContent(props) {
-  const navigation = useNavigation();
   const {
     handlePressChapter,
-    data,
     data: { seasons },
   } = props;
   return (
@@ -22,7 +20,10 @@ function TableOfContent(props) {
               <ListItem
                 key={index_chapter}
                 onPress={() => {
-                  handlePressChapter(chapter.chapter_link);
+                  handlePressChapter(
+                    chapter.chapter_link,
+                    chapter.chapter_index,
+                  );
                   // navigation.navigate('online-book-reader', {
                   //   link: chapter.chapter_link,
                   // });

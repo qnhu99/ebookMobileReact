@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import useSWR from 'swr';
 import { connect } from 'react-redux';
-import { View, Text, Dimensions, Alert } from 'react-native';
+import { View, Dimensions, Alert } from 'react-native';
 import SideMenu from 'react-native-side-menu-updated';
 import ChapterContent from './ChapterContent';
 import Icons from '../../res/icons';
-import Loading from '../../components/Loading';
-import axios, { BookApi } from 'src/api';
-import * as actions from '../../actions';
 import MenuDrawer from './MenuDrawer';
 import { contrastColor } from '../../constants';
 import { useNavigation } from '@react-navigation/native';
 import LoadingForChapter from 'src/components/LoadingForChapter';
-
 const { height: full_height } = Dimensions.get('window');
 
 function OnlineBookReader(props) {
+  const navigation = useNavigation();
+  const [isDrawer, setDrawer] = useState(false);
   const [chapterURL, setChapterURL] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -27,16 +24,11 @@ function OnlineBookReader(props) {
     }
   }, [error]);
   const data = props.route.params.data;
-  useEffect(() => {
-    Object.keys(data).forEach(prop => console.log(prop));
-    props.updateRecentOnlineChapter(data.chapterURL);
-  });
+
   const handlePressChapter = url => {
     setLoading(true);
     setChapterURL(url);
   };
-  const navigation = useNavigation();
-  const [isDrawer, setDrawer] = useState(false);
 
   navigation.setOptions({
     headerShown: true,
@@ -86,10 +78,7 @@ function OnlineBookReader(props) {
 
 const mapStateToProps = state => ({ currentBook: state.recentBooks[0] });
 
-export default connect(
-  mapStateToProps,
-  actions,
-)(OnlineBookReader);
+export default connect(mapStateToProps)(OnlineBookReader);
 
 const styles = {
   wholeScreen: { flex: 1 },

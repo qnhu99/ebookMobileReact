@@ -6,22 +6,14 @@ import { connect } from 'react-redux';
 import dimensions from '../../res/dimensions';
 
 function BookInfo(props) {
-  const navigation = useNavigation();
   const {
-    handlePressChapter,
-    currentChapterIndex,
-    currentChapterLink,
+    handlePressReading,
+    buttonTitle,
     data: { imgUrl, bookName, bookIntro, bookAuthor },
   } = props;
   const [expanded, setExpanded] = useState(false);
-  const [isFirst, setFirst] = useState(currentChapterIndex < 0);
   const handlePress = () => setExpanded(!expanded);
 
-  const reading = () => {
-    setFirst(false);
-    console.log(currentChapterLink);
-    handlePressChapter(currentChapterLink);
-  };
   return (
     <Card>
       <Card.Image
@@ -50,21 +42,14 @@ function BookInfo(props) {
       </View>
       <Button
         buttonStyle={styles.button}
-        title={isFirst ? 'Start reading' : 'Continue reading'}
-        onPress={reading}
+        title={buttonTitle}
+        onPress={handlePressReading}
       />
     </Card>
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    currentChapterIndex: state.recentBooks[0]?.currentChapterIndex,
-    currentChapterLink: state.recentBooks[0]?.currentChapterLink,
-  };
-};
-
-export default connect(mapStateToProps)(BookInfo);
+export default BookInfo;
 
 const imageWidth = dimensions.full_width - 80;
 const imageHeight = Math.floor((imageWidth * 192) / 120) - 30;

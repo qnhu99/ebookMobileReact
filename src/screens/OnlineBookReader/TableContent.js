@@ -3,6 +3,12 @@ import { View, Text, TouchableOpacity, SectionList } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
 const Chapter = ({ item, disabled, redirectToReader }) => {
+  useNavigation(() => {
+    console.log(
+      '🚀 ~ file: TableContent.js ~ line 6 ~ Chapter ~ item',
+      JSON.stringify(item, null, 2),
+    );
+  });
   return (
     <View
       style={[
@@ -26,12 +32,7 @@ const Chapter = ({ item, disabled, redirectToReader }) => {
 const SectionHeader = ({ title }) => <Text style={styles.header}>{title}</Text>;
 
 function TableContent(props) {
-  const {
-    tableOfContent,
-    currentChapterLink,
-    setDrawer,
-    handlePressChapter,
-  } = props;
+  const { tableOfContent, currentChapterLink, handlePressChapter } = props;
 
   const formatData = () => {
     return tableOfContent.seasons.map(season => ({
@@ -39,9 +40,7 @@ function TableContent(props) {
       data: season.chapters,
     }));
   };
-
   const redirectToReader = url => {
-    setDrawer(false);
     handlePressChapter(url);
   };
   const renderItem = ({ item }) => (

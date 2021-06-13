@@ -15,9 +15,9 @@ export default function(state = INITIAL_STATE, { type, payload }) {
       );
       if (found >= 0) {
         const removed = newState.splice(found, 1)[0];
-        current.chapterCurrentIndex = removed.currentChapterIndex;
+        current.currentChapterIndex = removed.currentChapterIndex;
         current.currentChapterLink =
-          payload.chapterLinksArray[removed.currentChapterIndex];
+          current.chapterLinksArray[removed.currentChapterIndex];
       }
       return [current, ...newState];
     }

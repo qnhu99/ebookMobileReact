@@ -6,15 +6,12 @@ import { connect } from 'react-redux';
 import Colors from 'src/res/colors';
 import LoadingForDetail from './LoadingForDetail';
 
-const Item = ({ data, index, setLoading, setUrl }) => {
+const Item = ({ data, index, onPressItem }) => {
   return (
     <ListItem
       key={index}
       bottomDivider
-      onPress={() => {
-        setLoading(true);
-        setUrl(data.bookUrl);
-      }}
+      onPress={() => onPressItem(data.bookUrl)}
     >
       <Avatar source={{ uri: data.imgUrl }} size="large" />
       <ListItem.Content>
@@ -30,16 +27,21 @@ function RecentBookList(props) {
   const navigation = useNavigation();
   const [loading, setLoading] = React.useState(false);
   const [url, setUrl] = React.useState('');
+
+  const onPressItem = url => {
+    setLoading(true);
+    setUrl(url);
+  };
+
   const renderItem = () => {
     return props.list
       .slice(0, 10)
       .map((item, index) => (
         <Item
-          data={item}
+          data={{ ...item.bookInfo, bookUrl: item.bookUrl }}
           key={index}
           index={index}
-          setLoading={setLoading}
-          setUrl={setUrl}
+          onPressItem={onPressItem}
         />
       ));
   };
