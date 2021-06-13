@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useSWR from 'swr';
 import { ActivityIndicator } from 'react-native';
 import { Overlay, Button } from 'react-native-elements';
@@ -65,6 +65,18 @@ const LoadingForDetail = props => {
   if (!props.show) return null;
   const { url, handleSuccess, handleError, handleCancel } = props;
   const [{ data, error, isValidating }, controller] = useCancellableSWR(url);
+  if (isValidating) {
+    return (
+      <Overlay isVisible={props.show} style={styles.wrapper}>
+        <ActivityIndicator />
+        <Button
+          title="Cancel"
+          type="clear"
+          onPress={() => controller.cancel('Cancel-Request')}
+        />
+      </Overlay>
+    );
+  }
   if (data) {
     const currentBook = {
       bookUrl: url,
@@ -79,21 +91,10 @@ const LoadingForDetail = props => {
     if (error.message === 'Cancel-Request') {
       handleCancel();
     } else {
-      console.log(typeof error);
       handleError(error);
     }
-  } else if (isValidating) {
-    return (
-      <Overlay isVisible={props.show} style={styles.wrapper}>
-        <ActivityIndicator />
-        <Button
-          title="Cancel"
-          type="clear"
-          onPress={() => controller.cancel('Cancel-Request')}
-        />
-      </Overlay>
-    );
   }
+
   return null;
 };
 const mapDispatchToProps = dispatch => {

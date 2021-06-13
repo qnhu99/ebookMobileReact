@@ -16,10 +16,6 @@ function OnlineBookDetail(props) {
   const [chapterURL, setChapterURL] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [currentChapter, setCurrentChapter] = useState({
-    currentChapterIndex,
-    currentChapterLink,
-  });
 
   useEffect(() => {
     if (error) {
@@ -31,18 +27,11 @@ function OnlineBookDetail(props) {
 
   const handlePressReading = () => {
     setLoading(true);
-    if (currentChapter.currentChapterLink < 0) {
-      setCurrentChapter({
-        currentChapterIndex: 0,
-        currentChapterLink: currentChapter.currentChapterLink,
-      });
-    }
-    setChapterURL(currentChapter.currentChapterLink);
+    setChapterURL(currentChapterLink);
   };
 
   const handlePressChapter = (url, index) => {
     setLoading(true);
-    setCurrentChapter({ currentChapterIndex: index, currentChapterLink: url });
     setChapterURL(url);
   };
 
@@ -56,9 +45,7 @@ function OnlineBookDetail(props) {
             data={bookInfo}
             handlePressReading={handlePressReading}
             buttonTitle={
-              currentChapter.currentChapterIndex < 0
-                ? 'Start reading'
-                : 'Continue reading'
+              currentChapterIndex < 0 ? 'Start reading' : 'Continue reading'
             }
           />
           <TableOfContent

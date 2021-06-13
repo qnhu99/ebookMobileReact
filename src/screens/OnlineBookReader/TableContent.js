@@ -1,14 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, SectionList } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
 
 const Chapter = ({ item, disabled, redirectToReader }) => {
-  useNavigation(() => {
-    console.log(
-      '🚀 ~ file: TableContent.js ~ line 6 ~ Chapter ~ item',
-      JSON.stringify(item, null, 2),
-    );
-  });
   return (
     <View
       style={[

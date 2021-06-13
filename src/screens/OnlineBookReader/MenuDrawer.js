@@ -28,7 +28,6 @@ function MenuDrawer(props) {
             tableOfContent={tableOfContent}
             currentChapterLink={currentChapterLink}
             handlePressChapter={url => {
-              setDrawer(false);
               handlePressChapter(url);
             }}
           />

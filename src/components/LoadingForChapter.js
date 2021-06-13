@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useSWR from 'swr';
 import axios from 'axios';
 import { ActivityIndicator } from 'react-native';
@@ -17,7 +17,7 @@ function useCancellableSWR(key, swrOptions) {
           cancelToken: source.token,
         }).then(res => res.data),
       {
-        refreshInterval: 1000,
+        refreshInterval: 3000,
         ...swrOptions,
       },
     ),
@@ -38,7 +38,6 @@ const LoadingForChapter = props => {
     if (error.message === 'Cancel-Request') {
       handleCancel();
     } else {
-      console.log(typeof error);
       handleError(error);
     }
   }
@@ -54,6 +53,7 @@ const LoadingForChapter = props => {
       </Overlay>
     );
   }
+
   return null;
 };
 

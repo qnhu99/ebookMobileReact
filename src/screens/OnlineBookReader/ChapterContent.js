@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, ScrollView, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
@@ -11,7 +10,6 @@ const Controller = props => {
     chapterLinksArray,
     handlePressChapter,
   } = props;
-  const navigation = useNavigation();
   return (
     <View style={styles.controller}>
       <Button
@@ -21,9 +19,7 @@ const Controller = props => {
         iconLeft
         disabled={prevChapter === ''}
         onPress={() => {
-          console.log('prev chapter', prevChapter);
           handlePressChapter(prevChapter);
-          // navigation.navigate('online-book-reader', { link: prevChapter })
         }}
       />
       <Button
@@ -33,9 +29,7 @@ const Controller = props => {
         iconRight
         disabled={!chapterLinksArray.some(item => item === nextChapter)}
         onPress={() => {
-          console.log('next chapter', nextChapter);
           handlePressChapter(nextChapter);
-          // navigation.navigate('online-book-reader', { link: nextChapter })
         }}
       />
     </View>

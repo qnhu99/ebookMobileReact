@@ -16,6 +16,8 @@ function OnlineBookReader(props) {
   const [chapterURL, setChapterURL] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const data = props.route.params.data;
+  const [fetchedData, setFetchedData] = useState(data);
   useEffect(() => {
     if (error) {
       const message = error.message;
@@ -23,7 +25,6 @@ function OnlineBookReader(props) {
       setError(null);
     }
   }, [error]);
-  const data = props.route.params.data;
 
   const handlePressChapter = url => {
     setLoading(true);
@@ -32,7 +33,7 @@ function OnlineBookReader(props) {
 
   navigation.setOptions({
     headerShown: true,
-    title: data.chapter_title,
+    title: fetchedData.chapter_title,
     headerRight: () => (
       <View style={styles.iconWrapper}>
         <Icons.menu
@@ -54,15 +55,17 @@ function OnlineBookReader(props) {
       menuPosition="right"
       onChange={() => setDrawer(!isDrawer)}
     >
-      <ChapterContent data={data} handlePressChapter={handlePressChapter} />
+      <ChapterContent
+        data={fetchedData}
+        handlePressChapter={handlePressChapter}
+      />
       <LoadingForChapter
         show={loading}
         url={chapterURL}
         handleSuccess={newData => {
           setLoading(false);
-          navigation.navigate('online-book-reader', {
-            data: { ...newData, chapterURL },
-          });
+          setFetchedData(newData);
+          setDrawer(false);
         }}
         handleError={newError => {
           setLoading(false);

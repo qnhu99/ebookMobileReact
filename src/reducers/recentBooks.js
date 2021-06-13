@@ -28,6 +28,7 @@ export default function(state = INITIAL_STATE, { type, payload }) {
       );
       if (found >= 0) {
         newState[0].currentChapterIndex = found;
+        newState[0].currentChapterLink = payload;
       }
       return newState;
     }
