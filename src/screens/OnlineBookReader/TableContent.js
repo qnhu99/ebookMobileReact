@@ -2,14 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, SectionList } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 
-const Chapter = ({ item, disabled, setDrawer }) => {
-  const navigation = useNavigation();
-  const redirectToReader = chapter => {
-    setDrawer(false);
-    navigation.navigate('online-book-reader', {
-      link: chapter.chapter_link,
-    });
-  };
+const Chapter = ({ item, disabled, redirectToReader }) => {
   return (
     <View
       style={[
@@ -20,7 +13,7 @@ const Chapter = ({ item, disabled, setDrawer }) => {
       <TouchableOpacity
         style={{ paddingVertical: 10 }}
         disabled={disabled}
-        onPress={() => redirectToReader(item)}
+        onPress={() => redirectToReader(item.chapter_link)}
       >
         <Text style={styles.item_text} numberOfLines={1}>
           {item.chapter_name}
@@ -33,7 +26,12 @@ const Chapter = ({ item, disabled, setDrawer }) => {
 const SectionHeader = ({ title }) => <Text style={styles.header}>{title}</Text>;
 
 function TableContent(props) {
-  const { tableOfContent, currentChapterLink, setDrawer } = props;
+  const {
+    tableOfContent,
+    currentChapterLink,
+    setDrawer,
+    handlePressChapter,
+  } = props;
 
   const formatData = () => {
     return tableOfContent.seasons.map(season => ({
@@ -41,11 +39,16 @@ function TableContent(props) {
       data: season.chapters,
     }));
   };
+
+  const redirectToReader = url => {
+    setDrawer(false);
+    handlePressChapter(url);
+  };
   const renderItem = ({ item }) => (
     <Chapter
-      setDrawer={setDrawer}
       item={item}
       disabled={item.chapter_link === currentChapterLink}
+      redirectToReader={redirectToReader}
     />
   );
 

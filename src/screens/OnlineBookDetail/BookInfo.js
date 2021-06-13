@@ -7,76 +7,60 @@ import dimensions from '../../res/dimensions';
 
 function BookInfo(props) {
   const navigation = useNavigation();
-  const { currentBook } = props;
-  const { imgUrl, bookName, bookIntro, bookAuthor } = props.data;
+  const {
+    handlePressChapter,
+    currentChapterIndex,
+    currentChapterLink,
+    data: { imgUrl, bookName, bookIntro, bookAuthor },
+  } = props;
   const [expanded, setExpanded] = useState(false);
-  const [buttonTitle, setButtonTitle] = useState('Continue Reading');
-  useEffect(() => {
-    const { tableOfContent, chapterLinksArray, ...others } = currentBook;
-    console.log(JSON.stringify({ ...others }));
-    // if (currentBook?.currentChapterLink) {
-    //   setButtonTitle('Continue Reading');
-    // } else {
-    //   setButtonTitle('Start Reading');
-    // }
-  }, []);
-
+  const [isFirst, setFirst] = useState(currentChapterIndex < 0);
   const handlePress = () => setExpanded(!expanded);
 
   const reading = () => {
-    setButtonTitle('Continue Reading');
-    if (!currentBook.currentChapterLink) {
-      navigation.navigate('online-book-reader', {
-        link: currentBook.chapterLinksArray[0],
-      });
-    } else {
-      navigation.navigate('online-book-reader', {
-        link: currentBook.currentChapterLink,
-      });
-    }
+    setFirst(false);
+    console.log(currentChapterLink);
+    handlePressChapter(currentChapterLink);
   };
   return (
-    <View>
-      <Text>Testing</Text>
-      {/* <Card>
-        <Card.Image
-          source={{ uri: imgUrl }}
-          resizeMode="cover"
-          style={styles.image}
-          containerStyle={{ alignSelf: 'center' }}
-        />
-        <Card.Divider />
-        <View style={styles.titleContainer}>
-          <Card.Title h4 style={{ marginBottom: 4 }}>
-            {bookName}
-          </Card.Title>
-          <Text style={{ fontSize: 14 }}>by {bookAuthor}</Text>
-        </View>
-        <View>
-          <ListItem.Accordion
-            content={<ListItem.Title>Summary</ListItem.Title>}
-            isExpanded={expanded}
-            onPress={handlePress}
-          >
-            <ListItem.Title style={{ textAlign: 'justify', padding: 10 }}>
-              {bookIntro}
-            </ListItem.Title>
-          </ListItem.Accordion>
-        </View>
-        <Button
-          buttonStyle={styles.button}
-          title={buttonTitle}
-          onPress={reading}
-        />
-      </Card>
-     */}
-    </View>
+    <Card>
+      <Card.Image
+        source={{ uri: imgUrl }}
+        resizeMode="cover"
+        style={styles.image}
+        containerStyle={{ alignSelf: 'center' }}
+      />
+      <Card.Divider />
+      <View style={styles.titleContainer}>
+        <Card.Title h4 style={{ marginBottom: 4 }}>
+          {bookName}
+        </Card.Title>
+        <Text style={{ fontSize: 14 }}>by {bookAuthor}</Text>
+      </View>
+      <View>
+        <ListItem.Accordion
+          content={<ListItem.Title>Summary</ListItem.Title>}
+          isExpanded={expanded}
+          onPress={handlePress}
+        >
+          <ListItem.Title style={{ textAlign: 'justify', padding: 10 }}>
+            {bookIntro}
+          </ListItem.Title>
+        </ListItem.Accordion>
+      </View>
+      <Button
+        buttonStyle={styles.button}
+        title={isFirst ? 'Start reading' : 'Continue reading'}
+        onPress={reading}
+      />
+    </Card>
   );
 }
 
 const mapStateToProps = state => {
   return {
-    currentBook: state.recentBooks[0],
+    currentChapterIndex: state.recentBooks[0]?.currentChapterIndex,
+    currentChapterLink: state.recentBooks[0]?.currentChapterLink,
   };
 };
 

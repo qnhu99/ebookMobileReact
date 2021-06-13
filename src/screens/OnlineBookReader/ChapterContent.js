@@ -5,7 +5,12 @@ import { Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 const Controller = props => {
-  const { prevChapter, nextChapter, chapterLinksArray } = props;
+  const {
+    prevChapter,
+    nextChapter,
+    chapterLinksArray,
+    handlePressChapter,
+  } = props;
   const navigation = useNavigation();
   return (
     <View style={styles.controller}>
@@ -15,9 +20,11 @@ const Controller = props => {
         icon={<Icon name="arrow-left" size={30} color="black" />}
         iconLeft
         disabled={prevChapter === ''}
-        onPress={() =>
-          navigation.navigate('online-book-reader', { link: prevChapter })
-        }
+        onPress={() => {
+          console.log('prev chapter', prevChapter);
+          handlePressChapter(prevChapter);
+          // navigation.navigate('online-book-reader', { link: prevChapter })
+        }}
       />
       <Button
         title="Next"
@@ -25,17 +32,22 @@ const Controller = props => {
         icon={<Icon name="arrow-right" size={30} color="black" />}
         iconRight
         disabled={!chapterLinksArray.some(item => item === nextChapter)}
-        onPress={() =>
-          navigation.navigate('online-book-reader', { link: nextChapter })
-        }
+        onPress={() => {
+          console.log('next chapter', nextChapter);
+          handlePressChapter(nextChapter);
+          // navigation.navigate('online-book-reader', { link: nextChapter })
+        }}
       />
     </View>
   );
 };
 
 function ChapterContent(props) {
-  const { prev_chap, next_chap, content } = props.data;
-  const { chapterLinksArray } = props;
+  const {
+    chapterLinksArray,
+    handlePressChapter,
+    data: { prev_chap, next_chap, content },
+  } = props;
   const backgroundColor = props.settings.theme.value;
   const textColor = props.settings.theme.textColor;
   const fontSize = props.settings.fontSize;
@@ -63,6 +75,7 @@ function ChapterContent(props) {
         prevChapter={prev_chap}
         nextChapter={next_chap}
         chapterLinksArray={chapterLinksArray}
+        handlePressChapter={handlePressChapter}
       />
     </View>
   );

@@ -81,8 +81,9 @@ function RecentBookList(props) {
       <LoadingForDetail
         show={loading}
         url={url}
-        handleSuccess={() => {
+        handleSuccess={newData => {
           setLoading(false);
+          navigation.navigate('online-book-detail', { data: newData });
         }}
         handleError={() => {
           setLoading(false);

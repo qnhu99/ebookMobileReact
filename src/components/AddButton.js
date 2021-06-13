@@ -175,10 +175,6 @@ function AddButton(props) {
         }}
         handleError={newError => {
           setLoadingOnlineBookDetail(false);
-          console.log(
-            '🚀 ~ file: AddButton.js ~ line 198 ~ AddButton ~ newError',
-            newError,
-          );
           setError(newError);
         }}
         handleCancel={() => {

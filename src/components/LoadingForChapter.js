@@ -12,7 +12,7 @@ function useCancellableSWR(key, swrOptions) {
       key,
       url =>
         request({
-          ...BookApi.getBookDetail(url),
+          ...BookApi.getChapterContent(url),
           cancelToken: source.token,
         }).then(res => res.data),
       {
@@ -24,10 +24,20 @@ function useCancellableSWR(key, swrOptions) {
   ];
 }
 
-const LoadingForDetail = props => {
+const LoadingForChapter = props => {
   if (!props.show) return null;
   const { url, handleSuccess, handleError, handleCancel } = props;
   const [{ data, error, isValidating }, controller] = useCancellableSWR(url);
+
+  if (data) handleSuccess(data);
+  if (error) {
+    if (error.message === 'Cancel-Request') {
+      handleCancel();
+    } else {
+      console.log(typeof error);
+      handleError(error);
+    }
+  }
   if (isValidating) {
     return (
       <Overlay isVisible={props.show} style={styles.wrapper}>
@@ -40,19 +50,10 @@ const LoadingForDetail = props => {
       </Overlay>
     );
   }
-  if (data) handleSuccess({ ...data, book_url: url });
-  if (error) {
-    if (error.message === 'Cancel-Request') {
-      handleCancel();
-    } else {
-      console.log(typeof error);
-      handleError(error);
-    }
-  }
   return null;
 };
 
-export default LoadingForDetail;
+export default LoadingForChapter;
 
 const styles = {
   wrapper: {

@@ -5,7 +5,11 @@ import { Card, ListItem } from 'react-native-elements';
 
 function TableOfContent(props) {
   const navigation = useNavigation();
-  const { seasons } = props.data;
+  const {
+    handlePressChapter,
+    data,
+    data: { seasons },
+  } = props;
   return (
     <Card>
       <Card.Title>Table of content</Card.Title>
@@ -17,11 +21,12 @@ function TableOfContent(props) {
             {season.chapters.map((chapter, index_chapter) => (
               <ListItem
                 key={index_chapter}
-                onPress={() =>
-                  navigation.navigate('online-book-reader', {
-                    link: chapter.chapter_link,
-                  })
-                }
+                onPress={() => {
+                  handlePressChapter(chapter.chapter_link);
+                  // navigation.navigate('online-book-reader', {
+                  //   link: chapter.chapter_link,
+                  // });
+                }}
                 bottomDivider
               >
                 <ListItem.Content>

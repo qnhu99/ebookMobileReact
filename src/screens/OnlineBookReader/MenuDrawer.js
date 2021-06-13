@@ -22,6 +22,7 @@ function MenuDrawer(props) {
             tableOfContent={props.tableOfContent}
             currentChapterLink={props.currentChapterLink}
             setDrawer={props.setDrawer}
+            handlePressChapter={props.handlePressChapter}
           />
         );
       case 'settings':
