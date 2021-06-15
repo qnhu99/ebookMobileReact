@@ -4,16 +4,14 @@ import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { ListItem, Avatar, Divider } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Colors from 'src/res/colors';
+import LoadingForDetail from './LoadingForDetail';
 
-const Item = ({ data, index }) => {
-  const navigation = useNavigation();
+const Item = ({ data, index, onPressItem }) => {
   return (
     <ListItem
       key={index}
       bottomDivider
-      onPress={() =>
-        navigation.navigate('online-book-detail', { link: data.bookUrl })
-      }
+      onPress={() => onPressItem(data.bookUrl)}
     >
       <Avatar source={{ uri: data.imgUrl }} size="large" />
       <ListItem.Content>
@@ -27,13 +25,26 @@ const Item = ({ data, index }) => {
 function RecentBookList(props) {
   const fontFamily = props.globalSettings.fontFamily;
   const navigation = useNavigation();
+  const [loading, setLoading] = React.useState(false);
+  const [url, setUrl] = React.useState('');
+
+  const onPressItem = url => {
+    setLoading(true);
+    setUrl(url);
+  };
 
   const renderItem = () => {
     return props.list
       .slice(0, 10)
-      .map((item, index) => <Item data={item} key={index} index={index} />);
+      .map((item, index) => (
+        <Item
+          data={{ ...item.bookInfo, bookUrl: item.bookUrl }}
+          key={index}
+          index={index}
+          onPressItem={onPressItem}
+        />
+      ));
   };
-
   const renderSection = () => {
     if (props.list.length === 0) {
       return (
@@ -69,6 +80,20 @@ function RecentBookList(props) {
       >
         <Text style={{ textAlign: 'center', fontSize: 16 }}>{'View more'}</Text>
       </TouchableOpacity>
+      <LoadingForDetail
+        show={loading}
+        url={url}
+        handleSuccess={newData => {
+          setLoading(false);
+          navigation.navigate('online-book-detail', { data: newData });
+        }}
+        handleError={() => {
+          setLoading(false);
+        }}
+        handleCancel={() => {
+          setLoading(false);
+        }}
+      />
     </View>
   );
 }

@@ -1,90 +1,87 @@
-import React, { useState } from 'react';
-import useSWR from 'swr';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, Dimensions } from 'react-native';
+import { View, Dimensions, Alert } from 'react-native';
 import SideMenu from 'react-native-side-menu-updated';
 import ChapterContent from './ChapterContent';
 import Icons from '../../res/icons';
-import Loading from '../../components/Loading';
-import axios, { BookApi } from 'src/api';
-import * as actions from '../../actions';
 import MenuDrawer from './MenuDrawer';
 import { contrastColor } from '../../constants';
 import { useNavigation } from '@react-navigation/native';
-
+import LoadingForChapter from 'src/components/LoadingForChapter';
 const { height: full_height } = Dimensions.get('window');
-
-const Error = props => (
-  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
-      Something went wrong...
-    </Text>
-    <Text style={{ fontSize: 16 }}>{props.message}</Text>
-  </View>
-);
-
-const fetcher = url =>
-  axios(BookApi.getChapterContent(url)).then(res => {
-    return res.data;
-  });
 
 function OnlineBookReader(props) {
   const navigation = useNavigation();
-  const { link } = props.route.params;
   const [isDrawer, setDrawer] = useState(false);
+  const [chapterURL, setChapterURL] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const data = props.route.params.data;
+  const [fetchedData, setFetchedData] = useState(data);
+  useEffect(() => {
+    if (error) {
+      const message = error.message;
+      Alert.alert('Error', message);
+      setError(null);
+    }
+  }, [error]);
 
-  const { data, error } = useSWR(link, fetcher, {
-    refreshInterval: 1000,
-    onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
-      if (error.status === 404) return;
-      if (retryCount >= 10) return;
-      setTimeout(() => revalidate({ retryCount }), 5000);
-    },
+  const handlePressChapter = url => {
+    setLoading(true);
+    setChapterURL(url);
+  };
+
+  navigation.setOptions({
+    headerShown: true,
+    title: fetchedData.chapter_title,
+    headerRight: () => (
+      <View style={styles.iconWrapper}>
+        <Icons.menu
+          size={20}
+          style={styles.headerIcon}
+          onPress={() => setDrawer(!isDrawer)}
+        />
+      </View>
+    ),
   });
 
-  if (error) {
-    navigation.setOptions({ title: 'Error', headerShown: true });
-    return <Error message={error.message} />;
-  }
-
-  if (data) {
-    navigation.setOptions({
-      headerShown: true,
-      title: data.chapter_title,
-      headerRight: () => (
-        <View style={styles.iconWrapper}>
-          <Icons.menu
-            size={20}
-            style={styles.headerIcon}
-            onPress={() => setDrawer(!isDrawer)}
-          />
-        </View>
-      ),
-    });
-    props.updateRecentOnlineChapter(link);
-    const menu = <MenuDrawer setDrawer={setDrawer} />;
-    return (
-      <SideMenu
-        menu={menu}
-        isOpen={isDrawer}
-        menuPosition="right"
-        onChange={() => setDrawer(!isDrawer)}
-      >
-        <ChapterContent data={data} />
-      </SideMenu>
-    );
-  } else {
-    navigation.setOptions({ headerShown: false });
-    return <Loading />;
-  }
+  const menu = (
+    <MenuDrawer setDrawer={setDrawer} handlePressChapter={handlePressChapter} />
+  );
+  return (
+    <SideMenu
+      menu={menu}
+      isOpen={isDrawer}
+      menuPosition="right"
+      onChange={() => setDrawer(!isDrawer)}
+    >
+      <ChapterContent
+        data={fetchedData}
+        handlePressChapter={handlePressChapter}
+      />
+      <LoadingForChapter
+        show={loading}
+        url={chapterURL}
+        handleSuccess={newData => {
+          setLoading(false);
+          setFetchedData(newData);
+          setDrawer(false);
+        }}
+        handleError={newError => {
+          setLoading(false);
+          setError(newError);
+        }}
+        handleCancel={() => {
+          setLoading(false);
+        }}
+      />
+    </SideMenu>
+  );
 }
 
 const mapStateToProps = state => ({ currentBook: state.recentBooks[0] });
 
-export default connect(
-  mapStateToProps,
-  actions,
-)(OnlineBookReader);
+export default connect(mapStateToProps)(OnlineBookReader);
 
 const styles = {
   wholeScreen: { flex: 1 },

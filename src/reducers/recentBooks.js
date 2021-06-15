@@ -3,34 +3,32 @@ const INITIAL_STATE = [];
 export default function(state = INITIAL_STATE, { type, payload }) {
   switch (type) {
     case 'update-recent-online-books': {
-      const current = { ...payload, date: new Date() };
+      const current = {
+        ...payload,
+        date: new Date(),
+        currentChapterIndex: -1,
+        currentChapterLink: payload.chapterLinksArray[0],
+      };
       const newState = [...state];
       const found = newState.findIndex(
         item => item.bookUrl === payload.bookUrl,
       );
       if (found >= 0) {
         const removed = newState.splice(found, 1)[0];
-        if (removed?.currentChapterLink) {
-          const exist = current.chapterLinksArray.findIndex(
-            item => item === removed.currentChapterLink,
-          );
-          if (exist >= 0) {
-            current.currentChapterIndex = exist;
-          }
-
-          current.currentChapterLink = removed.currentChapterLink;
-        }
+        current.currentChapterIndex = removed.currentChapterIndex;
+        current.currentChapterLink =
+          current.chapterLinksArray[removed.currentChapterIndex];
       }
       return [current, ...newState];
     }
     case 'update-recent-online-chapter': {
       const newState = [...state];
-      const exist = newState[0].chapterLinksArray.findIndex(
+      const found = newState[0].chapterLinksArray.findIndex(
         item => item === payload,
       );
-      if (exist >= 0) {
+      if (found >= 0) {
+        newState[0].currentChapterIndex = found;
         newState[0].currentChapterLink = payload;
-        newState[0].currentChapterIndex = exist;
       }
       return newState;
     }

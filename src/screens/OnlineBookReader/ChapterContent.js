@@ -1,12 +1,15 @@
 import React from 'react';
 import { Text, ScrollView, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 const Controller = props => {
-  const { prevChapter, nextChapter, chapterLinksArray } = props;
-  const navigation = useNavigation();
+  const {
+    prevChapter,
+    nextChapter,
+    chapterLinksArray,
+    handlePressChapter,
+  } = props;
   return (
     <View style={styles.controller}>
       <Button
@@ -15,9 +18,9 @@ const Controller = props => {
         icon={<Icon name="arrow-left" size={30} color="black" />}
         iconLeft
         disabled={prevChapter === ''}
-        onPress={() =>
-          navigation.navigate('online-book-reader', { link: prevChapter })
-        }
+        onPress={() => {
+          handlePressChapter(prevChapter);
+        }}
       />
       <Button
         title="Next"
@@ -25,17 +28,20 @@ const Controller = props => {
         icon={<Icon name="arrow-right" size={30} color="black" />}
         iconRight
         disabled={!chapterLinksArray.some(item => item === nextChapter)}
-        onPress={() =>
-          navigation.navigate('online-book-reader', { link: nextChapter })
-        }
+        onPress={() => {
+          handlePressChapter(nextChapter);
+        }}
       />
     </View>
   );
 };
 
 function ChapterContent(props) {
-  const { prev_chap, next_chap, content } = props.data;
-  const { chapterLinksArray } = props;
+  const {
+    chapterLinksArray,
+    handlePressChapter,
+    data: { prev_chap, next_chap, content },
+  } = props;
   const backgroundColor = props.settings.theme.value;
   const textColor = props.settings.theme.textColor;
   const fontSize = props.settings.fontSize;
@@ -63,6 +69,7 @@ function ChapterContent(props) {
         prevChapter={prev_chap}
         nextChapter={next_chap}
         chapterLinksArray={chapterLinksArray}
+        handlePressChapter={handlePressChapter}
       />
     </View>
   );

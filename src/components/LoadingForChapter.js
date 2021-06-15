@@ -1,0 +1,95 @@
+import React, { useEffect } from 'react';
+import useSWR from 'swr';
+import axios from 'axios';
+import { ActivityIndicator } from 'react-native';
+import { Overlay, Button } from 'react-native-elements';
+import request, { BookApi } from 'src/api';
+import { updateRecentOnlineChapter } from 'src/actions/recentBooks';
+import { connect } from 'react-redux';
+function useCancellableSWR(key, swrOptions) {
+  const source = axios.CancelToken.source();
+  return [
+    useSWR(
+      key,
+      url =>
+        request({
+          ...BookApi.getChapterContent(url),
+          cancelToken: source.token,
+        }).then(res => res.data),
+      {
+        refreshInterval: 3000,
+        ...swrOptions,
+      },
+    ),
+    source,
+  ];
+}
+
+function loadChapter(key, swrOptions) {
+  return useSWR(
+    key,
+    url =>
+      request({
+        ...BookApi.getChapterContent(url),
+      }).then(res => res.data),
+    {
+      refreshInterval: 3000,
+      ...swrOptions,
+    },
+  );
+}
+
+const LoadingForChapter = props => {
+  if (!props.show) return null;
+  const { url, handleSuccess, handleError, handleCancel } = props;
+  const [{ data, error, isValidating }, controller] = useCancellableSWR(url);
+
+  if (isValidating && !data) {
+    return (
+      <Overlay isVisible={props.show} style={styles.wrapper}>
+        <ActivityIndicator />
+        <Button
+          title="Cancel"
+          type="clear"
+          onPress={() => controller.cancel('Cancel-Request')}
+        />
+      </Overlay>
+    );
+  }
+
+  if (data) {
+    props.updateRecentOnlineChapter(url);
+
+    handleSuccess(data);
+  }
+  if (error) {
+    if (error.message === 'Cancel-Request') {
+      handleCancel();
+    } else {
+      handleError(error);
+    }
+  }
+
+  return null;
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    updateRecentOnlineChapter: data =>
+      dispatch(updateRecentOnlineChapter(data)),
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(LoadingForChapter);
+
+const styles = {
+  wrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '10',
+  },
+};
