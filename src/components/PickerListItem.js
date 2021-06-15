@@ -13,7 +13,7 @@ function PickerListItem(props) {
         <Picker
           prompt={props.title}
           selectedValue={props.settings[props.id]}
-          onValueChange={val => props.updateSettings({ [props.id]: val })}
+          onValueChange={val => { console.log(val); props.updateSettings({ [props.id]: val }); }}
           style={styles.picker}
         >
           {props.items.map((item, i) => (

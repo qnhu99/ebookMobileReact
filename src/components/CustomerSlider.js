@@ -1,42 +1,41 @@
-import React from 'react';
-import { View, Text, Picker, Slider } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
+import { Slider } from 'react-native-elements';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { primaryColor } from '../constants';
 
 function CustomSlider(props) {
   const fontFamily = props.globalSettings.fontFamily;
+  const [value, setValue] = useState(props.convertBackward(props.settings[props.id]));
 
   return (
-    <View style={{ ...styles.wrapper, fontFamily }}>
-      <Text style={{ ...styles.text, fontFamily }}>{`${props.text}: ${props.settings[props.id]}`}</Text>
-      <View style={{ ...styles.pickerWrapper, fontFamily }}>
+    <View style={{ ...styles.wrapper, }}>
+      <Text style={{ ...styles.text, }}>{`${props.text}: ${props.settings[props.id]}`}</Text>
+      <View style={{ ...styles.pickerWrapper, }}>
         <Slider
-          style={styles.slider}
-          step={props.step}
+          thumbStyle={styles.thumb}
+          trackStyle={styles.track}
           value={props.convertBackward(props.settings[props.id])}
+          onValueChange={
+            (val) => { props.updateSettings({ [props.id]: props.convertFunc(val) }); }
+          }
           minimumValue={props.minValue}
           maximumValue={props.maxValue}
-          // minimumTrackTintColor={props.fg}
-          // thumbTintColor={props.fg}
-          onSlidingComplete={val => props.updateSettings({ [props.id]: props.convertFunc(val) })}
+          step={props.step}
+          minimumTrackTintColor="transparent"
         />
       </View>
     </View>
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    settings: state.settings,
-    globalSettings: state.globalSettings
-  };
-}
+const mapStateToProps = state => ({
+  settings: state.settings,
+  globalSettings: state.globalSettings
+});
 
-export default connect(
-  mapStateToProps,
-  actions,
-)(CustomSlider);
+export default connect(mapStateToProps, actions)(CustomSlider);
 
 const styles = {
   wrapper: {
@@ -49,20 +48,21 @@ const styles = {
     height: 35,
     width: '90%',
     justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: primaryColor,
-    borderRadius: 4,
   },
   text: {
-    fontSize: 16,
+    fontSize: 14,
     paddingLeft: 2,
-    paddingBottom: 6,
+    paddingBottom: 4,
   },
-  picker: {
-    width: '100%',
+  thumb: {
+    height: 30,
+    width: 20,
+    borderRadius: 50,
+    backgroundColor: '#4166f5',
   },
-  slider: {
-    width: '95%',
-    height: 6,
-  },
+  track: {
+    height: 10,
+    borderRadius: 50,
+    backgroundColor: 'transparent',
+  }
 };
