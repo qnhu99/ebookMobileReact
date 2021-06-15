@@ -19,7 +19,6 @@ export default function (state = INITIAL_STATE, action) {
     case 'add_metadata': {
       let { data, index } = action.payload;
       let stateCopy = [...state];
-      console.log('>> ~ file: books.js ~ line 23 ~ function ~ data', data);
       stateCopy[index] = { ...stateCopy[index], ...data };
       return stateCopy;
     }

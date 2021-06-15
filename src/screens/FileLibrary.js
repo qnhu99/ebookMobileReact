@@ -5,10 +5,10 @@ import BookItem from '../components/BookItem';
 
 function FileLibrary(props) {
   function listFilter() {
-    if (input) {
+    if (props.books.length > 0) {
       return props.books.filter((book) => {
         let itemData = ` ${book.title} ${book.author}`.toUpperCase();
-        let searchData = ' ' + input.toUpperCase();
+        let searchData = ' ' + book.title.toUpperCase();
         return itemData.indexOf(searchData) > -1;
       });
     }

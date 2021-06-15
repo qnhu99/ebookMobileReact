@@ -49,7 +49,6 @@ function EpubReader(props) {
           <Icon
             name="bookmark-plus-outline"
             size={21}
-            color={props.settings.fg}
             style={styles.headerIcon}
             type="community"
             onPress={onBookmarkPress}
@@ -57,7 +56,6 @@ function EpubReader(props) {
           <Icon
             name="menu"
             size={20}
-            color={props.settings.fg}
             style={styles.headerIcon}
             onPress={() => setDrawer(!isDrawer)}
           />
@@ -86,8 +84,6 @@ function EpubReader(props) {
 		window.rendition.themes.register({ theme: "${JSON.stringify(themeToStyles(props.settings))}" });
 		window.rendition.themes.select('theme');`);
     refresh();
-    StatusBar.setBackgroundColor(props.settings.bg, true);
-    StatusBar.setBarStyle(`${props.settings.fg === '#000000' ? 'dark' : 'light'}-content`);
   }, [bg, fg, size, height]);
 
   let injectedJS = `window.BOOK_PATH = "${state.bookUrl}";

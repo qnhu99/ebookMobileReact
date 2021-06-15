@@ -138,7 +138,8 @@ function HelpStackScreen() {
       name="settings-screen"
       component={HelpScreen}
       options={{
-        headerShown: false,
+        title: "Help",
+
       }}
     />
   );
@@ -168,16 +169,16 @@ function Navigator(props) {
     headerTitleStyle: {
       fontSize: 16,
       fontFamily: globalSettings.fontFamily,
-      color: props.fg,
+      // color: props.fg,
       marginRight: 25,
       marginBottom: 4,
       marginLeft: -5,
     },
     headerStyle: {
       elevation: 0,
-      backgroundColor: props.bg,
+      // backgroundColor: props.bg,
     },
-    headerTintColor: props.fg,
+    // headerTintColor: props.fg,
   });
 
   return (
