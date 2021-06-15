@@ -11,7 +11,7 @@ function CustomSlider(props) {
 
   return (
     <View style={{ ...styles.wrapper, }}>
-      <Text style={{ ...styles.text, }}>{`${props.text}: ${props.settings[props.id]}`}</Text>
+      <Text style={styles.header}>{`${props.text}: ${props.settings[props.id]}`}</Text>
       <View style={{ ...styles.pickerWrapper, }}>
         <Slider
           thumbStyle={styles.thumb}
@@ -26,7 +26,7 @@ function CustomSlider(props) {
           minimumTrackTintColor="transparent"
         />
       </View>
-    </View>
+    </View >
   );
 }
 
@@ -43,6 +43,10 @@ const styles = {
     height: 70,
     justifyContent: 'space-evenly',
     marginTop: 15,
+  },
+  header: {
+    fontSize: 17,
+    fontWeight: 'bold',
   },
   pickerWrapper: {
     height: 35,

@@ -7,10 +7,7 @@ import { settings } from '../constants';
 
 function Settings(props) {
   return (
-    <ScrollView
-      style={styles.scrollView}
-      contentContainerStyle={styles.scrollViewContent}
-    >
+    <ScrollView style={styles.scrollView}>
       {settings.filter(item => { return props.drawerType === 'pdf' ? item.id === "bg" : true }).map((item, i) => {
         return item.type === 'slider' ?
           <CustomerSlider {...item} key={i} /> : <RadioButtonPicker {...item} key={i} />
@@ -22,9 +19,7 @@ function Settings(props) {
 export default Settings;
 
 const styles = {
-  scrollView: { flex: 1 },
-  scrollViewContent: {
-    alignItems: 'flex-start',
-    paddingBottom: 50,
+  scrollView: {
+    flex: 1,
   },
 };
