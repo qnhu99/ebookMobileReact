@@ -42,11 +42,11 @@ function ChapterContent(props) {
     handlePressChapter,
     data: { prev_chap, next_chap, content },
   } = props;
+  const font = props.settings.font.value;
   const backgroundColor = props.settings.theme.value;
   const textColor = props.settings.theme.textColor;
   const fontSize = props.settings.fontSize;
   const lineHeight = props.settings.lineHeight;
-
   return (
     <View style={[styles.wrapper, { backgroundColor }]}>
       <ScrollView>
@@ -58,6 +58,7 @@ function ChapterContent(props) {
                 color: textColor,
                 fontSize,
                 lineHeight: fontSize * lineHeight,
+                fontFamily: font,
               },
             ]}
           >
@@ -87,7 +88,7 @@ export default connect(mapStateToProps)(ChapterContent);
 const styles = {
   wrapper: { flex: 1 },
   container: { padding: 30 },
-  text: { textAlign: 'justify', fontSize: 20, lineHeight: 30 },
+  text: { textAlign: 'justify' },
   controller: {
     position: 'absolute',
     left: 0,

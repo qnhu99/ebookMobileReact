@@ -68,7 +68,7 @@ const LoadingForDetail = props => {
   if (isValidating) {
     return (
       <Overlay isVisible={props.show} style={styles.wrapper}>
-        <ActivityIndicator />
+        <ActivityIndicator size="large" />
         <Button
           title="Cancel"
           type="clear"

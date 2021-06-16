@@ -1,4 +1,5 @@
 const InitialState = {
+  font: { label: 'Arial', value: 'Arial' },
   theme: { label: 'Light', value: '#fafafa', textColor: '#000000' },
   fontSize: 15,
   lineHeight: 1.4,
@@ -12,6 +13,8 @@ export default function(state = InitialState, action) {
       return { ...state, fontSize: action.payload };
     case 'set_line_height':
       return { ...state, lineHeight: action.payload };
+    case 'set_font':
+      return { ...state, font: action.payload };
     default:
       return state;
   }

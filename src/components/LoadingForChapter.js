@@ -25,20 +25,6 @@ function useCancellableSWR(key, swrOptions) {
   ];
 }
 
-function loadChapter(key, swrOptions) {
-  return useSWR(
-    key,
-    url =>
-      request({
-        ...BookApi.getChapterContent(url),
-      }).then(res => res.data),
-    {
-      refreshInterval: 3000,
-      ...swrOptions,
-    },
-  );
-}
-
 const LoadingForChapter = props => {
   if (!props.show) return null;
   const { url, handleSuccess, handleError, handleCancel } = props;
@@ -47,11 +33,14 @@ const LoadingForChapter = props => {
   if (isValidating && !data) {
     return (
       <Overlay isVisible={props.show} style={styles.wrapper}>
-        <ActivityIndicator />
+        <ActivityIndicator size="large" />
         <Button
           title="Cancel"
           type="clear"
-          onPress={() => controller.cancel('Cancel-Request')}
+          onPress={() => {
+            handleCancel();
+            controller.cancel('Cancel-Request');
+          }}
         />
       </Overlay>
     );
@@ -59,7 +48,6 @@ const LoadingForChapter = props => {
 
   if (data) {
     props.updateRecentOnlineChapter(url);
-
     handleSuccess(data);
   }
   if (error) {
