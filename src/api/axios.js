@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const onlineServer = 'https://flask-web-scraping.herokuapp.com/';
+const onlineServer = 'https://ebook-main-server.herokuapp.com/';
 
 export default axios.create({
   baseURL: onlineServer,

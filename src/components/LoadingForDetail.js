@@ -72,7 +72,10 @@ const LoadingForDetail = props => {
         <Button
           title="Cancel"
           type="clear"
-          onPress={() => controller.cancel('Cancel-Request')}
+          onPress={() => {
+            handleCancel();
+            controller.cancel('Cancel-Request');
+          }}
         />
       </Overlay>
     );
