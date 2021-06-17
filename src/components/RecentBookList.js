@@ -54,7 +54,7 @@ const Item = ({ data, index, onPressItem, onLongPressItem }) => {
 };
 
 function RecentBookList(props) {
-  const fontFamily = props.globalSettings.fontFamily;
+  const fontFamily = 'CircularLight';
   const navigation = useNavigation();
   const [loading, setLoading] = React.useState(false);
   const [isModalVisible, setModalVisible] = React.useState(false);

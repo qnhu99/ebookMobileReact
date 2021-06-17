@@ -13,20 +13,17 @@ import { connect } from 'react-redux';
 import AddButton from '../components/AddButton';
 import BookItem from '../components/BookItem';
 import SearchBar from '../components/SearchBar';
-import Icon from '../components/Icon';
 import WelcomeIntro from '../components/WelcomeIntro';
 import RecentBookList from 'src/components/RecentBookList';
 import Colors from 'src/res/colors';
-import { contrastColor } from 'src/constants';
 
 // Main
 function HomeScreen(props) {
-  const globalSettings = props.globalSettings;
-  const fontFamily = globalSettings.fontFamily;
 
   const navigation = useNavigation();
   const [isSearchBar, setSearchBar] = useState(false);
   const [input, setInput] = useState('');
+  const fontFamily = 'CircularLight';
 
   useEffect(() => {
     StatusBar.setBackgroundColor('#ffffff', true);
@@ -139,7 +136,6 @@ function HomeScreen(props) {
 function mapStateToProps(state) {
   return {
     books: state.books,
-    globalSettings: state.globalSettings,
   };
 }
 

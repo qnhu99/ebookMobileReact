@@ -14,7 +14,6 @@ import PdfReader from 'src/screens/PdfReader';
 import Help from 'src/screens/Help';
 import Icons from 'src/res/icons.js';
 import Colors from 'src/res/colors';
-import { globalSettings } from '../constants';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -22,7 +21,6 @@ const Tab = createBottomTabNavigator();
 const screenOptions = {
   headerTitleStyle: {
     fontSize: 18,
-    fontFamily: globalSettings.fontFamily,
   },
   headerShown: true,
 };
@@ -94,9 +92,7 @@ function HomeStackScreen() {
       component={HomeScreen}
       options={{
         title: 'Ebook Reader',
-        headerStyle: {
-          fontFamily: globalSettings.fontFamily,
-        },
+
       }}
     />
   );
@@ -109,9 +105,7 @@ function OnlineBookLibraryStackScreen() {
       component={OnlineBookLibrary}
       options={{
         title: 'Online Books',
-        headerStyle: {
-          fontFamily: globalSettings.fontFamily,
-        },
+
       }}
     />
   );
@@ -124,9 +118,7 @@ function FileLibraryStackScreen() {
       component={FileLibrary}
       options={{
         title: 'Files',
-        headerStyle: {
-          fontFamily: globalSettings.fontFamily,
-        },
+
       }}
     />
   );
@@ -168,7 +160,6 @@ function Navigator(props) {
     title: route.params.title,
     headerTitleStyle: {
       fontSize: 16,
-      fontFamily: globalSettings.fontFamily,
       // color: props.fg,
       marginRight: 25,
       marginBottom: 4,

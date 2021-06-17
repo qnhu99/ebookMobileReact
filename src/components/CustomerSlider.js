@@ -3,12 +3,8 @@ import { View, Text } from 'react-native';
 import { Slider } from 'react-native-elements';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import { primaryColor } from '../constants';
 
 function CustomSlider(props) {
-  const fontFamily = props.globalSettings.fontFamily;
-  const [value, setValue] = useState(props.convertBackward(props.settings[props.id]));
-
   return (
     <View style={{ ...styles.wrapper, }}>
       <Text style={styles.header}>{`${props.text}: ${props.settings[props.id]}`}</Text>

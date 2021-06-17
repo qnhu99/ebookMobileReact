@@ -1,6 +1,5 @@
 import React from 'react';
-import { ScrollView, Slider } from 'react-native';
-import PickerListItem from './PickerListItem';
+import { ScrollView } from 'react-native';
 import RadioButtonPicker from './RadioButtonPicker';
 import CustomerSlider from './CustomerSlider';
 import { settings } from '../constants';

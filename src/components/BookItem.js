@@ -8,9 +8,8 @@ import { connect } from 'react-redux';
 
 const ScreenWidth = Dimensions.get('window').width;
 
-function BookItem(props) {
+export default function BookItem(props) {
   const [isModalVisible, setModalVisible] = useState(false);
-  const fontFamily = props.globalSettings.fontFamily;
 
   async function onPress() {
     let { isConnected, isInternetReachable } = await NetInfo.fetch();
@@ -36,10 +35,10 @@ function BookItem(props) {
       onLongPress={() => setModalVisible(true)}
       key={props.index}
     >
-      <Text style={{ ...styles.title, fontFamily }} numberOfLines={1}>
+      <Text style={styles.title} numberOfLines={1}>
         {props.title}
       </Text>
-      <Text style={{ ...styles.author, fontFamily }} numberOfLines={1}>
+      <Text style={styles.author} numberOfLines={1}>
         {props.author || (props.type || 'EPUB').toUpperCase() + ' Document'}
       </Text>
       <OptionsModal
@@ -52,16 +51,6 @@ function BookItem(props) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    globalSettings: state.globalSettings,
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  null,
-)(BookItem);
 
 const styles = {
   wrapper: {

@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableWithoutFeedback,
-  Slider,
-  Dimensions,
-} from 'react-native';
+import { View, Text, TouchableWithoutFeedback, Dimensions, Slider } from 'react-native';
+// import { Slider } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Icon from './Icon';
 
@@ -25,11 +20,10 @@ function Progress(props) {
         </View>
       </TouchableWithoutFeedback>
       <View style={styles.progressWrapper}>
-        <Text style={[styles.text, { color: props.fg }]}>{`${
-          progress === undefined
-            ? 'Loading'
-            : progress + (type === 'pdf' ? 0 : 1)
-        } / ${totalPages}`}</Text>
+        <Text style={[styles.text, { color: props.fg }]}>{`${progress === undefined
+          ? 'Loading'
+          : progress + (type === 'pdf' ? 0 : 1)
+          } / ${totalPages}`}</Text>
         <Slider
           style={styles.slider}
           disabled={progress === undefined || totalPages === 0}

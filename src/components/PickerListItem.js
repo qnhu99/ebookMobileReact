@@ -5,15 +5,14 @@ import * as actions from '../actions';
 import { primaryColor } from '../constants';
 
 function PickerListItem(props) {
-  const fontFamily = props.globalSettings.fontFamily;
   return (
-    <View style={{ ...styles.wrapper, fontFamily }}>
-      <Text style={{ ...styles.text, fontFamily }}>{props.text}</Text>
-      <View style={{ ...styles.pickerWrapper, fontFamily }}>
+    <View style={styles.wrapper}>
+      <Text style={styles.text}>{props.text}</Text>
+      <View style={styles.pickerWrapper}>
         <Picker
           prompt={props.title}
           selectedValue={props.settings[props.id]}
-          onValueChange={val => { console.log(val); props.updateSettings({ [props.id]: val }); }}
+          onValueChange={val => { props.updateSettings({ [props.id]: val }); }}
           style={styles.picker}
         >
           {props.items.map((item, i) => (

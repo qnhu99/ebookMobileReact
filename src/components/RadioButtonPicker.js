@@ -25,7 +25,6 @@ function RadioButtomPicker(props) {
 
 const mapStateToProps = state => ({
     settings: state.settings,
-    globalSettings: state.globalSettings
 });
 
 export default connect(mapStateToProps, actions)(RadioButtomPicker);
