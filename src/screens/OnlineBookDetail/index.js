@@ -35,8 +35,8 @@ function OnlineBookDetail(props) {
     setChapterURL(url);
   };
 
-  navigation.setOptions({ title: data.book_name, headerShown: true });
-
+  //navigation.setOptions({ title: data.book_name, headerShown: true });
+  navigation.setOptions({ title: data.bookInfo.bookName, headerShown: true });
   return (
     <>
       <ScrollView>

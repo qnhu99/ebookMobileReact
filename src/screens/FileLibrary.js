@@ -2,6 +2,8 @@ import React, { useState, useLayoutEffect, useEffect } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import BookItem from '../components/BookItem';
+import AddButton from '../components/AddButton';
+
 
 function FileLibrary(props) {
   function listFilter() {
@@ -26,7 +28,6 @@ function FileLibrary(props) {
     }
     return (
       <FlatList
-        contentContainerStyle={styles.flatlist}
         data={listFilter()}
         renderItem={({ item, index }) => (
           <BookItem {...item} navigation={props.navigation} index={index} />
@@ -37,9 +38,10 @@ function FileLibrary(props) {
   }
 
   return (
-    <View style={styles.wrapper}>
+    <>
+      <AddButton />
       {renderBooks()}
-    </View>
+    </>
   );
 }
 
@@ -57,8 +59,6 @@ export default connect(
 const styles = {
   wrapper: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#ffffff'
   },
   flatlist: {

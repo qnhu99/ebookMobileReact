@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Text, TouchableOpacity, Dimensions } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 import OptionsModal from './OptionsModal';
+import { ListItem } from 'react-native-elements';
 import showToast from './Toast';
 import { contrastColor } from '../constants';
 import { connect } from 'react-redux';
@@ -28,26 +29,46 @@ export default function BookItem(props) {
   }
 
   return (
-    <TouchableOpacity
-      activeOpacity={0.4}
-      style={styles.wrapper}
-      onPress={onPress}
-      onLongPress={() => setModalVisible(true)}
-      key={props.index}
-    >
-      <Text style={styles.title} numberOfLines={1}>
-        {props.title}
-      </Text>
-      <Text style={styles.author} numberOfLines={1}>
-        {props.author || (props.type || 'EPUB').toUpperCase() + ' Document'}
-      </Text>
-      <OptionsModal
-        isVisible={isModalVisible}
-        onPressCancel={() => setModalVisible(false)}
-        url={props.url}
-        index={props.index}
-      />
-    </TouchableOpacity>
+    <>
+      <ListItem
+        bottomDivider
+        onPress={onPress}
+        onLongPress={() => setModalVisible(true)}
+      >
+        <ListItem.Content>
+          <ListItem.Title numberOfLines={2}>{props.title}</ListItem.Title>
+          {props.author && <ListItem.Subtitle>{`Author: ${props.author}`}</ListItem.Subtitle>}
+          <ListItem.Subtitle>{(props.type || 'EPUB').toUpperCase() + ' Document'}</ListItem.Subtitle>
+        </ListItem.Content>
+
+        <OptionsModal
+          isVisible={isModalVisible}
+          onPressCancel={() => setModalVisible(false)}
+          url={props.url}
+          index={props.index}
+        />
+      </ListItem>
+      {/* <TouchableOpacity
+        activeOpacity={0.4}
+        style={styles.wrapper}
+        onPress={onPress}
+        onLongPress={() => setModalVisible(true)}
+        key={props.index}
+      >
+        <Text style={styles.title} numberOfLines={1}>
+          {props.title}
+        </Text>
+        <Text style={styles.author} numberOfLines={1}>
+          {props.author || (props.type || 'EPUB').toUpperCase() + ' Document'}
+        </Text>
+        <OptionsModal
+          isVisible={isModalVisible}
+          onPressCancel={() => setModalVisible(false)}
+          url={props.url}
+          index={props.index}
+        />
+      </TouchableOpacity> */}
+    </>
   );
 }
 

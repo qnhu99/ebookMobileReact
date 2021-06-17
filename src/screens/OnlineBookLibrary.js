@@ -4,6 +4,7 @@ import { Text, View, FlatList, Alert } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
 import Colors from 'src/res/colors';
 import LoadingForDetail from 'src/components/LoadingForDetail';
+import AddButton from '../components/AddButton';
 
 const Item = ({ data, handlePress }) => {
   return (
@@ -88,7 +89,11 @@ function OnlineBookLibraryScreen(props, { navigation }) {
       </>
     );
   };
-  return <>{render()}</>;
+
+  return <>
+    <AddButton />
+    {render()}
+  </>;
 }
 
 const mapStateToProps = state => ({
