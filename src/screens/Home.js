@@ -16,6 +16,7 @@ import SearchBar from '../components/SearchBar';
 import WelcomeIntro from '../components/WelcomeIntro';
 import RecentBookList from 'src/components/RecentBookList';
 import Colors from 'src/res/colors';
+import ViewmoreBtn from 'src/components/ViewmoreBtn';
 
 // Main
 function HomeScreen(props) {
@@ -119,14 +120,7 @@ function HomeScreen(props) {
           <Text style={styles.sectionTitle}>{'Recent files'}</Text>
           {renderBooks()}
           <Divider />
-          <TouchableOpacity
-            style={{ paddingVertical: 5 }}
-            onPress={() => navigation.navigate('file-library')}
-          >
-            <Text style={{ textAlign: 'center', fontSize: 16 }}>
-              {'View more'}
-            </Text>
-          </TouchableOpacity>
+          {props.books.length > 0 && <ViewmoreBtn onPress={() => navigation.navigate('file-library')} />}
         </View>
       </ScrollView>
     </>

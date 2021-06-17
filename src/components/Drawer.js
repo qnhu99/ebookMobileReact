@@ -39,6 +39,8 @@ function Drawer(props) {
     }
   }
 
+  const iconWidthPercent = `${100 / sections.length}%`;
+
   return (
     <View style={styles.wrapper}>
       <View style={styles.iconWrapper}>
@@ -46,9 +48,9 @@ function Drawer(props) {
           <TouchableOpacity
             onPress={() => setCurrentSection(name)}
             style={
-              currentSection === name
+              [currentSection === name
                 ? [styles.sectionButton, styles.selectedSectionButton]
-                : styles.sectionButton
+                : styles.sectionButton, { width: iconWidthPercent }]
             }
             key={i}
           >
@@ -77,7 +79,6 @@ const styles = {
   },
   sectionButton: {
     height: 50,
-    width: '25%',
     justifyContent: 'center',
     alignItems: 'center',
   },

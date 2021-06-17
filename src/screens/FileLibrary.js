@@ -59,6 +59,8 @@ export default connect(
 const styles = {
   wrapper: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#ffffff'
   },
   flatlist: {

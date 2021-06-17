@@ -8,6 +8,7 @@ import Colors from 'src/res/colors';
 import LoadingForDetail from './LoadingForDetail';
 import * as actions from '../actions';
 import Icon from './Icon';
+import ViewmoreBtn from './ViewmoreBtn';
 
 const { height, width } = Dimensions.get('window');
 
@@ -128,12 +129,7 @@ function RecentBookList(props) {
       <Text style={styles.sectionTitle}>Recent Online Books</Text>
       {renderSection()}
       <Divider />
-      <TouchableOpacity
-        style={{ paddingVertical: 5 }}
-        onPress={() => navigation.navigate('online-book-library')}
-      >
-        <Text style={{ textAlign: 'center', fontSize: 16 }}>{'View more'}</Text>
-      </TouchableOpacity>
+      {props.list.length > 0 && <ViewmoreBtn onPress={() => navigation.navigate('online-book-library')} />}
       <LoadingForDetail
         show={loading}
         url={url}
