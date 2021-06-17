@@ -1,41 +1,15 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
-import Modal from 'react-native-modal';
+import { View, Text, Dimensions } from 'react-native';
 import { ListItem, Avatar, Divider } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Colors from 'src/res/colors';
 import LoadingForDetail from './LoadingForDetail';
 import * as actions from '../actions';
-import Icon from './Icon';
 import ViewmoreBtn from './ViewmoreBtn';
+import OptionsModal from './OptionsModal';
 
 const { height, width } = Dimensions.get('window');
-
-function OptionsModal(props) {
-  return (
-    <Modal
-      style={styles.modal}
-      isVisible={props.isVisible}
-      deviceHeight={height}
-      onBackButtonPress={props.onPressCancel}
-      onBackdropPress={props.onPressCancel}
-      onSwipeComplete={props.onPressCancel}
-      backdropColor="rgba(0, 0, 0, 0.5)"
-      swipeDirection="down"
-      animationOutTiming={100}
-      animationInTiming={100}
-      hideModalContentWhileAnimating
-    >
-      <View style={styles.wrapperModal}>
-        <TouchableOpacity style={styles.item} onPress={props.onRemove}>
-          <Icon {...icons.remove} style={styles.icon} />
-          <Text style={styles.text}>Remove</Text>
-        </TouchableOpacity>
-      </View>
-    </Modal>
-  );
-}
 
 const Item = ({ data, index, onPressItem, onLongPressItem }) => {
   return (
@@ -119,6 +93,7 @@ function RecentBookList(props) {
           url={url}
           index={props.index}
           onRemove={onRemove}
+          isOnShareBtnEnable={false}
         />
       </View>
     );

@@ -19,10 +19,7 @@ function OptionsModal(props) {
     });
   }
 
-  function onRemove() {
-    props.onPressCancel();
-    props.removeBook(props.index);
-  }
+  const isShareRender = props.isOnShareBtnEnable === undefined || props.isOnShareBtnEnable;
 
   return (
     <Modal
@@ -38,12 +35,12 @@ function OptionsModal(props) {
       animationInTiming={100}
       hideModalContentWhileAnimating
     >
-      <View style={styles.wrapper}>
-        <TouchableOpacity style={styles.item} onPress={onShare}>
+      <View style={[styles.wrapper, { height: isShareRender ? 140 : 65 }]}>
+        {isShareRender && <TouchableOpacity style={styles.item} onPress={onShare}>
           <Icon {...icons.share} style={styles.icon} />
           <Text style={styles.text}>Share</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.item} onPress={onRemove}>
+        </TouchableOpacity>}
+        <TouchableOpacity style={styles.item} onPress={props.onRemove}>
           <Icon {...icons.remove} style={styles.icon} />
           <Text style={styles.text}>Remove</Text>
         </TouchableOpacity>
@@ -52,10 +49,7 @@ function OptionsModal(props) {
   );
 }
 
-export default connect(
-  null,
-  actions,
-)(OptionsModal);
+export default connect(null, actions)(OptionsModal);
 
 const styles = {
   modal: {

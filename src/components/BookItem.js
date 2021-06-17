@@ -1,26 +1,18 @@
 import React, { useState } from 'react';
-import { Text, TouchableOpacity, Dimensions } from 'react-native';
-import NetInfo from '@react-native-community/netinfo';
+import { Dimensions } from 'react-native';
 import OptionsModal from './OptionsModal';
 import { ListItem } from 'react-native-elements';
 import showToast from './Toast';
 import { contrastColor } from '../constants';
 import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 const ScreenWidth = Dimensions.get('window').width;
 
-export default function BookItem(props) {
+function BookItem(props) {
   const [isModalVisible, setModalVisible] = useState(false);
 
   async function onPress() {
-    let { isConnected, isInternetReachable } = await NetInfo.fetch();
-    // if (isConnected && isInternetReachable) {
-    //   props.navigation.navigate(`${props.type || 'epub' || 'pdf'}-reader`, {
-    //     title: props.title,
-    //     url: props.url,
-    //     index: props.index,
-    //   });
-    // } else showToast('No internet connection');
     props.navigation.navigate(`${props.type || 'epub' || 'pdf'}-reader`, {
       title: props.title,
       url: props.url,
@@ -46,32 +38,17 @@ export default function BookItem(props) {
           onPressCancel={() => setModalVisible(false)}
           url={props.url}
           index={props.index}
+          onRemove={() => {
+            setModalVisible(false);
+            props.removeBook(props.index);
+          }}
         />
       </ListItem>
-      {/* <TouchableOpacity
-        activeOpacity={0.4}
-        style={styles.wrapper}
-        onPress={onPress}
-        onLongPress={() => setModalVisible(true)}
-        key={props.index}
-      >
-        <Text style={styles.title} numberOfLines={1}>
-          {props.title}
-        </Text>
-        <Text style={styles.author} numberOfLines={1}>
-          {props.author || (props.type || 'EPUB').toUpperCase() + ' Document'}
-        </Text>
-        <OptionsModal
-          isVisible={isModalVisible}
-          onPressCancel={() => setModalVisible(false)}
-          url={props.url}
-          index={props.index}
-        />
-      </TouchableOpacity> */}
     </>
   );
 }
 
+export default connect(null, actions)(BookItem);
 
 const styles = {
   wrapper: {
