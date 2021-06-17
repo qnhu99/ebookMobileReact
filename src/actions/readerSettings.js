@@ -9,3 +9,7 @@ export const setFontSize = payload => {
 export const setLineHeight = payload => {
   return { type: 'set_line_height', payload };
 };
+
+export const setFont = payload => {
+  return { type: 'set_font', payload };
+};

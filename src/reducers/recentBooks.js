@@ -32,6 +32,15 @@ export default function(state = INITIAL_STATE, { type, payload }) {
       }
       return newState;
     }
+
+    case 'remove-recent-online-book': {
+      const newState = [...state];
+      const found = newState.findIndex(item => item.bookUrl === payload);
+      if (found >= 0) {
+        newState.splice(found, 1);
+      }
+      return newState;
+    }
     default:
       return state;
   }
