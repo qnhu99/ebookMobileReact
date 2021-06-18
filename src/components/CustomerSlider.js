@@ -1,37 +1,41 @@
-import React, { useState } from 'react';
-import { View, Text } from 'react-native';
-import { Slider } from 'react-native-elements';
+import React from 'react';
+import { View, Text, Picker, Slider } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import { primaryColor } from '../constants';
 
 function CustomSlider(props) {
   return (
-    <View style={{ ...styles.wrapper, }}>
-      <Text style={styles.header}>{`${props.text}: ${props.settings[props.id]}`}</Text>
-      <View style={{ ...styles.pickerWrapper, }}>
+    <View style={styles.wrapper}>
+      <Text style={styles.text}>{`${props.text}: ${props.settings[props.id]}`}</Text>
+      <View style={styles.pickerWrapper}>
         <Slider
-          thumbStyle={styles.thumb}
-          trackStyle={styles.track}
+          style={styles.slider}
+          step={props.step}
           value={props.convertBackward(props.settings[props.id])}
-          onValueChange={
-            (val) => { props.updateSettings({ [props.id]: props.convertFunc(val) }); }
-          }
           minimumValue={props.minValue}
           maximumValue={props.maxValue}
-          step={props.step}
-          minimumTrackTintColor="transparent"
+          // minimumTrackTintColor={props.fg}
+          // thumbTintColor={props.fg}
+          onSlidingComplete={val => props.updateSettings({ [props.id]: props.convertFunc(val) })}
         />
       </View>
-    </View >
+    </View>
   );
 }
 
-const mapStateToProps = state => ({
-  settings: state.settings,
-  globalSettings: state.globalSettings
-});
+function mapStateToProps(state) {
+  return {
+    settings: state.settings,
+    globalSettings: state.globalSettings
+  };
+}
 
-export default connect(mapStateToProps, actions)(CustomSlider);
+export default connect(
+  mapStateToProps,
+  actions,
+)(CustomSlider);
 
 const styles = {
   wrapper: {
@@ -40,29 +44,23 @@ const styles = {
     justifyContent: 'space-evenly',
     marginTop: 15,
   },
-  header: {
+  pickerWrapper: {
+    height: 35,
+    // width: '90%',
+    justifyContent: 'center',
+    // borderWidth: 1,
+    // borderColor: "gray",
+    // borderRadius: 4,
+  },
+  text: {
     fontSize: 17,
     fontWeight: 'bold',
   },
-  pickerWrapper: {
-    height: 35,
-    width: '90%',
-    justifyContent: 'center',
+  picker: {
+    width: '100%',
   },
-  text: {
-    fontSize: 14,
-    paddingLeft: 2,
-    paddingBottom: 4,
+  slider: {
+    width: '95%',
+    height: 6,
   },
-  thumb: {
-    height: 30,
-    width: 20,
-    borderRadius: 50,
-    backgroundColor: '#4166f5',
-  },
-  track: {
-    height: 10,
-    borderRadius: 50,
-    backgroundColor: 'transparent',
-  }
 };
