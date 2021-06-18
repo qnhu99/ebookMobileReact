@@ -124,7 +124,7 @@ function RecentBookList(props) {
 }
 
 const mapStateToProps = state => {
-  return { list: state.recentBooks, globalSettings: state.globalSettings };
+  return { list: state.recentBooks };
 };
 
 export default connect(

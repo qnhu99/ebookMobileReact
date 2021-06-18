@@ -204,7 +204,6 @@ function mapStateToProps(state) {
   return {
     bg: state.settings.bg,
     fg: state.settings.fg,
-    globalSettings: state.globalSettings,
   };
 }
 

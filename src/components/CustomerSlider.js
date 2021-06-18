@@ -28,7 +28,6 @@ function CustomSlider(props) {
 function mapStateToProps(state) {
   return {
     settings: state.settings,
-    globalSettings: state.globalSettings
   };
 }
 
