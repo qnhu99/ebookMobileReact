@@ -1030,6 +1030,10 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-5.9.10.tgz#97d3a9fa62a3a4838ec7a6ec91cfec5a26e365b6"
   integrity sha512-1NPlBA2Hu/KWc3EnQcDRPRX0x8Dg9tuQlQQVWVQjlg+u+PjCq7ANEtbikOFKp5yQqfF8tqzU5+84/IfDO8zpiA==
 
+"@react-native-picker/picker@react-native-picker/picker":
+  version "1.16.1"
+  resolved "https://codeload.github.com/react-native-picker/picker/tar.gz/5a4ba06be462f834fcd6e26ad3098b3e2528bcb6"
+
 "@react-navigation/bottom-tabs@^5.11.10":
   version "5.11.11"
   resolved "https://registry.yarnpkg.com/@react-navigation/bottom-tabs/-/bottom-tabs-5.11.11.tgz#ad4dfee4316522d8c05b5a8ad460f597bddb9e3c"

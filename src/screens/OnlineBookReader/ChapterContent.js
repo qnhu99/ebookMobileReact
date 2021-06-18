@@ -42,7 +42,7 @@ function ChapterContent(props) {
     handlePressChapter,
     data: { prev_chap, next_chap, content },
   } = props;
-  const font = props.settings.font.value;
+  const font = props.settings.font?.value;
   const backgroundColor = props.settings.theme.value;
   const textColor = props.settings.theme.textColor;
   const fontSize = props.settings.fontSize;

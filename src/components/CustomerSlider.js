@@ -1,40 +1,26 @@
 import React from 'react';
-import { View, Text, Picker, Slider } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
-import { primaryColor } from '../constants';
+import { View, Text, Slider } from 'react-native';
 
-function CustomSlider(props) {
+const CustomSlider = props => {
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.text}>{`${props.text}: ${props.settings[props.id]}`}</Text>
+      <Text style={styles.title}>{props.title}</Text>
       <View style={styles.pickerWrapper}>
         <Slider
           style={styles.slider}
           step={props.step}
-          value={props.convertBackward(props.settings[props.id])}
-          minimumValue={props.minValue}
-          maximumValue={props.maxValue}
-          // minimumTrackTintColor={props.fg}
-          // thumbTintColor={props.fg}
-          onSlidingComplete={val => props.updateSettings({ [props.id]: props.convertFunc(val) })}
+          value={props.value}
+          minimumValue={props.minimumValue}
+          maximumValue={props.maximumValue}
+          onSlidingComplete={props.onSlidingComplete}
+          onValueChange={props.onValueChange}
         />
       </View>
     </View>
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    settings: state.settings,
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  actions,
-)(CustomSlider);
+export default CustomSlider;
 
 const styles = {
   wrapper: {
@@ -45,14 +31,10 @@ const styles = {
   },
   pickerWrapper: {
     height: 35,
-    // width: '90%',
     justifyContent: 'center',
-    // borderWidth: 1,
-    // borderColor: "gray",
-    // borderRadius: 4,
   },
-  text: {
-    fontSize: 17,
+  title: {
+    fontSize: 18,
     fontWeight: 'bold',
   },
   picker: {

@@ -1,18 +1,16 @@
 import React from 'react';
-import { View, Text, Picker } from 'react-native';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
-import { primaryColor } from '../constants';
+import { View, Text } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 
-function PickerListItem(props) {
+const PickerListItem = props => {
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.text}>{props.text}</Text>
+      <Text style={styles.text}>{props.title}</Text>
       <View style={styles.pickerWrapper}>
         <Picker
-          prompt={props.title}
-          selectedValue={props.settings[props.id]}
-          onValueChange={val => { props.updateSettings({ [props.id]: val }); }}
+          prompt={props.prompt}
+          selectedValue={props.selectedValue}
+          onValueChange={props.onValueChange}
           style={styles.picker}
         >
           {props.items.map((item, i) => (
@@ -24,16 +22,7 @@ function PickerListItem(props) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    settings: state.settings,
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  actions,
-)(PickerListItem);
+export default PickerListItem;
 
 const styles = {
   wrapper: {
@@ -47,13 +36,12 @@ const styles = {
     width: '90%',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: primaryColor,
+    borderColor: "gray",
     borderRadius: 4,
   },
   text: {
-    fontSize: 16,
-    paddingLeft: 2,
-    paddingBottom: 6,
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   picker: {
     width: '100%',

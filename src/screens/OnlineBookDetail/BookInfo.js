@@ -1,8 +1,6 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { Card, Button, ListItem } from 'react-native-elements';
-import { connect } from 'react-redux';
 import dimensions from '../../res/dimensions';
 
 function BookInfo(props) {
