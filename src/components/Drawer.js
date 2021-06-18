@@ -70,7 +70,7 @@ const styles = {
     flex: 1,
     height,
     paddingTop: 10,
-    paddingLeft: 15,
+    paddingLeft: 5,
   },
   iconWrapper: {
     flexDirection: 'row',

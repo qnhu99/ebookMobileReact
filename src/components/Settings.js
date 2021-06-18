@@ -2,7 +2,6 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
-import RadioButtonPicker from './RadioButtonPicker';
 import PickerListItem from './PickerListItem';
 import CustomerSlider from './CustomerSlider';
 import { settings } from '../constants';
@@ -38,6 +37,8 @@ function Settings(props) {
                   onValueChange={val => {
                     props.updateSettings({ [item.id]: val });
                   }}
+                  getPickerItemLabel={item => item.label}
+                  getPickerItemValue={item => item.value}
                 />
             }
           })}
@@ -54,5 +55,6 @@ export default connect(mapStateToProps, actions)(Settings);
 const styles = {
   scrollView: {
     flex: 1,
+    paddingHorizontal: 10,
   },
 };

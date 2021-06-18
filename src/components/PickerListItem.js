@@ -3,20 +3,29 @@ import { View, Text } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 const PickerListItem = props => {
+  const getPickerItemLabel = props.getPickerItemLabel;
+  const getPickerItemValue = props.getPickerItemValue;
+
   return (
     <View style={styles.wrapper}>
       <Text style={styles.text}>{props.title}</Text>
-      <View style={styles.pickerWrapper}>
-        <Picker
-          prompt={props.prompt}
-          selectedValue={props.selectedValue}
-          onValueChange={props.onValueChange}
-          style={styles.picker}
-        >
-          {props.items.map((item, i) => (
-            <Picker.Item label={item.label} value={item.value} key={i} />
-          ))}
-        </Picker>
+      <View style={{ display: 'flex', alignItems: 'center' }}>
+        <View style={styles.pickerWrapper}>
+          <Picker
+            prompt={props.prompt}
+            selectedValue={props.selectedValue}
+            onValueChange={props.onValueChange}
+            style={styles.picker}
+          >
+            {props.items.map((item, i) => (
+              <Picker.Item
+                key={i}
+                label={getPickerItemLabel(item)}
+                value={getPickerItemValue(item)}
+              />
+            ))}
+          </Picker>
+        </View>
       </View>
     </View>
   );
@@ -38,6 +47,7 @@ const styles = {
     borderWidth: 1,
     borderColor: "gray",
     borderRadius: 4,
+    display: 'flex', alignItems: 'center'
   },
   text: {
     fontSize: 18,
