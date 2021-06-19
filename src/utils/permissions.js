@@ -7,8 +7,8 @@ export const getStoragePermission = async () => {
       PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
     ],
     {
-      title: "Ebook Reader Storage Permission",
-      message: "Ebook Reader needs to access your storage",
+      title: "READER+ Storage Permission",
+      message: "READER+ needs to access your storage",
     }
   );
 
@@ -18,7 +18,7 @@ export const getStoragePermission = async () => {
   } else {
     Alert.alert(
       "Permission required",
-      "Allow Ebook Reader to access your storage to download and read file",
+      "Allow READER+ to access your storage to download and read file",
       [{ text: "OK", onPress: async () => await getStoragePermission() }],
       { cancelable: false }
     );

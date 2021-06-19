@@ -91,7 +91,7 @@ function HomeStackScreen() {
       name="home-screen"
       component={HomeScreen}
       options={{
-        title: 'Ebook Reader',
+        title: 'READER+',
 
       }}
     />
