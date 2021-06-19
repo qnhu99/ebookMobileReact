@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { Card, Button, ListItem } from 'react-native-elements';
-import dimensions from '../../res/dimensions';
+import dimensions from '../../constants/dimensions';
 
 function BookInfo(props) {
   const {

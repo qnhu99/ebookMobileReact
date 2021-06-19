@@ -12,9 +12,9 @@ import { Overlay, Icon, Button, Input } from 'react-native-elements';
 import { connect } from 'react-redux';
 // import showToast from '../components/Toast';
 import * as actions from '../actions';
-import dimensions from 'src/res/dimensions';
-import Icons from 'src/res/icons.js';
-import Colors from 'src/res/colors';
+import dimensions from 'src/constants/dimensions';
+import Icons from 'src/constants/icons.js';
+import Colors from 'src/constants/colors';
 import Clipboard from '@react-native-clipboard/clipboard';
 import LoadingForDetail from 'src/components/LoadingForDetail';
 

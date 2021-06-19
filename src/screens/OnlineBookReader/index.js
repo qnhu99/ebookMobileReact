@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { View, Dimensions, Alert } from 'react-native';
 import SideMenu from 'react-native-side-menu-updated';
 import ChapterContent from './ChapterContent';
-import Icons from '../../res/icons';
+import Icons from '../../constants/icons';
 import MenuDrawer from './MenuDrawer';
 import { contrastColor } from '../../constants';
 import { useNavigation } from '@react-navigation/native';

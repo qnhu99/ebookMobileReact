@@ -2,7 +2,7 @@ import React from 'react';
 
 import { View, Text } from 'react-native';
 
-import Colors from 'src/res/icons';
+import Colors from 'src/constants/icons';
 // Welcome Intro
 function WelcomeIntro() {
   return (

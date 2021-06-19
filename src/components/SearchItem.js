@@ -8,7 +8,7 @@ function SearchItem(props) {
       style={styles.wrapper}
       onPress={() => props.onPress(props.cfi)}
     >
-      <Text style={styles.text}>{props.excerpt.trim()}</Text>
+      <Text style={styles.text}>{props.excerpt?.trim()}</Text>
     </TouchableOpacity>
   );
 }
@@ -17,14 +17,14 @@ export default SearchItem;
 
 const styles = {
   wrapper: {
-    width: '90%',
+    width: '100%',
     padding: 5,
     borderWidth: 1,
     borderColor: contrastColor,
     borderRadius: 3,
-    marginTop: 15,
+    marginTop: 10,
   },
   text: {
-    fontSize: 15,
+    fontSize: 14,
   },
 };

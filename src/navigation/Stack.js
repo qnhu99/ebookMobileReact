@@ -12,8 +12,8 @@ import OnlineBookReader from 'src/screens/OnlineBookReader';
 import EpubReader from 'src/screens/EpubReader';
 import PdfReader from 'src/screens/PdfReader';
 import Help from 'src/screens/Help';
-import Icons from 'src/res/icons.js';
-import Colors from 'src/res/colors';
+import Icons from 'src/constants/icons.js';
+import Colors from 'src/constants/colors';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();

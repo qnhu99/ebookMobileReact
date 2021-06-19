@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
-import Colors from 'src/res/colors';
+import Colors from 'src/constants/colors';
 
 const ViewmoreBtn = props => (
   <TouchableOpacity

@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import { ListItem, Avatar, Divider } from 'react-native-elements';
 import { connect } from 'react-redux';
-import Colors from 'src/res/colors';
+import Colors from 'src/constants/colors';
 import LoadingForDetail from './LoadingForDetail';
 import * as actions from '../actions';
 import ViewmoreBtn from './ViewmoreBtn';

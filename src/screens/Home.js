@@ -15,7 +15,7 @@ import BookItem from '../components/BookItem';
 import SearchBar from '../components/SearchBar';
 import WelcomeIntro from '../components/WelcomeIntro';
 import RecentBookList from 'src/components/RecentBookList';
-import Colors from 'src/res/colors';
+import Colors from 'src/constants/colors';
 import ViewmoreBtn from 'src/components/ViewmoreBtn';
 
 // Main

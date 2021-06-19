@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Text, View, FlatList, Alert } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
-import Colors from 'src/res/colors';
+import Colors from 'src/constants/colors';
 import LoadingForDetail from 'src/components/LoadingForDetail';
 import AddButton from '../components/AddButton';
 
