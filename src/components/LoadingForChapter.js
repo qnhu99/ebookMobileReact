@@ -30,7 +30,7 @@ const LoadingForChapter = props => {
   const { url, handleSuccess, handleError, handleCancel } = props;
   const [{ data, error, isValidating }, controller] = useCancellableSWR(url);
 
-  if (isValidating && !data) {
+  if (isValidating) {
     return (
       <Overlay isVisible={props.show} style={styles.wrapper}>
         <ActivityIndicator size="large" />
@@ -51,9 +51,7 @@ const LoadingForChapter = props => {
     handleSuccess(data);
   }
   if (error) {
-    if (error.message === 'Cancel-Request') {
-      handleCancel();
-    } else {
+    if (error.message !== 'Cancel-Request') {
       handleError(error);
     }
   }

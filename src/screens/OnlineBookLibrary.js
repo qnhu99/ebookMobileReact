@@ -4,22 +4,13 @@ import { Text, View, FlatList, Alert } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
 import Colors from 'src/res/colors';
 import LoadingForDetail from 'src/components/LoadingForDetail';
-
-const Item = ({ data, handlePress }) => {
-  return (
-    <ListItem bottomDivider onPress={() => handlePress(data.bookUrl)}>
-      <Avatar source={{ uri: data.imgUrl }} size="large" />
-      <ListItem.Content>
-        <ListItem.Title numberOfLines={2}>{data.bookName}</ListItem.Title>
-        <ListItem.Subtitle>{data.bookAuthor}</ListItem.Subtitle>
-      </ListItem.Content>
-    </ListItem>
-  );
-};
+import Item from 'src/components/RecentOnlineBookItem';
+import OptionsModal from 'src/components/RecentOnlineOptionsModal';
 
 function OnlineBookLibraryScreen(props, { navigation }) {
   const { books } = props;
   const [loading, setLoading] = useState(false);
+  const [isModalVisible, setModalVisible] = React.useState(false);
   const [url, setUrl] = useState('');
   const [error, setError] = useState(null);
   useEffect(() => {
@@ -30,15 +21,23 @@ function OnlineBookLibraryScreen(props, { navigation }) {
     }
   }, [error]);
 
-  const handlePress = bookUrl => {
+  const onPressItem = url => {
     setLoading(true);
-    setUrl(bookUrl);
+    setUrl(url);
   };
 
-  const renderItem = ({ item }) => (
+  const onLongPressItem = url => {
+    setModalVisible(true);
+    setUrl(url);
+  };
+
+  const renderItem = ({ item, index }) => (
     <Item
       data={{ ...item.bookInfo, bookUrl: item.bookUrl }}
-      handlePress={handlePress}
+      key={index}
+      index={index}
+      onPressItem={onPressItem}
+      onLongPressItem={onLongPressItem}
     />
   );
 
@@ -84,6 +83,11 @@ function OnlineBookLibraryScreen(props, { navigation }) {
           handleCancel={() => {
             setLoading(false);
           }}
+        />
+        <OptionsModal
+          url={url}
+          visible={isModalVisible}
+          hideModal={() => setModalVisible(false)}
         />
       </>
     );

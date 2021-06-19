@@ -1,57 +1,13 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
-import Modal from 'react-native-modal';
-import { ListItem, Avatar, Divider } from 'react-native-elements';
+import { Divider } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Colors from 'src/res/colors';
 import LoadingForDetail from './LoadingForDetail';
 import * as actions from '../actions';
-import Icon from './Icon';
-
-const { height, width } = Dimensions.get('window');
-
-function OptionsModal(props) {
-  return (
-    <Modal
-      style={styles.modal}
-      isVisible={props.isVisible}
-      deviceHeight={height}
-      onBackButtonPress={props.onPressCancel}
-      onBackdropPress={props.onPressCancel}
-      onSwipeComplete={props.onPressCancel}
-      backdropColor="rgba(0, 0, 0, 0.5)"
-      swipeDirection="down"
-      animationOutTiming={100}
-      animationInTiming={100}
-      hideModalContentWhileAnimating
-    >
-      <View style={styles.wrapperModal}>
-        <TouchableOpacity style={styles.item} onPress={props.onRemove}>
-          <Icon {...icons.remove} style={styles.icon} />
-          <Text style={styles.text}>Remove</Text>
-        </TouchableOpacity>
-      </View>
-    </Modal>
-  );
-}
-
-const Item = ({ data, index, onPressItem, onLongPressItem }) => {
-  return (
-    <ListItem
-      key={index}
-      bottomDivider
-      onPress={() => onPressItem(data.bookUrl)}
-      onLongPress={() => onLongPressItem(data.bookUrl)}
-    >
-      <Avatar source={{ uri: data.imgUrl }} size="large" />
-      <ListItem.Content>
-        <ListItem.Title numberOfLines={2}>{data.bookName}</ListItem.Title>
-        <ListItem.Subtitle>{data.bookAuthor}</ListItem.Subtitle>
-      </ListItem.Content>
-    </ListItem>
-  );
-};
+import Item from './RecentOnlineBookItem';
+import OptionsModal from './RecentOnlineOptionsModal';
 
 function RecentBookList(props) {
   const fontFamily = props.globalSettings.fontFamily;
@@ -68,11 +24,6 @@ function RecentBookList(props) {
   const onLongPressItem = url => {
     setModalVisible(true);
     setUrl(url);
-  };
-
-  const onRemove = () => {
-    setModalVisible(false);
-    props.removeRecentOnlineBook(url);
   };
 
   const renderItem = () => {
@@ -113,11 +64,9 @@ function RecentBookList(props) {
       <View>
         {renderItem()}
         <OptionsModal
-          isVisible={isModalVisible}
-          onPressCancel={() => setModalVisible(false)}
           url={url}
-          index={props.index}
-          onRemove={onRemove}
+          visible={isModalVisible}
+          hideModal={() => setModalVisible(false)}
         />
       </View>
     );
@@ -193,35 +142,6 @@ const styles = {
     marginTop: 10,
     marginBottom: 5,
     marginLeft: 15,
-  },
-  modal: {
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  wrapperModal: {
-    height: 60,
-    width: width - 16,
-    backgroundColor: '#F7F8FB',
-    elevation: 5,
-    justifyContent: 'space-evenly',
-    marginBottom: -20,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-  },
-  item: {
-    height: 50,
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  icon: {
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  text: {
-    fontFamily: 'Arial',
-    fontSize: 15,
   },
 };
 
