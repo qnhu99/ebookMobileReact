@@ -173,6 +173,7 @@ function EpubReader(props) {
       onSearch={onSearch}
       searchResults={searchResults}
       isSearching={isSearching}
+      isOpen={isDrawer}
     />
   );
   return (

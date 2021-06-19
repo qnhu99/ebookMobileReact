@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity, Dimensions } from 'react-native';
+import Colors from 'src/res/colors';
 
 const { width } = Dimensions.get('window');
 
@@ -28,5 +29,9 @@ const styles = {
   text: {
     width: width * 0.6,
     fontSize: 15,
+    paddingVertical: 5,
+    paddingHorizontal: 3,
+    borderBottomColor: Colors.lightgreen,
+    borderBottomWidth: 1,
   },
 };

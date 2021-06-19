@@ -131,6 +131,7 @@ function PdfReader(props) {
       index={params.index}
       goToLocation={goToLocation}
       drawerType="pdf"
+      isOpen={isDrawer}
     />
   );
   return (

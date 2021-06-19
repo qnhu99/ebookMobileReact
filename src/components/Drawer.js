@@ -10,6 +10,10 @@ import { contrastColor } from '../constants';
 const { height } = Dimensions.get('window');
 
 function Drawer(props) {
+  if (!props.isOpen) {
+    return null;
+  }
+
   let sections = [
     { name: 'contents', icon: 'book-open' },
     { name: 'bookmark', icon: 'bookmark' },
