@@ -8,7 +8,7 @@ const migrations = {
   0: state => {
     return {
       ...state,
-      settings: { ...state.settings, sLang: '', tLang: '' },
+      // settings: { ...state.settings, sLang: '', tLang: '' },
     };
   },
 };
