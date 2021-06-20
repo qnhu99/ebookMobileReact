@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import { ListItem, Avatar, Divider } from 'react-native-elements';
 import { connect } from 'react-redux';
+import { useNavigation } from '@react-navigation/core';
+
 import Colors from 'src/constants/colors';
 import LoadingForDetail from './LoadingForDetail';
 import * as actions from '../actions';
@@ -44,6 +46,11 @@ function RecentBookList(props) {
     setUrl(url);
   };
 
+  const onRemove = () => {
+    setModalVisible(false);
+    props.removeRecentOnlineBook(url);
+  };
+
   const renderItem = () => {
     return props.list
       .slice(0, 10)
@@ -82,12 +89,11 @@ function RecentBookList(props) {
       <View>
         {renderItem()}
         <OptionsModal
-          url={url}
+          isVisible={isModalVisible}
+          onPressCancel={() => setModalVisible(false)}
           index={props.index}
           onRemove={onRemove}
           isOnShareBtnEnable={false}
-          visible={isModalVisible}
-          hideModal={() => setModalVisible(false)}
         />
       </View>
     );

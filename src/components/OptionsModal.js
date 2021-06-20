@@ -31,8 +31,8 @@ function OptionsModal(props) {
       onSwipeComplete={props.onPressCancel}
       backdropColor="rgba(0, 0, 0, 0.5)"
       swipeDirection="down"
-      animationOutTiming={100}
-      animationInTiming={100}
+      animationOutTiming={0}
+      animationInTiming={500}
       hideModalContentWhileAnimating
     >
       <View style={[styles.wrapper, { height: isShareRender ? 140 : 65 }]}>

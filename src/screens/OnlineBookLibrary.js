@@ -5,6 +5,8 @@ import { ListItem, Avatar } from 'react-native-elements';
 import Colors from 'src/constants/colors';
 import LoadingForDetail from 'src/components/LoadingForDetail';
 import AddButton from '../components/AddButton';
+import OptionsModal from 'src/components/OptionsModal';
+import * as actions from 'src/actions';
 
 const Item = ({ data, handlePress, onLongPressItem }) => {
   return (
@@ -52,6 +54,11 @@ function OnlineBookLibraryScreen(props, { navigation }) {
     />
   );
 
+  const onRemove = () => {
+    setModalVisible(false);
+    props.removeRecentOnlineBook(url);
+  };
+
   const render = () => {
     if (books.length === 0) {
       return (
@@ -96,9 +103,10 @@ function OnlineBookLibraryScreen(props, { navigation }) {
           }}
         />
         <OptionsModal
-          url={url}
-          visible={isModalVisible}
-          hideModal={() => setModalVisible(false)}
+          isVisible={isModalVisible}
+          onRemove={onRemove}
+          isOnShareBtnEnable={false}
+          onPressCancel={() => setModalVisible(false)}
         />
       </>
     );
@@ -114,7 +122,7 @@ const mapStateToProps = state => ({
   books: state.recentBooks,
 });
 
-export default connect(mapStateToProps)(OnlineBookLibraryScreen);
+export default connect(mapStateToProps, actions)(OnlineBookLibraryScreen);
 
 const styles = {
   wrapper: {
