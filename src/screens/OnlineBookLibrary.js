@@ -6,9 +6,9 @@ import Colors from 'src/constants/colors';
 import LoadingForDetail from 'src/components/LoadingForDetail';
 import AddButton from '../components/AddButton';
 
-const Item = ({ data, handlePress }) => {
+const Item = ({ data, handlePress, onLongPressItem }) => {
   return (
-    <ListItem bottomDivider onPress={() => handlePress(data.bookUrl)}>
+    <ListItem bottomDivider onPress={() => handlePress(data.bookUrl)} onLongPress={() => onLongPressItem(data.bookUrl)}>
       <Avatar source={{ uri: data.imgUrl }} size="large" />
       <ListItem.Content>
         <ListItem.Title numberOfLines={2}>{data.bookName}</ListItem.Title>
@@ -21,6 +21,7 @@ const Item = ({ data, handlePress }) => {
 function OnlineBookLibraryScreen(props, { navigation }) {
   const { books } = props;
   const [loading, setLoading] = useState(false);
+  const [isModalVisible, setModalVisible] = React.useState(false);
   const [url, setUrl] = useState('');
   const [error, setError] = useState(null);
   useEffect(() => {
@@ -31,15 +32,23 @@ function OnlineBookLibraryScreen(props, { navigation }) {
     }
   }, [error]);
 
-  const handlePress = bookUrl => {
+  const onPressItem = url => {
     setLoading(true);
-    setUrl(bookUrl);
+    setUrl(url);
   };
 
-  const renderItem = ({ item }) => (
+  const onLongPressItem = url => {
+    setModalVisible(true);
+    setUrl(url);
+  };
+
+  const renderItem = ({ item, index }) => (
     <Item
       data={{ ...item.bookInfo, bookUrl: item.bookUrl }}
-      handlePress={handlePress}
+      key={index}
+      index={index}
+      onPressItem={onPressItem}
+      onLongPressItem={onLongPressItem}
     />
   );
 
@@ -85,6 +94,11 @@ function OnlineBookLibraryScreen(props, { navigation }) {
           handleCancel={() => {
             setLoading(false);
           }}
+        />
+        <OptionsModal
+          url={url}
+          visible={isModalVisible}
+          hideModal={() => setModalVisible(false)}
         />
       </>
     );

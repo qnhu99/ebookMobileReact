@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import { ListItem, Avatar, Divider } from 'react-native-elements';
@@ -45,11 +44,6 @@ function RecentBookList(props) {
     setUrl(url);
   };
 
-  const onRemove = () => {
-    setModalVisible(false);
-    props.removeRecentOnlineBook(url);
-  };
-
   const renderItem = () => {
     return props.list
       .slice(0, 10)
@@ -88,12 +82,12 @@ function RecentBookList(props) {
       <View>
         {renderItem()}
         <OptionsModal
-          isVisible={isModalVisible}
-          onPressCancel={() => setModalVisible(false)}
           url={url}
           index={props.index}
           onRemove={onRemove}
           isOnShareBtnEnable={false}
+          visible={isModalVisible}
+          hideModal={() => setModalVisible(false)}
         />
       </View>
     );
@@ -164,35 +158,6 @@ const styles = {
     marginTop: 10,
     marginBottom: 5,
     marginLeft: 15,
-  },
-  modal: {
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  wrapperModal: {
-    height: 60,
-    width: width - 16,
-    backgroundColor: '#F7F8FB',
-    elevation: 5,
-    justifyContent: 'space-evenly',
-    marginBottom: -20,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-  },
-  item: {
-    height: 50,
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  icon: {
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  text: {
-    fontFamily: 'Arial',
-    fontSize: 15,
   },
 };
 

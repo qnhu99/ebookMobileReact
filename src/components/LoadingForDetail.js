@@ -91,9 +91,7 @@ const LoadingForDetail = props => {
     handleSuccess(currentBook);
   }
   if (error) {
-    if (error.message === 'Cancel-Request') {
-      handleCancel();
-    } else {
+    if (error.message !== 'Cancel-Request') {
       handleError(error);
     }
   }

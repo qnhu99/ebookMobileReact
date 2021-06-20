@@ -51,9 +51,7 @@ const LoadingForChapter = props => {
     handleSuccess(data);
   }
   if (error) {
-    if (error.message === 'Cancel-Request') {
-      handleCancel();
-    } else {
+    if (error.message !== 'Cancel-Request') {
       handleError(error);
     }
   }
