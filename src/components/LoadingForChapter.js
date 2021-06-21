@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import useSWR from 'swr';
 import axios from 'axios';
 import { ActivityIndicator } from 'react-native';
@@ -66,10 +66,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(LoadingForChapter);
+export default connect(null, mapDispatchToProps)(LoadingForChapter);
 
 const styles = {
   wrapper: {

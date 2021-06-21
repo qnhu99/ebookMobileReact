@@ -75,10 +75,7 @@ function BookSearch(props) {
           }
         }}
       />
-
       {renderResults()}
-      {/* <ResultWrapper contentContainerStyle={styles.scrollViewContent}>
-      </ResultWrapper> */}
     </Container>
   );
 }

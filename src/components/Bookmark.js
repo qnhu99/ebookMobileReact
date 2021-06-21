@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { TextInput, ScrollView, Text, FlatList, View, Button, TouchableOpacity } from 'react-native';
-import SearchItem from './SearchItem';
+import React from 'react';
+import { ScrollView, Text, FlatList, View, TouchableOpacity } from 'react-native';
 import { contrastColor } from '../constants';
 import Icon from './Icon';
 import * as actions from '../actions';
@@ -58,18 +57,13 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  actions
-)(Bookmark);
+export default connect(mapStateToProps, actions)(Bookmark);
 
 const styles = {
   scrollView: {
     display: 'flex',
     flex: 1,
     marginRight: 10,
-    // borderWidth: 1,
-    // borderColor: 'black',
   },
   item: {
     padding: 5,

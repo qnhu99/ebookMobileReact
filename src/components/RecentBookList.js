@@ -10,8 +10,6 @@ import * as actions from '../actions';
 import ViewmoreBtn from './ViewmoreBtn';
 import OptionsModal from './OptionsModal';
 
-const { height, width } = Dimensions.get('window');
-
 const Item = ({ data, index, onPressItem, onLongPressItem }) => {
   return (
     <ListItem
@@ -127,10 +125,7 @@ const mapStateToProps = state => {
   return { list: state.recentBooks };
 };
 
-export default connect(
-  mapStateToProps,
-  actions,
-)(RecentBookList);
+export default connect(mapStateToProps, actions)(RecentBookList);
 
 const ScreenWidth = Dimensions.get('window').width;
 
@@ -164,13 +159,5 @@ const styles = {
     marginTop: 10,
     marginBottom: 5,
     marginLeft: 15,
-  },
-};
-
-const icons = {
-  remove: {
-    name: 'trash-2',
-    type: 'feather',
-    size: 20,
   },
 };

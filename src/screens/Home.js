@@ -4,7 +4,6 @@ import {
   View,
   ScrollView,
   Text,
-  TouchableOpacity,
   StatusBar,
 } from 'react-native';
 import { Divider } from 'react-native-elements';
@@ -13,7 +12,6 @@ import { connect } from 'react-redux';
 import AddButton from '../components/AddButton';
 import BookItem from '../components/BookItem';
 import SearchBar from '../components/SearchBar';
-import WelcomeIntro from '../components/WelcomeIntro';
 import RecentBookList from 'src/components/RecentBookList';
 import Colors from 'src/constants/colors';
 import ViewmoreBtn from 'src/components/ViewmoreBtn';
@@ -50,7 +48,6 @@ function HomeScreen(props) {
         header: undefined,
         headerRight: () => (
           <View style={styles.headerIconsWrapper}>
-
           </View>
         ),
       });
@@ -114,7 +111,6 @@ function HomeScreen(props) {
     <>
       <AddButton />
       <ScrollView style={styles.wrapper}>
-        {/* <WelcomeIntro /> */}
         <RecentBookList />
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>{'Recent files'}</Text>
@@ -133,10 +129,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  null,
-)(HomeScreen);
+export default connect(mapStateToProps)(HomeScreen);
 
 const styles = {
   wrapper: {

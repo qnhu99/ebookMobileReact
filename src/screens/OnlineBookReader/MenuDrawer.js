@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Dimensions, TouchableOpacity, Text } from 'react-native';
+import { View, Dimensions, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements';
 import TableContent from './TableContent';

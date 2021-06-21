@@ -13,7 +13,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  null,
-)(Root);
+export default connect(mapStateToProps)(Root);

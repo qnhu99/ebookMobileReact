@@ -64,12 +64,8 @@ const options = {
     activeTintColor: Colors?.green,
     inactiveTintColor: Colors?.green,
     showLabel: false,
-    tabStyle: {
-      // borderTopWidth: 0.75,
-    },
   },
   StackScreenMainScreenOptions: {
-    // headerShown: false,
   },
   StackScreenBookDetailOptions: ({ route }) => ({
     title: route.params.data.title,
@@ -105,7 +101,6 @@ function OnlineBookLibraryStackScreen() {
       component={OnlineBookLibrary}
       options={{
         title: 'Online Books',
-
       }}
     />
   );
@@ -117,8 +112,7 @@ function FileLibraryStackScreen() {
       name="file-library-screen"
       component={FileLibrary}
       options={{
-        title: 'Files',
-
+        title: 'Files'
       }}
     />
   );
@@ -130,8 +124,7 @@ function HelpStackScreen() {
       name="settings-screen"
       component={HelpScreen}
       options={{
-        title: "Help",
-
+        title: "Help"
       }}
     />
   );
@@ -160,16 +153,13 @@ function Navigator(props) {
     title: route.params.title,
     headerTitleStyle: {
       fontSize: 16,
-      // color: props.fg,
       marginRight: 25,
       marginBottom: 4,
       marginLeft: -5,
     },
     headerStyle: {
       elevation: 0,
-      // backgroundColor: props.bg,
     },
-    // headerTintColor: props.fg,
   });
 
   return (
@@ -207,7 +197,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  null,
-)(Navigator);
+export default connect(mapStateToProps)(Navigator);

@@ -8,7 +8,6 @@ const InitialState = {
   height: 1.4,
   sLang: '',
   tLang: '',
-  // flow: '',
 };
 
 export default function (state = InitialState, action) {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import useSWR from 'swr';
 import { ActivityIndicator } from 'react-native';
 import { Overlay, Button } from 'react-native-elements';
@@ -103,10 +103,7 @@ const mapDispatchToProps = dispatch => {
     updateRecentOnlineBooks: data => dispatch(updateRecentOnlineBooks(data)),
   };
 };
-export default connect(
-  null,
-  mapDispatchToProps,
-)(LoadingForDetail);
+export default connect(null, mapDispatchToProps)(LoadingForDetail);
 
 const styles = {
   wrapper: {
