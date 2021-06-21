@@ -3,8 +3,7 @@ import {
   checkStoragePermissions,
 } from '../utils/permissions';
 import showToast from '../components/Toast';
-//import DocumentPicker from 'react-native-document-picker';
-import RNFileSelector from 'react-native-file-selector';
+//import RNFileSelector from 'react-native-file-selector';
 
 export const addBook = ({ navigation, fileUrl }) => async dispatch => {
   let granted = await checkStoragePermissions();
@@ -27,16 +26,16 @@ export const addBook = ({ navigation, fileUrl }) => async dispatch => {
   };
 
   if (fileUrl === undefined) {
-    RNFileSelector.Show({
-      title: "Select ebook file",
-      filter: ".*\\.(epub|EPUB|pdf|PDF)$",
-      onDone: (url) => {
-        _addBook(url);
-      },
-      onCancel: () => {
-        showToast("Cancel open book");
-      },
-    });
+    // RNFileSelector.Show({
+    //   title: "Select ebook file",
+    //   filter: ".*\\.(epub|EPUB|pdf|PDF)$",
+    //   onDone: (url) => {
+    //     _addBook(url);
+    //   },
+    //   onCancel: () => {
+    //     showToast("Cancel open book");
+    //   },
+    // });
   } else {
     _addBook(fileUrl);
   }

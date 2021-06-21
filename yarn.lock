@@ -5579,11 +5579,6 @@ react-native-elements@^3.4.1:
     react-native-ratings "8.0.4"
     react-native-size-matters "^0.3.1"
 
-react-native-file-selector@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-file-selector/-/react-native-file-selector-1.0.1.tgz#56d31f48b98d55d6f65e6b6d59736c46db7dc2d3"
-  integrity sha512-Av1MKEjsvnSzMgjl66/tQxPfd5b/tIXXchaVR4g2G3hioslyFL1DJsdcVJHqX/OuPB70uMQRnKdWImSVdAt3lQ==
-
 react-native-fit-image@^1.5.5:
   version "1.5.5"
   resolved "https://registry.yarnpkg.com/react-native-fit-image/-/react-native-fit-image-1.5.5.tgz#c660d1ad74b9dcaa1cba27a0d9c23837e000226c"
