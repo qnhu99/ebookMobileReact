@@ -1,95 +1,84 @@
-import React, { useState } from 'react';
-import { View, Dimensions, Text, Image, ScrollView } from 'react-native';
-import { contrastColor } from '../constants';
+import React from 'react';
+import { View, Dimensions, Text, ScrollView, FlatList, SafeAreaView } from 'react-native';
+import styled from 'styled-components';
+import Markdown from 'react-native-markdown-display';
 
-const { height } = Dimensions.get('window');
+const WrapperView = styled(View)`
+  background-color: white;
+  padding: 10px;
+  flex: 1;
+  display: flex;
+`;
 
-const styles = {
-  view: {
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  scrollView: {
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-  title: {
-    fontSize: 15, fontWeight: "bold"
-  }
-};
+const content = `
+# Welcome to READER+
+
+### A place for people who loves reading online novels. We support a better UI for reading online novels and ton of customizations.
+
+### Promising a much better reading experience for all user.
+
+### Currently, we provide reader view for these sites below:
+* Tàng Thư Viện - [https://truyen.tangthuvien.vn](https://truyen.tangthuvien.vn/)
+* Trùm Truyên - [https://trumtruyen.net](https://trumtruyen.net/)
+* IZ Truyện - [https://iztruyen.com](https://iztruyen.com/)
+*more sites will be supported in the future.*
+
+### We also support viewing common document and ebook files:
+* .epub
+* .pdf
+
+### Our app look like:
+
+![](https://i.imgur.com/clcUq9X.png)
+
+### You can remove or share book from library by a long press on book.
+
+### And reader screen:
+
+![](https://i.imgur.com/yguOKDc.png)
+
+### Menu on reader screen:
+
+![](https://i.imgur.com/hMF2xHp.png)
+
+### Thank you very much for choosing our app.
+
+### 🤗🤗🤗🤗🤗🤗
+
+### If you have any issue, please contact us: [readerplus@gmail.com](mailto:readerplus@gmail.com)
+`;
 
 function HelpScreen(props) {
   return (
-    <View style={styles.view}>
-      <ScrollView style={styles.scrollView}>
-        <Text style={styles.title}>
-          1. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat.
-        </Text>
-        <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-          ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-          deserunt mollit anim id est laborum.
-        </Text>
-        <Text style={styles.title}>
-          2. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat.
-        </Text>
-        <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-          ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-          deserunt mollit anim id est laborum.
-        </Text>
-        <Image
-          style={{
-            width: 66,
-            height: 58,
-          }}
-          source={{
-            uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
-          }}
-        />
-        <Text style={styles.title}>
-          3. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat.
-        </Text>
-        <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-          ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-          deserunt mollit anim id est laborum.
-        </Text>
-        <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-          ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-          deserunt mollit anim id est laborum.
-        </Text>
-        <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-          ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-          deserunt mollit anim id est laborum.
-        </Text>
-      </ScrollView>
-    </View>
+    <WrapperView>
+      <SafeAreaView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={{ height: '100%' }}
+        >
+          <Markdown style={{
+            heading1: {
+              marginBottom: 10,
+            },
+            heading3: {
+              marginBottom: 7,
+            },
+            heading4: {
+              marginBottom: 4,
+            },
+            body: {
+              fontSize: 17,
+            },
+            link: {
+              color: 'blue'
+            }
+          }}>
+            {content}
+          </Markdown>
+        </ScrollView>
+      </SafeAreaView>
+    </WrapperView>
+
   );
 }
 

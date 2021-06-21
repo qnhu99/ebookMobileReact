@@ -53,7 +53,7 @@ function RecentBookList(props) {
 
   const renderItem = () => {
     return props.list
-      .slice(0, 10)
+      .slice(0, 5)
       .map((item, index) => (
         <Item
           data={{ ...item.bookInfo, bookUrl: item.bookUrl }}

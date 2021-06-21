@@ -23,7 +23,7 @@ function Settings(props) {
                   value={item.convertBackward(props.settings[item.id])}
                   minimumValue={item.minValue}
                   maximumValue={item.maxValue}
-                  onSlidingComplete={val => {
+                  onValueChange={val => {
                     props.updateSettings({ [item.id]: item.convertFunc(val) })
                   }}
                 />

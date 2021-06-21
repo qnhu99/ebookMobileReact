@@ -97,7 +97,7 @@ function HomeScreen(props) {
     return (
       <View>
         {listFilter()
-          .slice(0, 10)
+          .slice(0, 5)
           .map((item, index) => (
             <BookItem
               {...item}
