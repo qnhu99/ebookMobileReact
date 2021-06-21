@@ -1,12 +1,7 @@
 import React from 'react';
 import { ListItem, Avatar } from 'react-native-elements';
 
-const RecentOnlineBookItem = ({
-  data,
-  index,
-  onPressItem,
-  onLongPressItem,
-}) => {
+const RecentOnlineBookItem = ({ data, index, onPressItem, onLongPressItem }) => {
   return (
     <ListItem
       key={index}

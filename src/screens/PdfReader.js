@@ -18,7 +18,6 @@ function PdfReader(props) {
   const [state, setState] = useState({ docUrl: null, server: null });
   const [isDrawer, setDrawer] = useState(false);
   const [selectedText, setSelectedText] = useState('');
-  const [searchResults, setSearchResults] = useState(null);
   const webview = useRef();
   const { params } = props.route;
   const { progress, totalPages, bookmarks } = props.books[params.index];
@@ -156,10 +155,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  actions
-)(PdfReader);
+export default connect(mapStateToProps, actions)(PdfReader);
 
 const styles = {
   wholeScreen: { flex: 1 },

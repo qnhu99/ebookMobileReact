@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import { Dimensions } from 'react-native';
 import OptionsModal from './OptionsModal';
 import { ListItem } from 'react-native-elements';
-import showToast from './Toast';
-import { contrastColor } from '../constants';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-
-const ScreenWidth = Dimensions.get('window').width;
 
 function BookItem(props) {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -49,21 +44,3 @@ function BookItem(props) {
 }
 
 export default connect(null, actions)(BookItem);
-
-const styles = {
-  wrapper: {
-    height: 65,
-    width: ScreenWidth,
-    paddingLeft: 15,
-    paddingRight: 15,
-  },
-  title: {
-    fontSize: 15,
-    marginBottom: 3,
-    color: contrastColor,
-  },
-  author: {
-    fontSize: 14,
-    color: 'rgba(0, 0, 0, 0.8)',
-  },
-};

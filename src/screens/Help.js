@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Dimensions, Text, ScrollView, FlatList, SafeAreaView } from 'react-native';
+import { View, ScrollView, SafeAreaView } from 'react-native';
 import styled from 'styled-components';
 import Markdown from 'react-native-markdown-display';
 
@@ -48,7 +48,7 @@ const content = `
 ### If you have any issue, please contact us: [readerplus@gmail.com](mailto:readerplus@gmail.com)
 `;
 
-function HelpScreen(props) {
+function HelpScreen() {
   return (
     <WrapperView>
       <SafeAreaView>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, TouchableWithoutFeedback, Dimensions, Slider } from 'react-native';
-// import { Slider } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Icon from './Icon';
 
@@ -53,10 +52,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  null,
-)(Progress);
+export default connect(mapStateToProps)(Progress);
 
 const styles = {
   wrapper: {

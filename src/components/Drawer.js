@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, Dimensions, Text } from 'react-native';
+import { View, TouchableOpacity, Dimensions } from 'react-native';
 import Icon from './Icon';
 import Contents from './Contents';
 import BookSearch from './BookSearch';

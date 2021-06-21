@@ -20,10 +20,7 @@ function mapStateToProps(state) {
   return { books: state.books };
 }
 
-export default connect(
-  mapStateToProps,
-  null,
-)(Drawer);
+export default connect(mapStateToProps)(Drawer);
 
 const styles = {
   scrollView: { flex: 1 },

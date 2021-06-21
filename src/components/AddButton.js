@@ -8,9 +8,7 @@ import {
   Alert,
 } from 'react-native';
 import { Overlay, Icon, Button, Input } from 'react-native-elements';
-// import RNFS from 'react-native-fs';
 import { connect } from 'react-redux';
-// import showToast from '../components/Toast';
 import * as actions from '../actions';
 import dimensions from 'src/constants/dimensions';
 import Icons from 'src/constants/icons.js';
@@ -24,12 +22,7 @@ function AddButton(props) {
   const [error, setError] = useState(null);
   const [visible, setVisible] = useState(false);
   const [visibleInputLink, setVisibleInputLink] = useState(false);
-  const [inputLink, setInputLink] = React.useState(
-    // 'https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf',
-    //"https://www.gutenberg.org/ebooks/65411.epub.images?session_id=52efbda7ce1646cb919e4fc14bf3d0900b02be82"
-    //"https://s3.amazonaws.com/epubjs/books/moby-dick.epub",
-    '',
-  );
+  const [inputLink, setInputLink] = React.useState('');
 
   React.useEffect(() => {
     if (error) {
@@ -54,9 +47,6 @@ function AddButton(props) {
       setErrorSubmitEmptyInput(true);
       return;
     }
-    // setVisible(false);
-    // setVisibleInputLink(false);
-    // // navigation.navigate('online-book-detail', { link: inputLink });
     setLoadingOnlineBookDetail(true);
   };
 

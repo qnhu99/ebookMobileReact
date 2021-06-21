@@ -3,7 +3,6 @@ import {
   checkStoragePermissions,
 } from '../utils/permissions';
 import showToast from '../components/Toast';
-//import DocumentPicker from 'react-native-document-picker';
 import RNFileSelector from 'react-native-file-selector';
 
 export const addBook = ({ navigation, fileUrl }) => async dispatch => {

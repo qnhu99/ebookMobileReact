@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { View } from 'react-native';
-import { StatusBar } from 'react-native';
 import StaticServer from 'react-native-static-server';
 import { ExternalStorageDirectoryPath } from 'react-native-fs';
 import { WebView } from 'react-native-webview';
@@ -8,7 +7,6 @@ import SideMenu from 'react-native-side-menu';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Drawer from '../components/Drawer';
-// import DictionaryModal from '../components/DictionaryModal';
 import showToast from '../components/Toast';
 import Spinner from '../components/Spinner';
 import Footer from '../components/Footer';
@@ -204,10 +202,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  actions
-)(EpubReader);
+export default connect(mapStateToProps, actions)(EpubReader);
 
 const styles = {
   wholeScreen: { flex: 1 },

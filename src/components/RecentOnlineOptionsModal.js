@@ -7,12 +7,7 @@ import Icon from './Icon';
 
 const { height, width } = Dimensions.get('window');
 
-function RecentOnlineOptionsModal({
-  url,
-  visible,
-  hideModal,
-  removeRecentOnlineBook,
-}) {
+function RecentOnlineOptionsModal({ url, visible, hideModal, removeRecentOnlineBook }) {
   const onRemove = () => {
     hideModal();
     removeRecentOnlineBook(url);
@@ -41,10 +36,7 @@ function RecentOnlineOptionsModal({
   );
 }
 
-export default connect(
-  null,
-  actions,
-)(RecentOnlineOptionsModal);
+export default connect(null, actions)(RecentOnlineOptionsModal);
 
 const styles = {
   modal: {

@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useEffect } from 'react';
+import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import BookItem from '../components/BookItem';
@@ -51,10 +51,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  null
-)(FileLibrary);
+export default connect(mapStateToProps)(FileLibrary);
 
 const styles = {
   wrapper: {
