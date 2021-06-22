@@ -36,9 +36,11 @@ function AddButton(props) {
 
   const toggleOverlay = () => {
     setVisible(!visible);
+    if (errorSubmitEmptyInput) setErrorSubmitEmptyInput(false);
   };
   const toggleInputLinkOverlay = () => {
     setVisibleInputLink(!visibleInputLink);
+    if (errorSubmitEmptyInput) setErrorSubmitEmptyInput(false);
     setInputLink('');
   };
 
@@ -68,9 +70,7 @@ function AddButton(props) {
             onPress={toggleInputLinkOverlay}
           >
             <Icons.earth color={Colors.green} size={25} />
-            <Text>
-              Open book via link
-            </Text>
+            <Text>Open book via link</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.insideBtn, { marginLeft: 5 }]}
@@ -80,9 +80,7 @@ function AddButton(props) {
             }}
           >
             <Icons.file color={Colors.green} size={25} />
-            <Text>
-              Open new files
-            </Text>
+            <Text>Open new files</Text>
           </TouchableOpacity>
         </View>
       </Overlay>
@@ -109,7 +107,7 @@ function AddButton(props) {
           <View style={{ display: 'flex', flexDirection: 'row', padding: 0 }}>
             <Input
               containerStyle={{ marginTop: 2 }}
-              inputStyle={{ fontSize: 15, paddingBottom: 2, }}
+              inputStyle={{ fontSize: 15, paddingBottom: 2 }}
               labelStyle={{
                 color: 'black',
               }}
@@ -176,7 +174,10 @@ function AddButton(props) {
   );
 }
 
-export default connect(null, actions)(AddButton);
+export default connect(
+  null,
+  actions,
+)(AddButton);
 
 const styles = {
   view: {
@@ -194,10 +195,10 @@ const styles = {
   insideBtn: {
     flex: 1,
     borderWidth: 1,
-    borderColor: "#5c6120",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    borderColor: '#5c6120',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 10,
     height: 140,
     borderRadius: 5,
@@ -205,17 +206,17 @@ const styles = {
   border: {
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: "#5c6120",
+    borderColor: '#5c6120',
   },
   bgColor: {
-    backgroundColor: Colors.green
+    backgroundColor: Colors.green,
   },
   color: {
-    color: Colors.green
+    color: Colors.green,
   },
   displayRow: {
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
   },
   icon: {
     name: 'plus',
