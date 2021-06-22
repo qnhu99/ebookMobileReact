@@ -30,7 +30,7 @@ function BookInfo(props) {
           containerStyle={{ alignSelf: 'center' }}
         />
         <Divider />
-        <View style={styles.titleContainer}>
+        <View>
           <Text h4 style={{ marginBottom: 4, textAlign: 'center' }}>
             {bookName}
           </Text>

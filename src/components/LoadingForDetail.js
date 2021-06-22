@@ -16,7 +16,7 @@ const formatBookInfo = data => {
   } = data;
   return {
     imgUrl,
-    bookName,
+    bookName: bookName.trim(),
     bookIntro,
     bookAuthor: bookAuthor.replace('\n', ''),
   };
@@ -54,9 +54,8 @@ function useCancellableSWR(key, swrOptions) {
           cancelToken: source.token,
         }).then(res => res.data),
       {
-        dedupingInterval: 24 * 3600000,
-        revalidateOnFocus: false,
-        revalidateOnReconnect: false,
+        dedupingInterval: 1000,
+        refreshInterval: 1000,
         ...swrOptions,
       },
     ),
@@ -87,7 +86,7 @@ const LoadingForDetail = props => {
 
   const [{ data, error, isValidating }, controller] = useCancellableSWR(url);
 
-  if (isValidating && !data) {
+  if (isValidating && !data?.book_name) {
     return (
       <Overlay isVisible={props.show} style={styles.wrapper}>
         <ActivityIndicator size="large" />
@@ -102,20 +101,19 @@ const LoadingForDetail = props => {
       </Overlay>
     );
   }
-  if (data) {
-    if (data?.book_name) {
-      const currentBook = {
-        bookUrl: url,
-        chapterLinksArray: data.chapter_link,
-        bookInfo: formatBookInfo(data),
-        tableOfContent: formatTableOfContent(data),
-      };
-      props.updateRecentOnlineBooks(currentBook);
-      handleSuccess(currentBook);
-    } else {
-      handleError({ message: 'Something went wrong...' });
-    }
+  if (data?.book_name) {
+    const currentBook = {
+      bookUrl: url,
+      chapterLinksArray: data.chapter_link,
+      bookInfo: formatBookInfo(data),
+      tableOfContent: formatTableOfContent(data),
+    };
+    props.updateRecentOnlineBooks(currentBook);
+    handleSuccess(currentBook);
+  } else {
+    handleError({ message: 'Something went wrong...' });
   }
+
   if (error) {
     if (error.message !== 'Cancel-Request') {
       handleError(error);
