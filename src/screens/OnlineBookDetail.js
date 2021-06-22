@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView, Alert } from 'react-native';
+import { View, Alert, SectionList } from 'react-native';
 import { connect } from 'react-redux';
+import { ListItem, Text } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
-import BookInfo from './BookInfo';
-import TableOfContent from './TableOfContent';
+import BookInfo from 'src/components/OnlineBookInfo';
 import LoadingForChapter from 'src/components/LoadingForChapter';
+
+const Item = ({ onPress, chapter }) => (
+  <ListItem onPress={onPress} bottomDivider>
+    <ListItem.Content>
+      <ListItem.Title numberOfLines={1} style={styles.chapterName}>
+        {chapter.chapter_name}
+      </ListItem.Title>
+    </ListItem.Content>
+  </ListItem>
+);
 
 function OnlineBookDetail(props) {
   const navigation = useNavigation();
@@ -16,6 +26,10 @@ function OnlineBookDetail(props) {
   const [chapterURL, setChapterURL] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const sectionListData = tableOfContent.seasons.map(s => ({
+    title: s.season_name,
+    data: s.chapters,
+  }));
 
   useEffect(() => {
     if (error) {
@@ -30,17 +44,27 @@ function OnlineBookDetail(props) {
     setChapterURL(currentChapterLink);
   };
 
-  const handlePressChapter = (url, index) => {
+  const handlePressChapter = url => {
     setLoading(true);
     setChapterURL(url);
   };
 
-  //navigation.setOptions({ title: data.book_name, headerShown: true });
   navigation.setOptions({ title: data.bookInfo.bookName, headerShown: true });
   return (
-    <>
-      <ScrollView>
-        <View>
+    <View style={styles.container}>
+      <SectionList
+        sections={sectionListData}
+        keyExtractor={(item, index) => item + index}
+        renderItem={({ item }) => (
+          <Item
+            chapter={item}
+            onPress={() => handlePressChapter(item.chapter_link)}
+          />
+        )}
+        renderSectionHeader={({ section: { title } }) => (
+          <Text style={styles.seasonTitle}>{title}</Text>
+        )}
+        ListHeaderComponent={
           <BookInfo
             data={bookInfo}
             handlePressReading={handlePressReading}
@@ -48,12 +72,8 @@ function OnlineBookDetail(props) {
               currentChapterIndex < 0 ? 'Start reading' : 'Continue reading'
             }
           />
-          <TableOfContent
-            data={tableOfContent}
-            handlePressChapter={handlePressChapter}
-          />
-        </View>
-      </ScrollView>
+        }
+      />
       <LoadingForChapter
         show={loading}
         url={chapterURL}
@@ -71,15 +91,31 @@ function OnlineBookDetail(props) {
           setLoading(false);
         }}
       />
-    </>
+    </View>
   );
 }
 
 const mapStateToProps = state => {
   return {
     currentChapterIndex: state.recentBooks[0]?.currentChapterIndex,
-    currentChapterLink: state.recentBooks[0]?.currentChapterLink,
+    currentChapterLink:
+      state.recentBooks[0]?.currentChapterLink ||
+      state.recentBooks[0]?.chapterLinksArray[0],
   };
 };
 
 export default connect(mapStateToProps)(OnlineBookDetail);
+
+const styles = {
+  seasonTitle: {
+    fontWeight: 'bold',
+    fontSize: 18,
+    textAlign: 'center',
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingRight: 15,
+    paddingLeft: 15,
+  },
+  item: { paddingLeft: 10, paddingRight: 10 },
+  chapterName: { paddingLeft: 10, paddingRight: 10, fontSize: 16 },
+};

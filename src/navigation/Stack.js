@@ -65,8 +65,7 @@ const options = {
     inactiveTintColor: Colors?.green,
     showLabel: false,
   },
-  StackScreenMainScreenOptions: {
-  },
+  StackScreenMainScreenOptions: {},
   StackScreenBookDetailOptions: ({ route }) => ({
     title: route.params.data.title,
   }),
@@ -88,7 +87,6 @@ function HomeStackScreen() {
       component={HomeScreen}
       options={{
         title: 'READER+',
-
       }}
     />
   );
@@ -112,7 +110,7 @@ function FileLibraryStackScreen() {
       name="file-library-screen"
       component={FileLibrary}
       options={{
-        title: 'Files'
+        title: 'Files',
       }}
     />
   );
@@ -124,7 +122,7 @@ function HelpStackScreen() {
       name="settings-screen"
       component={HelpScreen}
       options={{
-        title: "Help"
+        title: 'Help',
       }}
     />
   );

@@ -9,15 +9,17 @@ const Controller = props => {
     nextChapter,
     chapterLinksArray,
     handlePressChapter,
+    currentChapterIndex,
   } = props;
+
   return (
     <View style={styles.controller}>
       <Button
-        title="Prev"
         type="clear"
         icon={<Icon name="arrow-left" size={30} color="black" />}
         iconLeft
-        disabled={prevChapter === ''}
+        title="Prev"
+        disabled={currentChapterIndex <= 0}
         onPress={() => {
           handlePressChapter(prevChapter);
         }}
@@ -67,6 +69,7 @@ function ChapterContent(props) {
         </View>
       </ScrollView>
       <Controller
+        currentChapterIndex={props.currentChapterIndex}
         prevChapter={prev_chap}
         nextChapter={next_chap}
         chapterLinksArray={chapterLinksArray}
@@ -80,6 +83,7 @@ const mapStateToProps = state => {
   return {
     chapterLinksArray: state.recentBooks[0].chapterLinksArray,
     settings: state.readerSettings,
+    currentChapterIndex: state.recentBooks[0]?.currentChapterIndex,
   };
 };
 

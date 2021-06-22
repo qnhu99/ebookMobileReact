@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 import { View, Dimensions, Alert } from 'react-native';
 import SideMenu from 'react-native-side-menu-updated';
 import ChapterContent from './ChapterContent';
 import Icons from '../../constants/icons';
 import MenuDrawer from './MenuDrawer';
-import { contrastColor } from '../../constants';
-import { useNavigation } from '@react-navigation/native';
 import LoadingForChapter from 'src/components/LoadingForChapter';
+import { contrastColor } from '../../constants';
+
 const { height: full_height } = Dimensions.get('window');
 
 function OnlineBookReader(props) {
@@ -46,7 +47,11 @@ function OnlineBookReader(props) {
   });
 
   const menu = (
-    <MenuDrawer setDrawer={setDrawer} handlePressChapter={handlePressChapter} />
+    <MenuDrawer
+      setDrawer={setDrawer}
+      handlePressChapter={handlePressChapter}
+      currentURL={chapterURL}
+    />
   );
   return (
     <SideMenu
@@ -79,7 +84,9 @@ function OnlineBookReader(props) {
   );
 }
 
-const mapStateToProps = state => ({ currentBook: state.recentBooks[0] });
+const mapStateToProps = state => ({
+  currentBook: state.recentBooks[0],
+});
 
 export default connect(mapStateToProps)(OnlineBookReader);
 
