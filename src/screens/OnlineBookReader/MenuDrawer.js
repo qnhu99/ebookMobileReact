@@ -13,7 +13,7 @@ const sections = [
 ];
 
 function MenuDrawer(props) {
-  const { currentChapterLink, tableOfContent, handlePressChapter } = props;
+  const { tableOfContent, handlePressChapter, currentURL } = props;
   const [currentSection, setCurrentSection] = useState('contents');
   function renderSection() {
     switch (currentSection) {
@@ -21,7 +21,7 @@ function MenuDrawer(props) {
         return (
           <TableContent
             tableOfContent={tableOfContent}
-            currentChapterLink={currentChapterLink}
+            currentChapterLink={currentURL}
             handlePressChapter={url => {
               handlePressChapter(url);
             }}
@@ -61,13 +61,9 @@ function MenuDrawer(props) {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    tableOfContent: state.recentBooks[0].tableOfContent,
-    currentChapterLink: state.recentBooks[0].currentChapterLink,
-  };
-};
-
+const mapStateToProps = state => ({
+  tableOfContent: state.recentBooks[0].tableOfContent,
+});
 export default connect(mapStateToProps)(MenuDrawer);
 
 const styles = {

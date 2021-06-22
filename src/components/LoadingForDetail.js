@@ -1,11 +1,12 @@
 import React from 'react';
 import useSWR from 'swr';
+import axios from 'axios';
+import { connect } from 'react-redux';
 import { ActivityIndicator } from 'react-native';
 import { Overlay, Button } from 'react-native-elements';
 import request, { BookApi } from 'src/api';
-import axios from 'axios';
-import { connect } from 'react-redux';
 import { updateRecentOnlineBooks } from 'src/actions/recentBooks';
+
 const formatBookInfo = data => {
   const {
     img_url: imgUrl,
@@ -36,7 +37,7 @@ const formatTableOfContent = data => {
         season_name: season,
         chapters: chaptersFormatted
           .slice(season_index[i], season_index[i + 1])
-          .map(chap => ({ ...chap, season_index, season_name })),
+          .map(chap => chap),
       };
     }),
   };
@@ -53,7 +54,9 @@ function useCancellableSWR(key, swrOptions) {
           cancelToken: source.token,
         }).then(res => res.data),
       {
-        refreshInterval: 500,
+        dedupingInterval: 24 * 3600000,
+        revalidateOnFocus: false,
+        revalidateOnReconnect: false,
         ...swrOptions,
       },
     ),
@@ -61,11 +64,30 @@ function useCancellableSWR(key, swrOptions) {
   ];
 }
 
+function validURL(str) {
+  var pattern = new RegExp(
+    '^(https?:\\/\\/)?' + // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+      '(\\#[-a-z\\d_]*)?$',
+    'i',
+  ); // fragment locator
+  return !!pattern.test(str);
+}
+
 const LoadingForDetail = props => {
   if (!props.show) return null;
+  if (!validURL(props.url)) {
+    props.handleError({ message: 'Input invalid' });
+    return null;
+  }
   const { url, handleSuccess, handleError, handleCancel } = props;
+
   const [{ data, error, isValidating }, controller] = useCancellableSWR(url);
-  if (isValidating) {
+
+  if (isValidating && !data) {
     return (
       <Overlay isVisible={props.show} style={styles.wrapper}>
         <ActivityIndicator size="large" />
@@ -81,14 +103,18 @@ const LoadingForDetail = props => {
     );
   }
   if (data) {
-    const currentBook = {
-      bookUrl: url,
-      chapterLinksArray: data.chapter_link,
-      bookInfo: formatBookInfo(data),
-      tableOfContent: formatTableOfContent(data),
-    };
-    props.updateRecentOnlineBooks(currentBook);
-    handleSuccess(currentBook);
+    if (data?.book_name) {
+      const currentBook = {
+        bookUrl: url,
+        chapterLinksArray: data.chapter_link,
+        bookInfo: formatBookInfo(data),
+        tableOfContent: formatTableOfContent(data),
+      };
+      props.updateRecentOnlineBooks(currentBook);
+      handleSuccess(currentBook);
+    } else {
+      handleError({ message: 'Something went wrong...' });
+    }
   }
   if (error) {
     if (error.message !== 'Cancel-Request') {
@@ -103,7 +129,10 @@ const mapDispatchToProps = dispatch => {
     updateRecentOnlineBooks: data => dispatch(updateRecentOnlineBooks(data)),
   };
 };
-export default connect(null, mapDispatchToProps)(LoadingForDetail);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(LoadingForDetail);
 
 const styles = {
   wrapper: {

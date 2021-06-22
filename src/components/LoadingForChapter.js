@@ -1,11 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import useSWR from 'swr';
 import axios from 'axios';
 import { ActivityIndicator } from 'react-native';
 import { Overlay, Button } from 'react-native-elements';
 import request, { BookApi } from 'src/api';
 import { updateRecentOnlineChapter } from 'src/actions/recentBooks';
-import { connect } from 'react-redux';
+import { useState } from 'react';
+
 function useCancellableSWR(key, swrOptions) {
   const source = axios.CancelToken.source();
   return [
@@ -17,7 +19,9 @@ function useCancellableSWR(key, swrOptions) {
           cancelToken: source.token,
         }).then(res => res.data),
       {
-        refreshInterval: 3000,
+        dedupingInterval: 24 * 3600000,
+        revalidateOnFocus: false,
+        revalidateOnReconnect: false,
         ...swrOptions,
       },
     ),
@@ -30,7 +34,7 @@ const LoadingForChapter = props => {
   const { url, handleSuccess, handleError, handleCancel } = props;
   const [{ data, error, isValidating }, controller] = useCancellableSWR(url);
 
-  if (isValidating) {
+  if (isValidating && !data) {
     return (
       <Overlay isVisible={props.show} style={styles.wrapper}>
         <ActivityIndicator size="large" />
@@ -50,6 +54,7 @@ const LoadingForChapter = props => {
     props.updateRecentOnlineChapter(url);
     handleSuccess(data);
   }
+
   if (error) {
     if (error.message !== 'Cancel-Request') {
       handleError(error);
@@ -66,7 +71,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(LoadingForChapter);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(LoadingForChapter);
 
 const styles = {
   wrapper: {
