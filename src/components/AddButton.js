@@ -36,9 +36,11 @@ function AddButton(props) {
 
   const toggleOverlay = () => {
     setVisible(!visible);
+    if (errorSubmitEmptyInput) setErrorSubmitEmptyInput(false);
   };
   const toggleInputLinkOverlay = () => {
     setVisibleInputLink(!visibleInputLink);
+    if (errorSubmitEmptyInput) setErrorSubmitEmptyInput(false);
     setInputLink('');
   };
 
@@ -117,7 +119,7 @@ function AddButton(props) {
               placeholder="Book link"
               onChangeText={setInputLink}
               value={inputLink}
-              errorMessage={errorSubmitEmptyInput ? 'Empty input' : ''}
+              errorMessage={!inputLink && errorSubmitEmptyInput ? 'Empty input' : ''}
               rightIcon={
                 <TouchableOpacity
                   style={[styles.border, { padding: 5 }]}
