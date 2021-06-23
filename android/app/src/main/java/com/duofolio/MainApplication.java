@@ -15,7 +15,7 @@ import com.rnfs.RNFSPackage;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import net.no_mad.tts.TextToSpeechPackage;
-import ui.fileselector.RNFileSelectorPackage;
+// import ui.fileselector.RNFileSelectorPackage;
 
 public class MainApplication
   extends MultiDexApplication

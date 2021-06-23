@@ -30,12 +30,12 @@ function BookInfo(props) {
           containerStyle={{ alignSelf: 'center' }}
         />
         <Divider />
-        <View style={styles.titleContainer}>
+        <View>
           <Text h4 style={{ marginBottom: 4, textAlign: 'center' }}>
-            {bookName.trim()}
+            {bookName}
           </Text>
           <Text style={{ fontSize: 16, textAlign: 'center' }}>
-            {bookAuthor.trim()}
+            {bookAuthor}
           </Text>
         </View>
         <View>
