@@ -32,10 +32,10 @@ function BookInfo(props) {
         <Divider />
         <View style={styles.titleContainer}>
           <Text h4 style={{ marginBottom: 4, textAlign: 'center' }}>
-            {bookName}
+            {bookName.trim()}
           </Text>
           <Text style={{ fontSize: 16, textAlign: 'center' }}>
-            {bookAuthor}
+            {bookAuthor.trim()}
           </Text>
         </View>
         <View>
